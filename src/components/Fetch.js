@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 
 const Fetch = () => {
-  // const params = useParams();
-  // console.log(params);
   const [data, setData] = useState(null);
   let key = process.env.REACT_APP_API_KEY;
 
