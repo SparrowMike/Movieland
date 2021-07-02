@@ -19,7 +19,7 @@ const Fetch = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [key]);
 
   return data === null ? (
     <h1>LOADING</h1>
