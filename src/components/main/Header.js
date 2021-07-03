@@ -17,18 +17,15 @@ const useStyles = makeStyles((theme) => ({
       listStyle: "none",
     },
   },
-
   form: {
-    color: "white",
     "& .MuiTextField-root": {
       margin: theme.spacing(1),
       width: "25ch",
     },
   },
-
   appBar: {
-    color: "white",
     borderBottom: `1px solid ${theme.palette.divider}`,
+    opacity: 0.8,
   },
   toolbar: {
     flexWrap: "wrap",
@@ -38,7 +35,6 @@ const useStyles = makeStyles((theme) => ({
   },
   link: {
     margin: theme.spacing(1, 2.5),
-    color: "white",
   },
 }));
 
@@ -57,22 +53,22 @@ export default function Header() {
     <React.Fragment>
       <CssBaseline />
       <AppBar
-        position="static"
-        color="primary"
+        position="fixed"
+        color="secondary"
         elevation={0}
         className={classes.appBar}
       >
         <Toolbar className={classes.toolbar}>
           <Link
             variant="button"
-            color="inherit"
+            color="primary"
             component={RouterLink}
             to="./"
             className={classes.toolbarTitle}
           >
             <Typography
               variant="h6"
-              color="inherit"
+              color="primary"
               noWrap
               className={classes.toolbarTitle}
             >
@@ -82,7 +78,7 @@ export default function Header() {
           <nav>
             <Link
               variant="button"
-              color="textPrimary"
+              color="primary"
               component={RouterLink}
               to="./movies"
               className={classes.link}
@@ -91,7 +87,7 @@ export default function Header() {
             </Link>
             <Link
               variant="button"
-              color="textPrimary"
+              color="primary"
               component={RouterLink}
               to="./tv-show"
               className={classes.link}
@@ -100,21 +96,12 @@ export default function Header() {
             </Link>
             <Link
               variant="button"
-              color="textPrimary"
+              color="primary"
               component={RouterLink}
-              to="./explore"
+              to="/explore"
               className={classes.link}
             >
               Explore
-            </Link>
-            <Link
-              variant="button"
-              color="textPrimary"
-              component={RouterLink}
-              to="/about"
-              className={classes.link}
-            >
-              About
             </Link>
           </nav>
           <form
@@ -124,12 +111,12 @@ export default function Header() {
             onSubmit={handleSubmit}
           >
             <TextField
+              color="primary"
               onChange={(e) => setTitle(e.target.value)}
               id="outlined-search"
               variant="outlined"
               label="Search field"
               type="search"
-              color="secondary"
             />
           </form>
         </Toolbar>

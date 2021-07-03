@@ -8,7 +8,7 @@ import Box from "@material-ui/core/Box";
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
+    <Typography variant="body2" color="primary" align="center">
       {"Copyright © "}
       <Link color="inherit" href="https://material-ui.com/">
         Your Website
@@ -22,21 +22,29 @@ function Copyright() {
 const Footer = () => {
   const useStyles = makeStyles((theme) => ({
     "@global": {
-      ul: {
-        margin: 0,
-        padding: 0,
-        listStyle: "none",
-      },
+      //   ul: {
+      //     margin: 0,
+      //     padding: 0,
+      //     listStyle: "none",
     },
+    // },
     footer: {
-      borderTop: `1px solid ${theme.palette.divider}`,
-      marginTop: theme.spacing(8),
-      paddingTop: theme.spacing(3),
-      paddingBottom: theme.spacing(3),
-      [theme.breakpoints.up("sm")]: {
-        paddingTop: theme.spacing(6),
-        paddingBottom: theme.spacing(6),
-      },
+      // color: "white",
+      //   borderTop: `1px solid ${theme.palette.divider}`,
+      //   marginTop: theme.spacing(8),
+      //   paddingTop: theme.spacing(3),
+      //   paddingBottom: theme.spacing(3),
+      //   [theme.breakpoints.up("sm")]: {
+      //     paddingTop: theme.spacing(6),
+      //     paddingBottom: theme.spacing(6),
+    },
+    // },
+    footer: {
+      // backgroundColor: theme.palette.background.paper,
+      backgroundColor: "#000000",
+      opacity: 0.8,
+
+      padding: theme.spacing(2),
     },
   }));
 
@@ -62,7 +70,7 @@ const Footer = () => {
   const classes = useStyles();
   return (
     <React.Fragment>
-      <Container maxWidth="md" component="footer" className={classes.footer}>
+      {/* <Container maxWidth="md" component="footer" className={classes.footer}>
         <Grid container spacing={4} justify="space-evenly">
           {footers.map((footer) => (
             <Grid item xs={6} sm={3} key={footer.title}>
@@ -84,7 +92,21 @@ const Footer = () => {
         <Box mt={5}>
           <Copyright />
         </Box>
-      </Container>
+      </Container> */}
+      <footer className={classes.footer}>
+        <Typography variant="h6" align="center" color="primary" gutterBottom>
+          Footer
+        </Typography>
+        <Typography
+          variant="subtitle1"
+          align="center"
+          color="primary"
+          component="p"
+        >
+          Wah, this is the best footer....EVER!
+        </Typography>
+        <Copyright variant="p" color="primary" />
+      </footer>
     </React.Fragment>
   );
 };

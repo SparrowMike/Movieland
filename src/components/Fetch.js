@@ -9,10 +9,9 @@ const Fetch = () => {
     // fetch(
     //   `  https://api.themoviedb.org/3/genre/movie/list?api_key=${key}&language=en-US` //! By Genre
     // )
-
     //? Search trending by TV, MOVIE, ALL or PERSON. It can go by DAY or WEEK.
 
-    fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=${key}`)
+    fetch(`https://api.themoviedb.org/3/trending/tv/day?api_key=${key}`)
       .then((response) => {
         if (response.ok) {
           return response.json();

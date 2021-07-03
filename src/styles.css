@@ -48,3 +48,12 @@ h1 {
   margin: 5px;
   padding: 5px;
 }
+
+footer {
+  margin-top: calc(5% + 60px);
+  bottom: 0;
+}
+
+.mainContainer {
+  padding-top: 60px;
+}
