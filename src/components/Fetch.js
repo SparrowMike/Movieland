@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from "react";
+import Trending from "./Trending";
 
 const Fetch = () => {
   const [data, setData] = useState(null);
   let key = process.env.REACT_APP_API_KEY;
 
   useEffect(() => {
-    fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${key}`)
+    // fetch(
+    //   `  https://api.themoviedb.org/3/genre/movie/list?api_key=${key}&language=en-US` //! By Genre
+    // )
+
+    //? Search trending by TV, MOVIE, ALL or PERSON. It can go by DAY or WEEK.
+
+    fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=${key}`)
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -14,7 +21,7 @@ const Fetch = () => {
       })
       .then((data) => {
         setData(data);
-        console.log(data.results[0]);
+        console.log(data);
       })
       .catch((error) => {
         console.log(error);
@@ -25,17 +32,8 @@ const Fetch = () => {
     <h1>LOADING</h1>
   ) : (
     <div>
-      <h3> Title: {data.results[0].title}</h3>
-      <p>Overview: {data.results[0].overview}</p>
-      <p>
-        Average vote of {data.results[0].vote_average} based on{" "}
-        {data.results[0].vote_count} votes
-      </p>
-      <p>Release Date: {data.results[0].release_date}</p>
-      <img
-        src={`https://image.tmdb.org/t/p/w500${data.results[0].backdrop_path}`}
-        alt=""
-      />
+      <Trending data={data.results} key={key} />
+      {/* <TestTrending data={data.results} key={key} /> */}
     </div>
   );
 };
