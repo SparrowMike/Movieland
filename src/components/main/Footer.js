@@ -8,7 +8,7 @@ function Copyright() {
     <Typography variant="body2" color="primary" align="center">
       {"Copyright © "}
       <Link color="inherit" href="https://developers.themoviedb.org/3">
-        Your Website
+        TMDb
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -29,16 +29,20 @@ const Footer = () => {
   return (
     <React.Fragment>
       <footer className={classes.footer}>
-        <Typography variant="h6" align="center" color="primary" gutterBottom>
-          Footer
-        </Typography>
+        <Typography
+          variant="h6"
+          align="center"
+          color="primary"
+          gutterBottom
+        ></Typography>
         <Typography
           variant="subtitle1"
           align="center"
           color="primary"
           component="p"
         >
-          Wah, this is the best footer....EVER!
+          This product uses the TMDb API but is not endorsed or certified by
+          TMDb.{" "}
         </Typography>
         <Copyright variant="p" color="primary" />
       </footer>

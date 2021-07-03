@@ -24,8 +24,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Explore() {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-  const [type, setType] = React.useState("");
+  const [open, setOpen] = useState(false);
+  const [type, setType] = useState("");
 
   const handleChange = (event) => {
     setType(Number(event.target.value) || "");

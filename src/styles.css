@@ -1,5 +1,7 @@
 html,
 body {
+  padding: 0px;
+  margin: 0px;
   height: 100%;
 }
 
@@ -15,20 +17,22 @@ h1 {
 footer {
   margin-top: calc(5% + 60px);
   bottom: 0;
-  padding-top: 50px;
+  /* position: sticky; */
+  width: 100%;
 }
 
 .mainContainer {
   padding-top: 73px;
+  padding-bottom: 73px;
+  /* height: 100%; */
 }
 
-/* main {
-  background-image: url("https://images.unsplash.com/photo-1440404653325-ab127d49abc1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80");
+.home {
+  background: tomato;
+  height: 100%;
+
+  /* background-image: url("https://images.unsplash.com/photo-1440404653325-ab127d49abc1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80");
   background-size: auto ;
   background-repeat: no-repeat;
-  background-position: left top;
-} */
-
-.headerSearch {
-  color: white !important;
+  background-position: left top; */
 }

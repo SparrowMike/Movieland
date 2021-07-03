@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "wrap",
     justifyContent: "space-around",
     overflow: "hidden",
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: theme.palette.background.default,
     listStyle: "none",
     margin: "10px",
   },
@@ -58,7 +58,7 @@ export default function Trending(props) {
                 title={film.title ? film.title : film.name}
                 subtitle={
                   <span>
-                    Release:{" "}
+                    Release:
                     {getYear(
                       film.release_date
                         ? film.release_date
