@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+// import { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import GridListTile from "@material-ui/core/GridListTile";
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Trending(props) {
-  const [overview, setOverview] = useState(false);
+  // const [overview, setOverview] = useState(false);
 
   const classes = useStyles();
 
