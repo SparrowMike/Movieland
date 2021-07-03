@@ -10,14 +10,19 @@ import { makeStyles } from "@material-ui/core/styles";
 import { TextField } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
-  "@global": {
-    ul: {
-      margin: 0,
-      padding: 0,
-      listStyle: "none",
-    },
+  // "@global": {
+  //   ul: {
+  //     margin: 0,
+  //     padding: 0,
+  //     listStyle: "none",
+  //   },
+  // },
+  input: {
+    color: "white",
   },
+
   form: {
+    color: "white",
     "& .MuiTextField-root": {
       margin: theme.spacing(1),
       width: "25ch",
@@ -25,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
   appBar: {
     borderBottom: `1px solid ${theme.palette.divider}`,
-    opacity: 0.8,
+    opacity: 0.9,
   },
   toolbar: {
     flexWrap: "wrap",
@@ -111,12 +116,16 @@ export default function Header() {
             onSubmit={handleSubmit}
           >
             <TextField
+              error
               color="primary"
               onChange={(e) => setTitle(e.target.value)}
               id="outlined-search"
               variant="outlined"
               label="Search field"
               type="search"
+              InputProps={{
+                className: classes.input,
+              }}
             />
           </form>
         </Toolbar>

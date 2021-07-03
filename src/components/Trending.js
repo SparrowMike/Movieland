@@ -76,7 +76,6 @@ export default function Trending(props) {
                   </IconButton>
                 }
               />
-              {/* <GridListTileBar /> */}
             </GridListTile>
           </Grid>
         ))}

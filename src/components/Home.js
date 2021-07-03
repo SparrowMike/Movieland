@@ -2,10 +2,10 @@ import { Typography } from "@material-ui/core";
 
 const Home = () => {
   return (
-    <div>
+    <main className="home">
       <Typography variant="h2" />
       Quick About
-    </div>
+    </main>
   );
 };
 
