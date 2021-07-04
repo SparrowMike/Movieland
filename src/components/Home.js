@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 75,
   },
 }));
-
+ 
 export default function Home() {
   const classes = useStyles();
   const [type, setType] = useState(0);
@@ -27,11 +27,10 @@ export default function Home() {
   const handleType = (event, newValue) => {
     setType(newValue);
     console.log(newValue);
-    // console.log("event", event);
   };
   const handleDate = (event, newValue) => {
     setDate(newValue);
-    console.log(event.target.value);
+    console.log(newValue);
   };
 
   return (
@@ -53,7 +52,11 @@ export default function Home() {
           </Typography>
           <Tabs
             value={type}
-            indicatorColor="primary"
+            TabIndicatorProps={{
+              style: {
+                backgroundColor: "lightgrey",
+              },
+            }}
             textColor="primary"
             onChange={handleType}
             centered
@@ -63,8 +66,12 @@ export default function Home() {
             <Tab label="TV Series" />
           </Tabs>
           <Tabs
+            TabIndicatorProps={{
+              style: {
+                backgroundColor: "lightgrey",
+              },
+            }}
             value={date}
-            indicatorColor="primary"
             textColor="primary"
             onChange={handleDate}
             centered
@@ -73,12 +80,12 @@ export default function Home() {
             <Tab label="Weekly" />
           </Tabs>
           <Button
-            variant="outlined"
+            variant="contained"
             className={classes.button}
             color="primary"
             disableElevation
             size="large"
-            onClick={() => console.log("smurfs")}
+            onClick={() => console.log("submit")}
           >
             Show Trending!
           </Button>

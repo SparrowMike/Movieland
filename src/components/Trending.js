@@ -1,12 +1,10 @@
 import React from "react";
-// import { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
 import IconButton from "@material-ui/core/IconButton";
 import InfoIcon from "@material-ui/icons/Info";
-// import { Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -45,7 +43,6 @@ export default function Trending(props) {
 
   return (
     <div className={classes.root}>
-      {/* <Typography variant="h2">MOVIES TRENDING TODAY!</Typography> */}
       <Grid container spacing={1}>
         {props.data.map((film, index) => (
           <Grid item xs={4} key={index}>

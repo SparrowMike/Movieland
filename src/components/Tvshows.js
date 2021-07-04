@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Movies() {
+export default function Tvshows() {
   const classes = useStyles();
   const [genre, setGenre] = React.useState("");
 
@@ -26,7 +26,7 @@ export default function Movies() {
   };
 
   return (
-    <div className="movies">
+    <div className="tvshows">
       <FormControl variant="outlined" className={classes.formControl}>
         <InputLabel id="genre">Genre</InputLabel>
         <Select

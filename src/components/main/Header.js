@@ -10,13 +10,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import { TextField } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
-  // "@global": {
-  //   ul: {
-  //     margin: 0,
-  //     padding: 0,
-  //     listStyle: "none",
-  //   },
-  // },
   input: {
     color: "white",
   },
@@ -94,7 +87,7 @@ export default function Header() {
               variant="button"
               color="primary"
               component={RouterLink}
-              to="./tv-show"
+              to="./tvshows"
               className={classes.link}
             >
               TV-Shows
@@ -106,7 +99,7 @@ export default function Header() {
               to="/explore"
               className={classes.link}
             >
-              Explore
+              Trending
             </Link>
           </nav>
           <form
