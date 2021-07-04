@@ -1,42 +1,47 @@
 import React from "react";
 import { useState } from "react";
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-
+import { Button } from "@material-ui/core";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 
 const useStyles = makeStyles((theme) => ({
-  heroContent: {
+  main: {
     padding: theme.spacing(8, 0, 8),
   },
 
   textShadow: {
-    textShadow: "0px 2px 2px rgba(255, 255, 255, 0.4)",
+    textShadow: "1px 2px 2px rgba(255, 255, 255, 0.4)",
+    margin: "auto",
   },
 
-  heroButtons: {
-    marginTop: theme.spacing(4),
+  selection: {
+    textColor: theme.palette.error.main,
+    // textShadow: "10px 12px 12px rgba(255, 255, 255, 0.4)",
   },
 }));
 
 export default function Home() {
   const classes = useStyles();
-  const [value, setValue] = useState(2);
+  const [type, setType] = useState(0);
+  const [date, setDate] = useState(0);
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-    console.log("new value", newValue);
-    console.log("event", event);
+  const handleType = (event, newValue) => {
+    setType(newValue);
+    console.log(newValue);
+    // console.log("event", event);
+  };
+  const handleDate = (event, newValue) => {
+    setDate(newValue);
+    console.log(newValue);
   };
 
   return (
     <React.Fragment>
       <div className="home">
-        <div className={classes.heroContent}>
+        <div className={classes.main}>
           <Container maxWidth="sm" className={classes.textShadow}>
             <Typography
               component="h1"
@@ -50,64 +55,35 @@ export default function Home() {
             <Typography variant="h5" align="center" color="primary" paragraph>
               You are two clicks away to find trending Movies and TV Series!
             </Typography>
-            <div className={classes.heroButtons}>
-              <Tabs
-                alignCenter
-                value={value}
-                indicatorColor="primary"
-                textColor="primary"
-                onChange={handleChange}
-              >
-                <Tab label="Movies" color="red" />
-                <Tab label="or" disabled />
-                <Tab label="TV Series" />
-              </Tabs>
-
-              {/* <Grid container spacing={2} justify="center">
-                <Grid item>
-                  <Button
-                    onClick={() => setType(!type)}
-                    size="large"
-                    variant="contained"
-                    color="primary"
-                  >
-                    Movies
-                  </Button>
-                </Grid>
-                <Grid item>
-                  <Button
-                    onClick={() => setType(!type)}
-                    size="large"
-                    variant="outlined"
-                    color="primary"
-                  >
-                    TV Series
-                  </Button>
-                </Grid>
-              </Grid>
-              <Grid container spacing={2} justify="center">
-                <Grid item>
-                  <Button
-                    onClick={() => setTime(!time)}
-                    size="medium"
-                    variant="outlined"
-                    color="primary"
-                  >
-                    Daily
-                  </Button>
-                </Grid>
-                <Grid item>
-                  <Button
-                    onClick={() => setTime(!time)}
-                    size="medium"
-                    variant="contained"
-                    color="primary"
-                  >
-                    Weekly
-                  </Button>
-                </Grid>
-              </Grid> */}
-            </div>
+            <Tabs
+              value={type}
+              indicatorColor="primary"
+              textColor="primary"
+              onChange={handleType}
+              centered
+            >
+              <Tab label="Movies" />
+              <Tab label="or" disabled />
+              <Tab label="TV Series" />
+            </Tabs>
+            <Tabs
+              className={classes.selection}
+              value={date}
+              indicatorColor="primary"
+              textColor="primary"
+              onChange={handleDate}
+              centered
+            >
+              <Tab label="Daily" />
+              <Tab label="Weekly" />
+            </Tabs>
+            <Button
+              color="primary"
+              disableElevation
+              onClick={() => console.log("smurfs")}
+            >
+              Show Trending!
+            </Button>
           </Container>
         </div>
       </div>
