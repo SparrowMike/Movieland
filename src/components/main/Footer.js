@@ -20,7 +20,7 @@ const Footer = () => {
   const useStyles = makeStyles((theme) => ({
     footer: {
       backgroundColor: "#000000",
-      opacity: 0.9,
+      // opacity: 0.9,
       padding: theme.spacing(2),
     },
   }));

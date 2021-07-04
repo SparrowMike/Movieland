@@ -8,18 +8,14 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 
 const useStyles = makeStyles((theme) => ({
-  main: {
-    padding: theme.spacing(8, 0, 8),
-  },
-
   textShadow: {
-    textShadow: "1px 2px 2px rgba(255, 255, 255, 0.4)",
-    margin: "auto",
+    textShadow: "1px 1px 1px rgba(255, 255, 255, 0.4)",
   },
-
-  selection: {
-    textColor: theme.palette.error.main,
-    // textShadow: "10px 12px 12px rgba(255, 255, 255, 0.4)",
+  button: {
+    margin: theme.spacing(3),
+  },
+  typographyHeader: {
+    fontSize: 75,
   },
 }));
 
@@ -35,57 +31,58 @@ export default function Home() {
   };
   const handleDate = (event, newValue) => {
     setDate(newValue);
-    console.log(newValue);
+    console.log(event.target.value);
   };
 
   return (
     <React.Fragment>
       <div className="home">
-        <div className={classes.main}>
-          <Container maxWidth="sm" className={classes.textShadow}>
-            <Typography
-              component="h1"
-              variant="h2"
-              align="center"
-              color="primary"
-              gutterBottom
-            >
-              Welcome to MovieLand!
-            </Typography>
-            <Typography variant="h5" align="center" color="primary" paragraph>
-              You are two clicks away to find trending Movies and TV Series!
-            </Typography>
-            <Tabs
-              value={type}
-              indicatorColor="primary"
-              textColor="primary"
-              onChange={handleType}
-              centered
-            >
-              <Tab label="Movies" />
-              <Tab label="or" disabled />
-              <Tab label="TV Series" />
-            </Tabs>
-            <Tabs
-              className={classes.selection}
-              value={date}
-              indicatorColor="primary"
-              textColor="primary"
-              onChange={handleDate}
-              centered
-            >
-              <Tab label="Daily" />
-              <Tab label="Weekly" />
-            </Tabs>
-            <Button
-              color="primary"
-              disableElevation
-              onClick={() => console.log("smurfs")}
-            >
-              Show Trending!
-            </Button>
-          </Container>
-        </div>
+        <Container maxWidth="sm" className={classes.textShadow}>
+          <Typography
+            className={classes.typographyHeader}
+            component="h1"
+            variant="h2"
+            align="center"
+            color="primary"
+            gutterBottom
+          >
+            Welcome to MovieLand!
+          </Typography>
+          <Typography variant="h5" align="center" color="primary">
+            You are three clicks away to find trending Movies and TV Series!
+          </Typography>
+          <Tabs
+            value={type}
+            indicatorColor="primary"
+            textColor="primary"
+            onChange={handleType}
+            centered
+          >
+            <Tab label="Movies" />
+            <Tab label="or" disabled />
+            <Tab label="TV Series" />
+          </Tabs>
+          <Tabs
+            value={date}
+            indicatorColor="primary"
+            textColor="primary"
+            onChange={handleDate}
+            centered
+          >
+            <Tab label="Daily" />
+            <Tab label="Weekly" />
+          </Tabs>
+          <Button
+            variant="outlined"
+            className={classes.button}
+            color="primary"
+            disableElevation
+            size="large"
+            onClick={() => console.log("smurfs")}
+          >
+            Show Trending!
+          </Button>
+        </Container>
       </div>
     </React.Fragment>
   );
