@@ -1,6 +1,6 @@
 import { Route, Switch } from "react-router-dom";
 import Fetch from "../Fetch";
-// import Explore from "../Explore";
+// import Trending from "./../Trending";
 import Home from "../Home";
 import Movies from "../Movies";
 

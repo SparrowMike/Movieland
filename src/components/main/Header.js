@@ -58,7 +58,7 @@ export default function Header() {
     <React.Fragment>
       <CssBaseline />
       <AppBar
-        position="fixed"
+        position="sticky"
         color="secondary"
         elevation={0}
         className={classes.appBar}
