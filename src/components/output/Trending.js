@@ -5,6 +5,10 @@ import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
 import IconButton from "@material-ui/core/IconButton";
 import InfoIcon from "@material-ui/icons/Info";
+import { Collapse } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
+import clsx from "clsx";
+import { CardContent } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,9 +20,21 @@ const useStyles = makeStyles((theme) => ({
     listStyle: "none",
     margin: "10px",
   },
+
+  expand: {
+    transform: "rotate(deg)",
+    marginLeft: "auto",
+    transition: theme.transitions.create("transform", {
+      duration: theme.transitions.duration.shortest,
+    }),
+  },
+  expandOpen: {
+    transform: "rotate(0deg)",
+  },
+
   gridList: {
+    height: "100vh",
     width: 500,
-    height: 280,
   },
   icon: {
     color: "rgba(255, 255, 255, 0.54)",
@@ -31,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Trending(props) {
   // const [overview, setOverview] = useState(false);
   console.log("search props", props);
+  const [expanded, setExpanded] = React.useState(false);
 
   const classes = useStyles();
 
@@ -39,6 +56,11 @@ export default function Trending(props) {
   };
 
   const showOverview = (e) => {
+    console.log("Overview:", e.overview);
+  };
+
+  const handleExpandClick = (e) => {
+    setExpanded(!expanded);
     console.log("Overview:", e.overview);
   };
 
@@ -54,6 +76,7 @@ export default function Trending(props) {
                 alt={film.title ? film.title : film.name}
               />
               <GridListTileBar
+                className={classes.card}
                 title={film.title ? film.title : film.name}
                 subtitle={
                   <span>
@@ -67,14 +90,22 @@ export default function Trending(props) {
                 }
                 actionIcon={
                   <IconButton
-                    onClick={() => showOverview(film)}
-                    aria-label={`info about ${film.title}`}
-                    className={classes.icon}
+                    className={clsx(classes.expand, {
+                      [classes.expandOpen]: expanded,
+                    })}
+                    onClick={() => handleExpandClick(film)}
+                    aria-expanded={expanded}
+                    aria-label="show more"
                   >
                     <InfoIcon />
                   </IconButton>
                 }
               />
+              <Collapse in={expanded} timeout="auto" unmountOnExit>
+                <CardContent>
+                  <Typography paragraph>{film.overview}</Typography>
+                </CardContent>
+              </Collapse>
             </GridListTile>
           </Grid>
         ))}
@@ -82,4 +113,4 @@ export default function Trending(props) {
     </div>
   );
 }
-//
+//!=========================================

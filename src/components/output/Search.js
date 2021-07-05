@@ -5,6 +5,7 @@ import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
 import IconButton from "@material-ui/core/IconButton";
 import InfoIcon from "@material-ui/icons/Info";
+import { useState } from "react";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Search(props) {
-  // const [overview, setOverview] = useState(false);
+  const [overview, setOverview] = useState(false);
 
   const classes = useStyles();
   console.log("search props", props.data);
@@ -53,6 +54,7 @@ export default function Search(props) {
                 alt={film.title ? film.title : film.name}
               />
               <GridListTileBar
+                className="classes"
                 title={film.title ? film.title : film.name}
                 subtitle={
                   <span>
@@ -66,9 +68,9 @@ export default function Search(props) {
                 }
                 actionIcon={
                   <IconButton
-                    onClick={() => showOverview(film)}
                     aria-label={`info about ${film.title}`}
                     className={classes.icon}
+                    onClick={() => showOverview(film)}
                   >
                     <InfoIcon />
                   </IconButton>

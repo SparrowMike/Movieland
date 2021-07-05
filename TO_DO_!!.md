@@ -18,3 +18,5 @@
 
 - Add TMDB logo at the footer
 - Mobile friendly
+- add favorite option
+- ability to share facebook etc
