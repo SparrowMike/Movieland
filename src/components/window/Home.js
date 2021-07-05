@@ -18,19 +18,25 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 75,
   },
 }));
- 
-export default function Home() {
-  const classes = useStyles();
-  const [type, setType] = useState(0);
-  const [date, setDate] = useState(0);
 
-  const handleType = (event, newValue) => {
+export default function Home(props) {
+  const classes = useStyles();
+  const [type, setType] = useState("movie");
+  const [date, setDate] = useState("day");
+
+  const handleType = (e, newValue) => {
     setType(newValue);
-    console.log(newValue);
   };
-  const handleDate = (event, newValue) => {
+
+  const handleDate = (e, newValue) => {
     setDate(newValue);
-    console.log(newValue);
+  };
+
+  const handleSubmit = () => {
+    setType(type);
+    setDate(date);
+    console.log("current type:", type);
+    console.log("current date:", date);
   };
 
   return (
@@ -61,9 +67,9 @@ export default function Home() {
             onChange={handleType}
             centered
           >
-            <Tab label="Movies" />
+            <Tab label="Movies" value={"movie"} />
             <Tab label="or" disabled />
-            <Tab label="TV Series" />
+            <Tab label="TV Series" value={"tv"} />
           </Tabs>
           <Tabs
             TabIndicatorProps={{
@@ -76,8 +82,8 @@ export default function Home() {
             onChange={handleDate}
             centered
           >
-            <Tab label="Daily" />
-            <Tab label="Weekly" />
+            <Tab label="Daily" value={"day"} />
+            <Tab label="Weekly" value={"week"} />
           </Tabs>
           <Button
             variant="contained"
@@ -85,7 +91,7 @@ export default function Home() {
             color="primary"
             disableElevation
             size="large"
-            onClick={() => console.log("submit")}
+            onClick={() => handleSubmit()}
           >
             Show Trending!
           </Button>

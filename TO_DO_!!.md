@@ -11,6 +11,7 @@
 - Improve on loading window
 - Add about with some link to linkdin, github etc
 - Get suitable favicon
+- Login window
 
 <!--? MAYBE ?-->
 

@@ -22,22 +22,16 @@ footer {
   margin: 0;
 }
 
-/* .mainContainer {
-  padding-top: 73px;
-  padding-bottom: 73px;
-  height: 100%;
-} */
-
 .home,
 .movies,
 .tvshows {
   /* background-image: url("https://images.unsplash.com/photo-1440404653325-ab127d49abc1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80"); */
   background-image: url("./Photos/foto_tlo_film_blur_04.jpeg");
   background-size: cover;
-  height: 82vh;
+  height: 100vh;
   background-position: center center;
   background-repeat: no-repeat;
   text-align: center;
-  padding: 150px;
+  padding-top: 50px;
   /* filter: blur(1px); */
 }

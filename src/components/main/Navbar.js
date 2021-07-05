@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Header() {
+export default function Navbar() {
   const classes = useStyles();
   const [title, setTitle] = useState(" ");
 

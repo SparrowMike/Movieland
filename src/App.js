@@ -1,4 +1,4 @@
-import Header from "./components/main/Header";
+import Navbar from "./components/main/Navbar";
 import Main from "./components/main/Main";
 import Footer from "./components/main/Footer";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
@@ -18,10 +18,8 @@ function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Header />
-        <div className="mainContainer">
-          <Main />
-        </div>
+        <Navbar />
+        <Main />
         <Footer />
       </ThemeProvider>
     </>

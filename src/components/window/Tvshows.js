@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -19,10 +19,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Tvshows() {
   const classes = useStyles();
-  const [genre, setGenre] = React.useState("");
+  const [genre, setGenre] = useState("");
 
   const handleChange = (event) => {
     setGenre(event.target.value);
+    console.log(genre);
   };
 
   return (
@@ -39,9 +40,9 @@ export default function Tvshows() {
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem value={10}>Action</MenuItem>
-          <MenuItem value={20}>Family</MenuItem>
-          <MenuItem value={30}>Thriller</MenuItem>
+          <MenuItem value={"action"}>Action</MenuItem>
+          <MenuItem value={"family"}>Family</MenuItem>
+          <MenuItem value={"thriller"}>Thriller</MenuItem>
         </Select>
       </FormControl>
     </div>
