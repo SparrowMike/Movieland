@@ -2,8 +2,6 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import Grid from "@material-ui/core/Grid";
-
-import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
@@ -14,12 +12,27 @@ import Typography from "@material-ui/core/Typography";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
+
 import { Box } from "@material-ui/core";
+import { GridListTile } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 345,
+    maxWidth: "auto -10",
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-around",
+    // overflow: "hidden",
+    // backgroundColor: theme.palette.background.default,
+    // padding: "10px",
+    listStyle: "none",
+  },
+  card: {
+    background: "#000000",
+    contain: "content",
+
+    color: "white",
+    "&:hover": { background: "#9d0208" },
   },
   media: {
     height: 0,
@@ -47,23 +60,31 @@ export default function TEST(props) {
 
   const handleExpandClick = (e) => {
     setExpanded(!expanded);
-    console.log("Overview:", e.overview);
+    console.log("Overview:", e.id);
   };
 
   return (
-    <Box display="flex">
-      <Card className={classes.root}>
-        {props.data.map((film, index) => (
-          <Box flexDirection="row" key={index}>
+    <Grid
+      container
+      spacing={0}
+      direction="row"
+      alignItems="center"
+      justify="center"
+      style={{ minHeight: "100vh" }}
+      className={classes.root}
+    >
+      {props.data.map((film, index) => (
+        <Grid item xs={4} key={index}>
+          <GridListTile className={classes.card}>
             <CardHeader
               title={film.title ? film.title : film.name}
               subheader={
-                <span>
+                <Typography color="primary" paragraph>
                   Release:{" "}
                   {getYear(
                     film.release_date ? film.release_date : film.first_air_date
                   )}
-                </span>
+                </Typography>
               }
             />
             <CardMedia
@@ -72,16 +93,17 @@ export default function TEST(props) {
               title={film.title ? film.title : film.name}
             />
             <CardActions disableSpacing>
-              <IconButton aria-label="add to favorites">
+              <IconButton color="primary" aria-label="add to favorites">
                 <FavoriteIcon />
               </IconButton>
-              <IconButton aria-label="share">
+              <IconButton color="primary" aria-label="share">
                 <ShareIcon />
               </IconButton>
               <IconButton
                 className={clsx(classes.expand, {
                   [classes.expandOpen]: expanded,
                 })}
+                color="primary"
                 onClick={() => handleExpandClick(film)}
                 aria-expanded={expanded}
                 aria-label="show more"
@@ -91,12 +113,14 @@ export default function TEST(props) {
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
               <CardContent>
-                <Typography paragraph>{film.overview}</Typography>
+                <Typography color="primary" paragraph>
+                  {film.overview}
+                </Typography>
               </CardContent>
             </Collapse>
-          </Box>
-        ))}
-      </Card>
-    </Box>
+          </GridListTile>
+        </Grid>
+      ))}
+    </Grid>
   );
 }
