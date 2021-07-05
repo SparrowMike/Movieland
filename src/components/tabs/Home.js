@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
@@ -19,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Home(props) {
+export default function Home() {
   const classes = useStyles();
   const [type, setType] = useState("movie");
   const [date, setDate] = useState("day");
@@ -35,8 +36,6 @@ export default function Home(props) {
   const handleSubmit = () => {
     setType(type);
     setDate(date);
-    console.log("current type:", type);
-    console.log("current date:", date);
   };
 
   return (
@@ -85,16 +84,18 @@ export default function Home(props) {
             <Tab label="Daily" value={"day"} />
             <Tab label="Weekly" value={"week"} />
           </Tabs>
-          <Button
-            variant="contained"
-            className={classes.button}
-            color="primary"
-            disableElevation
-            size="large"
-            onClick={() => handleSubmit()}
-          >
-            Show Trending!
-          </Button>
+          <Link to={`/explore/${type}/${date}`}>
+            <Button
+              variant="contained"
+              className={classes.button}
+              color="primary"
+              disableElevation
+              size="large"
+              onClick={() => handleSubmit()}
+            >
+              Show Trending!
+            </Button>
+          </Link>
         </Container>
       </div>
     </React.Fragment>

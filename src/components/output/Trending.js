@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Trending(props) {
   // const [overview, setOverview] = useState(false);
+  console.log("search props", props);
 
   const classes = useStyles();
 
@@ -49,13 +50,14 @@ export default function Trending(props) {
             <GridListTile key={index}>
               <img
                 src={`https://image.tmdb.org/t/p/w500${film.backdrop_path}`}
+                // src={`https://image.tmdb.org/t/p/w500${film.known_for[index].backdrop_path)}`}
                 alt={film.title ? film.title : film.name}
               />
               <GridListTileBar
                 title={film.title ? film.title : film.name}
                 subtitle={
                   <span>
-                    Release:
+                    Release:{" "}
                     {getYear(
                       film.release_date
                         ? film.release_date

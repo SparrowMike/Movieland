@@ -8,6 +8,7 @@ import Link from "@material-ui/core/Link";
 import { Link as RouterLink } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { TextField } from "@material-ui/core";
+import { useHistory } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
   input: {
@@ -40,11 +41,20 @@ export default function Navbar() {
   const classes = useStyles();
   const [title, setTitle] = useState(" ");
 
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   setTitle(title);
+  //   console.log(title);
+  //   if (title) {
+  //   }
+  // };
+
+  let history = useHistory();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (title) {
-      console.log(title);
-    }
+    // console.log(title);
+    history.push(`/search/${title}`);
   };
 
   return (
@@ -61,7 +71,7 @@ export default function Navbar() {
             variant="button"
             color="primary"
             component={RouterLink}
-            to="./"
+            to="/"
             className={classes.toolbarTitle}
           >
             <Typography
@@ -78,7 +88,7 @@ export default function Navbar() {
               variant="button"
               color="primary"
               component={RouterLink}
-              to="./movies"
+              to="/movies"
               className={classes.link}
             >
               Movies
@@ -87,19 +97,10 @@ export default function Navbar() {
               variant="button"
               color="primary"
               component={RouterLink}
-              to="./tvshows"
+              to="/tvshows"
               className={classes.link}
             >
               TV-Shows
-            </Link>
-            <Link
-              variant="button"
-              color="primary"
-              component={RouterLink}
-              to="/explore"
-              className={classes.link}
-            >
-              Trending
             </Link>
           </nav>
           <form

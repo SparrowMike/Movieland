@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import Trending from "../output/Trending";
 import { useParams } from "react-router";
+import Search from "./../output/Search";
 
-const FetchTrending = () => {
+const FetchSearch = () => {
   let key = process.env.REACT_APP_API_KEY;
 
   const params = useParams();
+  console.log("FetchSearch Params", params);
 
   const [data, setData] = useState(null);
 
@@ -16,7 +17,7 @@ const FetchTrending = () => {
     // )
 
     fetch(
-      `https://api.themoviedb.org/3/trending/${params.type}/${params.date}?api_key=${key}`
+      `https://api.themoviedb.org/3/search/multi?api_key=${key}&language=en-US&query=${params.title}&page=1&include_adult=false`
     )
       .then((response) => {
         if (response.ok) {
@@ -26,20 +27,20 @@ const FetchTrending = () => {
       })
       .then((data) => {
         setData(data);
-        // console.log(data);
+        console.log("fetch search", data.results);
       })
       .catch((error) => {
-        // console.log(error);
+        console.log(error);
       });
-  }, [key, params.type, params.date]);
+  }, [key, params.title]);
 
   return data === null ? (
     <h1>LOADING</h1>
   ) : (
     <div>
-      <Trending data={data.results} key={key} />
+      <Search data={data.results} key={key} />
     </div>
   );
 };
 
-export default FetchTrending;
+export default FetchSearch;
