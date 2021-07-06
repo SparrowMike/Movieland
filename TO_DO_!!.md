@@ -7,6 +7,7 @@
 
 <!--? NICE ?-->
 
+- Popup with trailer
 - Navbar buttons stay selected
 - Clear search bar after enter
 - Improve on loading window screen
@@ -20,3 +21,8 @@
 - Mobile friendly
 - add favorite option
 - ability to share facebook etc
+- more spacing between within the home screen
+
+<!-- ? Material UI -->
+
+- Modal

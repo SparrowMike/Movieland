@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Trending from "../output/Trending";
+// import Trending from "../output/Trending";
 import { useParams } from "react-router";
 import TEST from "../output/TEST";
 

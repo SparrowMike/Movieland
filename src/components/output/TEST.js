@@ -12,9 +12,11 @@ import Typography from "@material-ui/core/Typography";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-
-import { Box } from "@material-ui/core";
 import { GridListTile } from "@material-ui/core";
+
+import Modal from "@material-ui/core/Modal";
+import Backdrop from "@material-ui/core/Backdrop";
+import Fade from "@material-ui/core/Fade";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
     // backgroundColor: theme.palette.background.default,
     // padding: "10px",
     listStyle: "none",
+    background: "#000",
   },
   card: {
     background: "#000000",
@@ -44,15 +47,30 @@ const useStyles = makeStyles((theme) => ({
     transition: theme.transitions.create("transform", {
       duration: theme.transitions.duration.shortest,
     }),
+    // background: "black",
   },
+  background: "black",
   expandOpen: {
     transform: "rotate(180deg)",
+  },
+
+  modal: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  paper: {
+    backgroundColor: theme.palette.background.paper,
+    border: "2px solid #000",
+    boxShadow: theme.shadows[10],
+    padding: theme.spacing(2, 4, 3),
   },
 }));
 
 export default function TEST(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
 
   const getYear = (releaseDate) => {
     return releaseDate.slice(0, 4);
@@ -61,6 +79,14 @@ export default function TEST(props) {
   const handleExpandClick = (e) => {
     setExpanded(!expanded);
     console.log("Overview:", e.id);
+  };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
   };
 
   return (
@@ -77,6 +103,7 @@ export default function TEST(props) {
         <Grid item xs={4} key={index}>
           <GridListTile className={classes.card}>
             <CardHeader
+              onClick={handleOpen}
               title={film.title ? film.title : film.name}
               subheader={
                 <Typography color="primary" paragraph>
@@ -84,14 +111,37 @@ export default function TEST(props) {
                   {getYear(
                     film.release_date ? film.release_date : film.first_air_date
                   )}
+                  <CardMedia
+                    className={classes.media}
+                    image={`https://image.tmdb.org/t/p/w500${film.backdrop_path}`}
+                    title={film.title ? film.title : film.name}
+                  />
                 </Typography>
               }
             />
-            <CardMedia
-              className={classes.media}
-              image={`https://image.tmdb.org/t/p/w500${film.backdrop_path}`}
-              title={film.title ? film.title : film.name}
-            />
+
+            <Modal
+              aria-labelledby="transition-modal-title"
+              aria-describedby="transition-modal-description"
+              className={classes.modal}
+              open={open}
+              onClose={handleClose}
+              closeAfterTransition
+              BackdropComponent={Backdrop}
+              BackdropProps={{
+                timeout: 500,
+              }}
+            >
+              <Fade in={open}>
+                <div className={classes.paper}>
+                  <h2 id="transition-modal-title">Transition modal</h2>
+                  <p id="transition-modal-description">
+                    react-transition-group animates me.
+                  </p>
+                </div>
+              </Fade>
+            </Modal>
+
             <CardActions disableSpacing>
               <IconButton color="primary" aria-label="add to favorites">
                 <FavoriteIcon />
