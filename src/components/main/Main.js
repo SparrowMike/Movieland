@@ -11,8 +11,11 @@ const Main = () => {
   return (
     <main>
       <Switch>
+        <Route
+          path="/movies/:genre/:cert/:sort/:year"
+          component={FetchMovies}
+        />
         <Route path="/trending/:type/:date" component={FetchTrending} />
-        <Route path="/movies/:genre" component={FetchMovies} />
         <Route path="/search/:title" component={FetchSearch} />
         <Route path="/movies" component={Movies} />
         <Route path="/tvshows" component={Tvshows} />

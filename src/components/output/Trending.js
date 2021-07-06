@@ -73,6 +73,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Trending(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
 
   const getYear = (releaseDate) => {
     if (releaseDate) {
@@ -86,8 +87,6 @@ export default function Trending(props) {
     setExpanded(!expanded);
     console.log("Overview:", e.id);
   };
-
-  const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => {
     setOpen(true);
@@ -176,13 +175,15 @@ export default function Trending(props) {
                 <ExpandMoreIcon />
               </IconButton>
             </CardActions>
-            <Collapse in={expanded} timeout="auto" unmountOnExit>
+            <Collapse in={expanded} id={film.id} timeout="auto" unmountOnExit>
               <CardContent>
+                <Typography variant="h6">Overview: </Typography>
                 <Typography color="primary" paragraph>
                   {film.overview}
                 </Typography>
+                <Typography variant="h6">Rating: </Typography>
                 <Typography color="primary" paragraph>
-                  Rating: {film.vote_average} out of {film.vote_count} votes.
+                  {film.vote_average} out of {film.vote_count} votes.
                 </Typography>
               </CardContent>
             </Collapse>

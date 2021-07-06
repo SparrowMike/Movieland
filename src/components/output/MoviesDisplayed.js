@@ -70,11 +70,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MoviesDisplayed(props) {
+export default function Trending(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
-
-  console.log("Movies props", props);
 
   const getYear = (releaseDate) => {
     if (releaseDate) {
@@ -180,11 +178,13 @@ export default function MoviesDisplayed(props) {
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
               <CardContent>
+                <Typography variant="h6">Overview: </Typography>
                 <Typography color="primary" paragraph>
                   {film.overview}
                 </Typography>
+                <Typography variant="h6">Rating: </Typography>
                 <Typography color="primary" paragraph>
-                  Rating: {film.vote_average} out of {film.vote_count} votes.
+                  {film.vote_average} out of {film.vote_count} votes.
                 </Typography>
               </CardContent>
             </Collapse>

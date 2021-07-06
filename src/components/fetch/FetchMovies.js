@@ -10,9 +10,18 @@ const FetchSearch = () => {
 
   const [data, setData] = useState(null);
 
+  const URL = `https://api.themoviedb.org/3/discover/movie?api_key=${key}&language=en-US&sort_by=${params.sort}&certification_country=US&certification=${params.cert}&include_adult=false&include_video=false&page=1&year=${params.year}}&with_genres=${params.genre}&with_watch_monetization_types=flatrate`;
+
   useEffect(() => {
+    // fetch(
+    //   `https://api.themoviedb.org/3/discover/tv?api_key=${key}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${params.genre}&with_watch_monetization_types=flatrate`
+    // )
+
+    // `https://api.themoviedb.org/3/discover/tv?api_key=${key}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${params.genre}&with_watch_monetization_types=flatrate`
+
     fetch(
-      `https://api.themoviedb.org/3/discover/tv?api_key=${key}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${params.genre}&with_watch_monetization_types=flatrate`
+      // `${URL}&language=en-US&sort_by=popularity.desc&certification=${params.age}&with_genres=${params.genre}&with_watch_monetization_types=flatrate`
+      URL
     )
       .then((response) => {
         if (response.ok) {
@@ -22,12 +31,12 @@ const FetchSearch = () => {
       })
       .then((data) => {
         setData(data);
-        console.log("fetch search", data.results);
+        console.log("fetch search", data);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, [key, params.title]);
+  }, [URL]);
 
   return data === null ? (
     <h1>LOADING</h1>
