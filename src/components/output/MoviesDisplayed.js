@@ -13,10 +13,10 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { GridListTile } from "@material-ui/core";
-
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
+import ReactPlayer from "react-player";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,21 +35,23 @@ const useStyles = makeStyles((theme) => ({
     contain: "content",
 
     color: "white",
+
     "&:hover": { background: "#9d0208" },
   },
   media: {
     height: 0,
+    margin: 5,
     paddingTop: "56.25%", // 16:9
   },
+
   expand: {
     transform: "rotate(deg)",
     marginLeft: "auto",
     transition: theme.transitions.create("transform", {
       duration: theme.transitions.duration.shortest,
     }),
-    // background: "black",
   },
-  background: "black",
+
   expandOpen: {
     transform: "rotate(180deg)",
   },
@@ -59,27 +61,35 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "center",
   },
+
   paper: {
     backgroundColor: theme.palette.background.paper,
     border: "2px solid #000",
-    boxShadow: theme.shadows[10],
+    boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
 }));
 
-export default function TEST(props) {
+export default function MoviesDisplayed(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
-  const [open, setOpen] = React.useState(false);
+
+  console.log("Movies props", props);
 
   const getYear = (releaseDate) => {
-    return releaseDate.slice(0, 4);
+    if (releaseDate) {
+      return releaseDate.slice(0, 4);
+    } else {
+      return releaseDate;
+    }
   };
 
   const handleExpandClick = (e) => {
     setExpanded(!expanded);
     console.log("Overview:", e.id);
   };
+
+  const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => {
     setOpen(true);
@@ -103,7 +113,6 @@ export default function TEST(props) {
         <Grid item xs={4} key={index}>
           <GridListTile className={classes.card}>
             <CardHeader
-              onClick={handleOpen}
               title={film.title ? film.title : film.name}
               subheader={
                 <Typography color="primary" paragraph>
@@ -111,13 +120,14 @@ export default function TEST(props) {
                   {getYear(
                     film.release_date ? film.release_date : film.first_air_date
                   )}
-                  <CardMedia
-                    className={classes.media}
-                    image={`https://image.tmdb.org/t/p/w500${film.backdrop_path}`}
-                    title={film.title ? film.title : film.name}
-                  />
                 </Typography>
               }
+            />
+            <CardMedia
+              className={classes.media}
+              image={`https://image.tmdb.org/t/p/w500${film.backdrop_path}`}
+              title={film.title ? film.title : film.name}
+              onClick={handleOpen}
             />
 
             <Modal
@@ -134,10 +144,17 @@ export default function TEST(props) {
             >
               <Fade in={open}>
                 <div className={classes.paper}>
-                  <h2 id="transition-modal-title">Transition modal</h2>
-                  <p id="transition-modal-description">
-                    react-transition-group animates me.
-                  </p>
+                  <ReactPlayer
+                    url="https://www.youtube.com/watch?v=ysz5S6PUM-U"
+                    playing
+                  />
+                  {/* <iframe
+                    src="https://www.youtube.com/embed/hu0O-q7Kf2k"
+                    frameBorder="0"
+                    allow="autoplay; encrypted-media"
+                    allowFullScreen
+                    title="video"
+                  /> */}
                 </div>
               </Fade>
             </Modal>
@@ -165,6 +182,9 @@ export default function TEST(props) {
               <CardContent>
                 <Typography color="primary" paragraph>
                   {film.overview}
+                </Typography>
+                <Typography color="primary" paragraph>
+                  Rating: {film.vote_average} out of {film.vote_count} votes.
                 </Typography>
               </CardContent>
             </Collapse>

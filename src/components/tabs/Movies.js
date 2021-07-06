@@ -5,6 +5,8 @@ import MenuItem from "@material-ui/core/MenuItem";
 // import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
+import { Button } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -53,6 +55,10 @@ export default function Movies() {
   const classes = useStyles();
   const [genre, setGenre] = useState("");
 
+  const handleSubmit = () => {
+    console.log(genre);
+  };
+
   const handleChange = (event) => {
     setGenre(event.target.value);
     console.log(event.target.value);
@@ -83,6 +89,18 @@ export default function Movies() {
             );
           })}
         </Select>
+        <Link to={`/movies/${genre}`}>
+          <Button
+            variant="contained"
+            className={classes.button}
+            color="primary"
+            disableElevation
+            size="large"
+            onClick={() => handleSubmit()}
+          >
+            Search!
+          </Button>
+        </Link>
       </FormControl>
     </div>
   );

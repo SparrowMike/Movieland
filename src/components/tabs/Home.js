@@ -84,7 +84,7 @@ export default function Home() {
             <Tab label="Daily" value={"day"} />
             <Tab label="Weekly" value={"week"} />
           </Tabs>
-          <Link to={`/explore/${type}/${date}`}>
+          <Link to={`/trending/${type}/${date}`}>
             <Button
               variant="contained"
               className={classes.button}

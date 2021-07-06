@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-// import Trending from "../output/Trending";
 import { useParams } from "react-router";
-import TEST from "../output/TEST";
+import Trending from "../output/Trending";
 
 const FetchTrending = () => {
   let key = process.env.REACT_APP_API_KEY;
@@ -11,10 +10,8 @@ const FetchTrending = () => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    //? https://developers.themoviedb.org/3/discover/movie-discover
-    // fetch(
-    //   `https://api.themoviedb.org/3/discover/tv?api_key=${key}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`
-    // )
+    // https://api.themoviedb.org/3/movie/739542/videos?api_key=28f61172b752209fb2807f08057c9e1f&language=en-US
+    // https://www.youtube.com/watch?v=
 
     fetch(
       `https://api.themoviedb.org/3/trending/${params.type}/${params.date}?api_key=${key}`
@@ -27,7 +24,7 @@ const FetchTrending = () => {
       })
       .then((data) => {
         setData(data);
-        // console.log(data);
+        console.log(data);
       })
       .catch((error) => {
         // console.log(error);
@@ -39,7 +36,7 @@ const FetchTrending = () => {
   ) : (
     <div>
       {/* <Trending data={data.results} key={key} /> */}
-      <TEST data={data.results} key={key} />
+      <Trending data={data.results} key={key} />
     </div>
   );
 };

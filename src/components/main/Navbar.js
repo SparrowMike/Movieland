@@ -57,6 +57,10 @@ export default function Navbar() {
     history.push(`/search/${title}`);
   };
 
+  const handleReset = () => {
+    setTitle("");
+  };
+
   return (
     <React.Fragment>
       <CssBaseline />
@@ -102,6 +106,15 @@ export default function Navbar() {
             >
               TV-Shows
             </Link>
+            <Link
+              variant="button"
+              color="primary"
+              component={RouterLink}
+              to="/login"
+              className={classes.link}
+            >
+              Login{" "}
+            </Link>
           </nav>
           <form
             className={classes.form}
@@ -113,6 +126,7 @@ export default function Navbar() {
               error
               color="primary"
               onChange={(e) => setTitle(e.target.value)}
+              onSubmit={handleReset}
               id="outlined-search"
               variant="outlined"
               label="Search field"

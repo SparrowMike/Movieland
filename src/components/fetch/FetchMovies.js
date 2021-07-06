@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import Search from "./../output/Search";
+import MoviesDisplayed from "../output/MoviesDisplayed";
 
 const FetchSearch = () => {
   let key = process.env.REACT_APP_API_KEY;
@@ -12,7 +12,7 @@ const FetchSearch = () => {
 
   useEffect(() => {
     fetch(
-      `https://api.themoviedb.org/3/search/multi?api_key=${key}&language=en-US&query=${params.title}&page=1&include_adult=false`
+      `https://api.themoviedb.org/3/discover/tv?api_key=${key}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${params.genre}&with_watch_monetization_types=flatrate`
     )
       .then((response) => {
         if (response.ok) {
@@ -33,7 +33,7 @@ const FetchSearch = () => {
     <h1>LOADING</h1>
   ) : (
     <div>
-      <Search data={data.results} key={key} />
+      <MoviesDisplayed data={data.results} key={key} />
     </div>
   );
 };
