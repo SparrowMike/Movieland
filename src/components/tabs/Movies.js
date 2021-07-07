@@ -2,13 +2,11 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
-// import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import { Button, Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { Container } from "@material-ui/core";
-// import TextField from "@material-ui/core/TextField";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -16,8 +14,9 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 120,
   },
 
-  button: {},
-  margin: theme.spacing(3),
+  button: {
+    margin: theme.spacing(3),
+  },
 
   select: {
     margin: theme.spacing(1),
@@ -104,23 +103,12 @@ export default function Movies() {
   ];
 
   const isoCountries = [
-    { ccode: "AF", cname: "Afghanistan" },
-    { ccode: "AL", cname: "Albania" },
-    { ccode: "DZ", cname: "Algeria" },
-    { ccode: "AD", cname: "Andorra" },
-    { ccode: "AO", cname: "Angola" },
-    { ccode: "AR", cname: "Argentina" },
-    { ccode: "AM", cname: "Armenia" },
     { ccode: "AU", cname: "Australia" },
     { ccode: "AT", cname: "Austria" },
-    { ccode: "AZ", cname: "Azerbaijan" },
     { ccode: "BS", cname: "Bahamas" },
-    { ccode: "BH", cname: "Bahrain" },
     { ccode: "BD", cname: "Bangladesh" },
-    { ccode: "BB", cname: "Barbados" },
     { ccode: "BY", cname: "Belarus" },
     { ccode: "BE", cname: "Belgium" },
-    { ccode: "BA", cname: "Bosnia And Herzegovina" },
     { ccode: "BR", cname: "Brazil" },
     { ccode: "BG", cname: "Bulgaria" },
     { ccode: "KH", cname: "Cambodia" },
@@ -136,13 +124,6 @@ export default function Movies() {
     { ccode: "CY", cname: "Cyprus" },
     { ccode: "CZ", cname: "Czech Republic" },
     { ccode: "DK", cname: "Denmark" },
-    { ccode: "DM", cname: "Dominica" },
-    { ccode: "DO", cname: "Dominican Republic" },
-    { ccode: "EC", cname: "Ecuador" },
-    { ccode: "EG", cname: "Egypt" },
-    { ccode: "SV", cname: "El Salvador" },
-    { ccode: "EE", cname: "Estonia" },
-    { ccode: "FJ", cname: "Fiji" },
     { ccode: "FI", cname: "Finland" },
     { ccode: "FR", cname: "France" },
     { ccode: "GE", cname: "Georgia" },
@@ -150,13 +131,6 @@ export default function Movies() {
     { ccode: "GH", cname: "Ghana" },
     { ccode: "GR", cname: "Greece" },
     { ccode: "GL", cname: "Greenland" },
-    { ccode: "GD", cname: "Grenada" },
-    { ccode: "GU", cname: "Guam" },
-    { ccode: "GT", cname: "Guatemala" },
-    { ccode: "GN", cname: "Guinea" },
-    { ccode: "GY", cname: "Guyana" },
-    { ccode: "HT", cname: "Haiti" },
-    { ccode: "HN", cname: "Honduras" },
     { ccode: "HK", cname: "Hong Kong" },
     { ccode: "HU", cname: "Hungary" },
     { ccode: "IS", cname: "Iceland" },
@@ -168,92 +142,69 @@ export default function Movies() {
     { ccode: "IT", cname: "Italy" },
     { ccode: "JM", cname: "Jamaica" },
     { ccode: "JP", cname: "Japan" },
-    { ccode: "JO", cname: "Jordan" },
-    { ccode: "KZ", cname: "Kazakhstan" },
-    { ccode: "KE", cname: "Kenya" },
     { ccode: "KR", cname: "Korea" },
-    { ccode: "LV", cname: "Latvia" },
-    { ccode: "LB", cname: "Lebanon" },
-    { ccode: "LS", cname: "Lesotho" },
-    { ccode: "LR", cname: "Liberia" },
-    { ccode: "LT", cname: "Lithuania" },
-    { ccode: "LU", cname: "Luxembourg" },
-    { ccode: "MO", cname: "Macao" },
-    { ccode: "MK", cname: "Macedonia" },
-    { ccode: "MG", cname: "Madagascar" },
-    { ccode: "MW", cname: "Malawi" },
     { ccode: "MY", cname: "Malaysia" },
-    { ccode: "MV", cname: "Maldives" },
-    { ccode: "ML", cname: "Mali" },
-    { ccode: "MT", cname: "Malta" },
-    { ccode: "MH", cname: "Marshall Islands" },
-    { ccode: "MQ", cname: "Martinique" },
     { ccode: "MX", cname: "Mexico" },
-    { ccode: "MC", cname: "Monaco" },
-    { ccode: "MN", cname: "Mongolia" },
     { ccode: "MA", cname: "Morocco" },
     { ccode: "NL", cname: "Netherlands" },
     { ccode: "NZ", cname: "New Zealand" },
-    { ccode: "NG", cname: "Nigeria" },
     { ccode: "NO", cname: "Norway" },
-    { ccode: "PK", cname: "Pakistan" },
-    { ccode: "PW", cname: "Palau" },
-    { ccode: "PA", cname: "Panama" },
-    { ccode: "PY", cname: "Paraguay" },
     { ccode: "PE", cname: "Peru" },
     { ccode: "PH", cname: "Philippines" },
     { ccode: "PL", cname: "Poland" },
     { ccode: "PT", cname: "Portugal" },
     { ccode: "PR", cname: "Puerto Rico" },
-    { ccode: "QA", cname: "Qatar" },
-    { ccode: "RE", cname: "Reunion" },
-    { ccode: "RO", cname: "Romania" },
     { ccode: "RU", cname: "Russian Federation" },
     { ccode: "WS", cname: "Samoa" },
-    { ccode: "SM", cname: "San Marino" },
-    { ccode: "ST", cname: "Sao Tome And Principe" },
-    { ccode: "SA", cname: "Saudi Arabia" },
-    { ccode: "SN", cname: "Senegal" },
-    { ccode: "RS", cname: "Serbia" },
-    { ccode: "SL", cname: "Sierra Leone" },
     { ccode: "SG", cname: "Singapore" },
     { ccode: "SK", cname: "Slovakia" },
     { ccode: "SI", cname: "Slovenia" },
-    { ccode: "SB", cname: "Solomon Islands" },
-    { ccode: "SO", cname: "Somalia" },
     { ccode: "ZA", cname: "South Africa" },
     { ccode: "ES", cname: "Spain" },
     { ccode: "LK", cname: "Sri Lanka" },
-    { ccode: "SD", cname: "Sudan" },
     { ccode: "SZ", cname: "Swaziland" },
     { ccode: "SE", cname: "Sweden" },
     { ccode: "CH", cname: "Switzerland" },
     { ccode: "TW", cname: "Taiwan" },
-    { ccode: "TZ", cname: "Tanzania" },
     { ccode: "TH", cname: "Thailand" },
-    { ccode: "TN", cname: "Tunisia" },
     { ccode: "TR", cname: "Turkey" },
     { ccode: "UA", cname: "Ukraine" },
     { ccode: "AE", cname: "United Arab Emirates" },
     { ccode: "GB", cname: "United Kingdom" },
     { ccode: "US", cname: "United States" },
-    { ccode: "UY", cname: "Uruguay" },
-    { ccode: "UZ", cname: "Uzbekistan" },
     { ccode: "VE", cname: "Venezuela" },
     { ccode: "VN", cname: "Viet Nam" },
   ];
+
+  // const language = [
+  //   {
+  //     isoLang: "pl",
+  //     name: "Polish",
+  //   },
+  //   {
+  //     isoLang: "en",
+  //     name: "English",
+  //   },
+  //   {
+  //     isoLang: "ko",
+  //     name: "Korean",
+  //   },
+  //   { isoLang: "id", name: "Indonesian" },
+  //   { isoLang: "ml", name: "Malay" },
+  //   { isoLang: "ja", name: "Japanese" },
+  // ];
+  let newDate = new Date();
+  let currentYear = newDate.getFullYear();
+  const allYears = [];
 
   const classes = useStyles();
   const [cert, setCert] = useState("R");
   const [genre, setGenre] = useState("28");
   const [sort, setSort] = useState("popularity.desc");
-  const [yearGte, setYearGte] = useState("2020");
-  const [yearLte, setYearLte] = useState("2021");
+  const [yearGte, setYearGte] = useState("2000");
+  const [yearLte, setYearLte] = useState(currentYear);
   const [country, setCountry] = useState("US");
-
-  let newDate = new Date();
-  let currentYear = newDate.getFullYear();
-  const allYears = [];
+  // const [lang, setLanguage] = useState("en");
 
   for (let i = currentYear; i >= 1950; i--) allYears.push(i);
 
@@ -266,6 +217,11 @@ export default function Movies() {
     setSort(event.target.value);
     console.log(event.target.value);
   };
+
+  // const handleLanguage = (event) => {
+  //   setLanguage(event.target.value);
+  //   console.log(event.target.value);
+  // };
 
   const handleAge = (event) => {
     setCert(event.target.value);
@@ -281,6 +237,11 @@ export default function Movies() {
     setYearLte(event.target.value);
     console.log(event.target.value);
   };
+
+  if (yearGte >= yearLte) {
+    setYearLte(parseInt(yearGte) + 1);
+    console.log("too big ya");
+  }
 
   const handleCountry = (event) => {
     setCountry(event.target.value);
@@ -374,7 +335,7 @@ export default function Movies() {
           </Select>
         </FormControl>
         <FormControl variant="outlined" className={classes.formControl}>
-          <InputLabel color="Primary" id="releaseYear">
+          <InputLabel color="primary" id="releaseYear">
             To
           </InputLabel>
           <Select
@@ -397,8 +358,6 @@ export default function Movies() {
         </FormControl>
         <FormControl variant="outlined" className={classes.formControl}>
           <InputLabel id="releaseYear">Region</InputLabel>
-          {/* <Typography color="Primary">To</Typography> */}
-
           <Select
             error
             labelId="demo-simple-select-outlined-label"
@@ -419,6 +378,7 @@ export default function Movies() {
         </FormControl>
       </Container>
       <Link
+        // to={`/movies/${genre}/${cert}/${sort}/${yearGte}/${yearLte}/${country}/${lang}`}
         to={`/movies/${genre}/${cert}/${sort}/${yearGte}/${yearLte}/${country}`}
       >
         <Button

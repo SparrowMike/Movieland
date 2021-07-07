@@ -12,6 +12,7 @@ const Main = () => {
     <main>
       <Switch>
         <Route
+          // path="/movies/:genre/:cert/:sort/:yearGte/:yearLte/:country/:language"
           path="/movies/:genre/:cert/:sort/:yearGte/:yearLte/:country"
           component={FetchMovies}
         />

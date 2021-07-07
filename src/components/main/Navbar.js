@@ -41,23 +41,12 @@ export default function Navbar() {
   const classes = useStyles();
   const [title, setTitle] = useState(" ");
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   setTitle(title);
-  //   console.log(title);
-  //   if (title) {
-  //   }
-  // };
-
   let history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     history.push(`/search/${title}`);
-  };
-
-  const handleReset = () => {
-    setTitle("");
+    e.target.reset();
   };
 
   return (
@@ -123,9 +112,7 @@ export default function Navbar() {
           >
             <TextField
               error
-              // color="primary"
               onChange={(e) => setTitle(e.target.value)}
-              onSubmit={handleReset}
               id="outlined-search"
               variant="outlined"
               label="Search field"

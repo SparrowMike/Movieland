@@ -9,13 +9,12 @@
 - Improve description to show on "i" click
 - Styling for pop up trailer
 - Navbar buttons stay selected
-- Clear search bar after enter
 - Improve on loading window screen
 - Add about with some link to linkdin, github etc
-- ADD PAGES
-- Get suitable favicon
-- Login window tab
+- ADD MORE PAGES
 - Add a search by month inside the movie/tv tab?
+- Login window tab
+- Get suitable favicon
 
 <!--? MAYBE ?-->
 
@@ -26,3 +25,4 @@
 - add favorite option
 - ability to share facebook etc
 - more spacing between within the home screen
+- slider - Minimum distance

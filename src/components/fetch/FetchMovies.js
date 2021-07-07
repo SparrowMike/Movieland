@@ -10,8 +10,8 @@ const FetchSearch = () => {
 
   const [data, setData] = useState(null);
 
-  // const URL = `https://api.themoviedb.org/3/discover/movie?api_key=${key}&language=en-US&sort_by=${params.sort}&certification_country=US&certification=${params.cert}&include_adult=false&include_video=false&page=1&year=${params.year}&with_genres=${params.genre}&watch_region=${params.country}&with_watch_monetization_types=flatrate`;
-  const URL = `https://api.themoviedb.org/3/discover/movie?api_key=${key}&language=en-US&sort_by=${params.sort}&certification_country=US&certification=${params.cert}&release_date.gte=${params.yearGte}-01-01&release_date.lte=${params.yearLte}-01-01&include_adult=false&include_video=false&page=1&with_genres=${params.genre}&watch_region=${params.country}&with_watch_monetization_types=flatrate`;
+  // const URL = `https://api.themoviedb.org/3/discover/movie?api_key=${key}&language=en-US&sort_by=${params.sort}&certification_country=US&certification=${params.cert}&release_date.gte=${params.yearGte}-01-01&release_date.lte=${params.yearLte}-01-01&include_adult=false&include_video=false&page=1&with_genres=${params.genre}&with_original_language=${params.lang}&watch_region=${params.country}&with_watch_monetization_types=flatrate`;
+  const URL = `https://api.themoviedb.org/3/discover/movie?api_key=${key}&language=en-US&sort_by=${params.sort}&certification_country=US&certification=${params.cert}&release_date.gte=${params.yearGte}-01-01&release_date.lte=${params.yearLte}-01-01&include_adult=false&include_video=false&page=1&with_genres=${params.genre}&watch_region=${params.country}&with_runtime.gte=0&with_runtime.lte=200&with_watch_monetization_types=flatrate`;
 
   useEffect(() => {
     // fetch(
