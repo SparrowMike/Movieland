@@ -63,13 +63,19 @@ const useStyles = makeStyles((theme) => ({
 export default function Trending(props) {
   let key = process.env.REACT_APP_API_KEY;
 
+  console.log(props.data[0].media_type);
+
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
   const [open, setOpen] = useState(false);
   const [data, setData] = useState();
   const [trailer, setTrailer] = useState(null);
+  const [type, setType] = useState(null);
+  
 
-  const URL = `https://api.themoviedb.org/3/${props.data[0].media_type}/${trailer}/videos?api_key=${key}&language=en-US`;
+
+
+  const URL = `https://api.themoviedb.org/3/${type}/${trailer}/videos?api_key=${key}&language=en-US`;
   useEffect(() => {
     fetch(URL)
       .then((response) => {
@@ -97,11 +103,14 @@ export default function Trending(props) {
 
   const handleExpandClick = (e) => {
     setExpanded(!expanded);
+    console.log(e);
   };
 
   const handleOpen = (e) => {
     setOpen(true);
     setTrailer(e.id);
+    setType(e.media_type);
+ 
   };
 
   const handleClose = () => {
@@ -151,7 +160,7 @@ export default function Trending(props) {
                   [classes.expandOpen]: expanded,
                 })}
                 color="primary"
-                onClick={() => handleExpandClick(film)}
+                onClick={() => handleExpandClick(film.id)}
                 aria-expanded={expanded}
                 aria-label="show more"
               >

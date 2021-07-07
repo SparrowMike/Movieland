@@ -1,12 +1,12 @@
 <!--? MUST ?-->
 
-- Movies and TV-shows form
-- Reset setTrailer!
+- Reset setTrailer = when video missing set value to null!
 - STOP rendering when information not available
 - Fix the api bug not showing pictures etc
 
 <!--? Should ?-->
 
+- improve movies and TV-shows form
 - Fix the tv-show search
 - Expand on search options
 - Improve description to show on "i" click

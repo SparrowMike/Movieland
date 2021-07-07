@@ -61,8 +61,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Trending(props) {
-  console.log("props", props.data[0].media_type);
-
   let key = process.env.REACT_APP_API_KEY;
 
   const classes = useStyles();
@@ -70,8 +68,9 @@ export default function Trending(props) {
   const [open, setOpen] = useState(false);
   const [data, setData] = useState();
   const [trailer, setTrailer] = useState(null);
+  const [type, setType] = useState(null);
 
-  const URL = `https://api.themoviedb.org/3/${props.data[0].media_type}/${trailer}/videos?api_key=${key}&language=en-US`;
+  const URL = `https://api.themoviedb.org/3/${type}/${trailer}/videos?api_key=${key}&language=en-US`;
   useEffect(() => {
     fetch(URL)
       .then((response) => {
@@ -104,6 +103,7 @@ export default function Trending(props) {
   const handleOpen = (e) => {
     setOpen(true);
     setTrailer(e.id);
+    setType(e.media_type);
   };
 
   const handleClose = () => {
