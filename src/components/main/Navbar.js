@@ -53,7 +53,6 @@ export default function Navbar() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(title);
     history.push(`/search/${title}`);
   };
 
@@ -124,7 +123,7 @@ export default function Navbar() {
           >
             <TextField
               error
-              color="primary"
+              // color="primary"
               onChange={(e) => setTitle(e.target.value)}
               onSubmit={handleReset}
               id="outlined-search"

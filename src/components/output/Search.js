@@ -143,7 +143,7 @@ export default function Trending(props) {
               <Fade in={open}>
                 <div className={classes.paper}>
                   <ReactPlayer
-                    url="https://www.youtube.com/watch?v=ysz5S6PUM-U"
+                    url="https://www.youtube.com/watch?v=XqZsoesa55w"
                     playing
                   />
                   {/* <iframe
