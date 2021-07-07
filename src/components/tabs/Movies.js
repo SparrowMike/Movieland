@@ -206,7 +206,7 @@ export default function Movies() {
   const [country, setCountry] = useState("US");
   // const [lang, setLanguage] = useState("en");
 
-  for (let i = currentYear; i >= 1950; i--) allYears.push(i);
+  for (let i = currentYear; i >= 1930; i--) allYears.push(i);
 
   const handleGenre = (event) => {
     setGenre(event.target.value);

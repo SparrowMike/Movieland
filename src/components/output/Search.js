@@ -70,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Trending(props) {
+export default function Search(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 

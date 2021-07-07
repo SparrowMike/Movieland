@@ -70,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MoviesDisplayed(props) {
+export default function Trending(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 

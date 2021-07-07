@@ -6,6 +6,7 @@ import Movies from "../tabs/Movies";
 import Tvshows from "../tabs/Tvshows";
 import LogIn from "./../tabs/LogIn";
 import FetchMovies from "./../fetch/FetchMovies";
+import FetchTvShows from "../fetch/FetchTvShows";
 
 const Main = () => {
   return (
@@ -15,6 +16,10 @@ const Main = () => {
           // path="/movies/:genre/:cert/:sort/:yearGte/:yearLte/:country/:language"
           path="/movies/:genre/:cert/:sort/:yearGte/:yearLte/:country"
           component={FetchMovies}
+        />
+        <Route
+          path="/tvshows/:genre/:cert/:sort/:yearGte/:yearLte/:country"
+          component={FetchTvShows}
         />
         <Route path="/trending/:type/:date/" component={FetchTrending} />
         <Route path="/search/:title" component={FetchSearch} />

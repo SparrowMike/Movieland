@@ -6,6 +6,7 @@
 
 <!--? Should ?-->
 
+- Expand on search options
 - Improve description to show on "i" click
 - Styling for pop up trailer
 - Navbar buttons stay selected
@@ -16,8 +17,9 @@
 - Login window tab
 - Get suitable favicon
 
-<!--? MAYBE ?-->
+<!--? Whenever ?-->
 
+- Clear up the data
 - Leave a note if no search hits
 - inside movie/tvshow info option for PG etc
 - Add TMDB logo at the footer
