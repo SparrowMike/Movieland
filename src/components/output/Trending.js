@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import Grid from "@material-ui/core/Grid";
@@ -13,10 +13,8 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { GridListTile } from "@material-ui/core";
-import Modal from "@material-ui/core/Modal";
-import Backdrop from "@material-ui/core/Backdrop";
-import Fade from "@material-ui/core/Fade";
 import ReactPlayer from "react-player";
+import Dialog from "@material-ui/core/Dialog";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -71,9 +69,35 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Trending(props) {
+  console.log("props", props.data[0].media_type);
+
+  let key = process.env.REACT_APP_API_KEY;
+
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const [open, setOpen] = React.useState(false);
+  const [data, setData] = React.useState();
+  const [trailer, setTrailer] = React.useState();
+
+  console.log("movie id", trailer);
+
+  const URL = `https://api.themoviedb.org/3/${props.data[0].media_type}/${trailer}/videos?api_key=${key}&language=en-US`;
+  useEffect(() => {
+    fetch(URL)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Bad Response from Server");
+      })
+      .then((data) => {
+        setData(data.results[0].key);
+        console.log(data.results[0].key);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [URL]);
 
   const getYear = (releaseDate) => {
     if (releaseDate) {
@@ -85,11 +109,11 @@ export default function Trending(props) {
 
   const handleExpandClick = (e) => {
     setExpanded(!expanded);
-    console.log("Overview:", e.id);
   };
 
-  const handleOpen = () => {
+  const handleOpen = (e) => {
     setOpen(true);
+    setTrailer(e.id);
   };
 
   const handleClose = () => {
@@ -124,37 +148,8 @@ export default function Trending(props) {
               className={classes.media}
               image={`https://image.tmdb.org/t/p/w500${film.backdrop_path}`}
               title={film.title ? film.title : film.name}
-              onClick={handleOpen}
+              onClick={() => handleOpen(film)}
             />
-
-            <Modal
-              aria-labelledby="transition-modal-title"
-              aria-describedby="transition-modal-description"
-              className={classes.modal}
-              open={open}
-              onClose={handleClose}
-              closeAfterTransition
-              BackdropComponent={Backdrop}
-              BackdropProps={{
-                timeout: 500,
-              }}
-            >
-              <Fade in={open}>
-                <div className={classes.paper}>
-                  <ReactPlayer
-                    url="https://www.youtube.com/watch?v=XqZsoesa55w"
-                    playing
-                  />
-                  {/* <iframe
-                    src="https://www.youtube.com/embed/hu0O-q7Kf2k"
-                    frameBorder="0"
-                    allow="autoplay; encrypted-media"
-                    allowFullScreen
-                    title="video"
-                  /> */}
-                </div>
-              </Fade>
-            </Modal>
 
             <CardActions disableSpacing>
               <IconButton color="primary" aria-label="add to favorites">
@@ -190,6 +185,10 @@ export default function Trending(props) {
           </GridListTile>
         </Grid>
       ))}
+
+      <Dialog open={open} maxWidth="lg" onClose={handleClose}>
+        <ReactPlayer url={`/www.youtube.com/watch?v=${data}`} playing />
+      </Dialog>
     </Grid>
   );
 }

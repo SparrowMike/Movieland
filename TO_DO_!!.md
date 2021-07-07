@@ -6,6 +6,7 @@
 
 <!--? Should ?-->
 
+- Fix the tv-show search
 - Expand on search options
 - Improve description to show on "i" click
 - Styling for pop up trailer

@@ -35,7 +35,6 @@ const FetchTrending = () => {
     <h1>LOADING</h1>
   ) : (
     <div>
-      {/* <Trending data={data.results} key={key} /> */}
       <Trending data={data.results} key={key} />
     </div>
   );
