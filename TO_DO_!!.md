@@ -1,6 +1,7 @@
 <!--? MUST ?-->
 
 - Movies and TV-shows form
+- Reset setTrailer!
 - STOP rendering when information not available
 - Fix the api bug not showing pictures etc
 

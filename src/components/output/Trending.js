@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "56.25%", // 16:9
     // boxShadow: "0 0 5px 5px black inset",
     "&:hover": {
-      boxShadow: "0 0 1px 1px #9d0208 inset",
+      // boxShadow: "0 0 1px 1px #9d0208 inset",
       boxShadow: "0 0.5em 0.5em -0.4em salmon",
       transform: "translateY(-0.15em)",
       cursor: "pointer",
@@ -61,8 +61,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Trending(props) {
-  console.log("props", props.data[0].media_type);
-
   let key = process.env.REACT_APP_API_KEY;
 
   const classes = useStyles();
@@ -70,8 +68,6 @@ export default function Trending(props) {
   const [open, setOpen] = useState(false);
   const [data, setData] = useState();
   const [trailer, setTrailer] = useState(null);
-
-  console.log("movie id", trailer);
 
   const URL = `https://api.themoviedb.org/3/${props.data[0].media_type}/${trailer}/videos?api_key=${key}&language=en-US`;
   useEffect(() => {

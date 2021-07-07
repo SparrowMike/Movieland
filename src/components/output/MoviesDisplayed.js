@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import Grid from "@material-ui/core/Grid";
@@ -13,10 +13,8 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { GridListTile } from "@material-ui/core";
-import Modal from "@material-ui/core/Modal";
-import Backdrop from "@material-ui/core/Backdrop";
-import Fade from "@material-ui/core/Fade";
 import ReactPlayer from "react-player";
+import Dialog from "@material-ui/core/Dialog";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,17 +31,23 @@ const useStyles = makeStyles((theme) => ({
   card: {
     background: "#000000",
     contain: "content",
-
     color: "white",
-
-    "&:hover": { background: "#9d0208" },
+    "&:hover": {
+      background: "#9d0208",
+    },
   },
   media: {
     height: 0,
     margin: 5,
     paddingTop: "56.25%", // 16:9
+    // boxShadow: "0 0 5px 5px black inset",
+    "&:hover": {
+      // boxShadow: "0 0 1px 1px #9d0208 inset",
+      boxShadow: "0 0.5em 0.5em -0.4em salmon",
+      transform: "translateY(-0.15em)",
+      cursor: "pointer",
+    },
   },
-
   expand: {
     transform: "rotate(deg)",
     marginLeft: "auto",
@@ -51,28 +55,37 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.shortest,
     }),
   },
-
   expandOpen: {
     transform: "rotate(180deg)",
   },
-
-  modal: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-
-  paper: {
-    backgroundColor: theme.palette.background.paper,
-    border: "2px solid #000",
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
-  },
 }));
 
-export default function MoviesDisplayed(props) {
+export default function Trending(props) {
+  let key = process.env.REACT_APP_API_KEY;
+
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [data, setData] = useState();
+  const [trailer, setTrailer] = useState(null);
+
+  const URL = `https://api.themoviedb.org/3/movie/${trailer}/videos?api_key=${key}&language=en-US`;
+  useEffect(() => {
+    fetch(URL)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Bad Response from Server");
+      })
+      .then((data) => {
+        setData(data.results[0].key);
+        console.log(data.results[0].key);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [URL]);
 
   const getYear = (releaseDate) => {
     if (releaseDate) {
@@ -84,13 +97,11 @@ export default function MoviesDisplayed(props) {
 
   const handleExpandClick = (e) => {
     setExpanded(!expanded);
-    console.log("Overview:", e.id);
   };
 
-  const [open, setOpen] = React.useState(false);
-
-  const handleOpen = () => {
+  const handleOpen = (e) => {
     setOpen(true);
+    setTrailer(e.id);
   };
 
   const handleClose = () => {
@@ -125,8 +136,9 @@ export default function MoviesDisplayed(props) {
               className={classes.media}
               image={`https://image.tmdb.org/t/p/w500${film.backdrop_path}`}
               title={film.title ? film.title : film.name}
-              onClick={handleOpen}
+              onClick={() => handleOpen(film)}
             />
+
             <CardActions disableSpacing>
               <IconButton color="primary" aria-label="add to favorites">
                 <FavoriteIcon />
@@ -146,7 +158,7 @@ export default function MoviesDisplayed(props) {
                 <ExpandMoreIcon />
               </IconButton>
             </CardActions>
-            <Collapse in={expanded} timeout="auto" unmountOnExit>
+            <Collapse in={expanded} id={film.id} timeout="auto" unmountOnExit>
               <CardContent>
                 <Typography variant="h6">Overview: </Typography>
                 <Typography color="primary" paragraph>
@@ -161,6 +173,9 @@ export default function MoviesDisplayed(props) {
           </GridListTile>
         </Grid>
       ))}
+      <Dialog open={open} maxWidth="lg" onClose={handleClose}>
+        <ReactPlayer url={`/www.youtube.com/watch?v=${data}`} playing />
+      </Dialog>
     </Grid>
   );
 }
