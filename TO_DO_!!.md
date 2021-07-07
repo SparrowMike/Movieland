@@ -1,5 +1,8 @@
 <!--? MUST ?-->
 
+- on click show overview of selected movie!
+- improve movies and tv
+
 - Reset setTrailer = when video missing set value to null!
 - STOP rendering when information not available
 - Fix the api bug not showing pictures etc

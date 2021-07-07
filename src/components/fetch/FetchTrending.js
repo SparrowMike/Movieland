@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import Trending from "../output/Trending";
+import Results from "../output/Results";
 
 const FetchTrending = () => {
   let key = process.env.REACT_APP_API_KEY;
@@ -31,7 +31,7 @@ const FetchTrending = () => {
     <h1>LOADING</h1>
   ) : (
     <div>
-      <Trending data={data.results} key={key} />
+      <Results data={data.results} key={key} />
     </div>
   );
 };

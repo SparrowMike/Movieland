@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import TvShowsDisplayed from "../output/TvShowsDisplayed";
+import Results from "../output/Results";
 
 const FetchSearch = () => {
   let key = process.env.REACT_APP_API_KEY;
+
+let type = "tv"
 
   const params = useParams();
   console.log("Fetch Search Params", params);
@@ -34,7 +36,7 @@ const FetchSearch = () => {
     <h1>LOADING</h1>
   ) : (
     <div>
-      <TvShowsDisplayed data={data.results} key={key} />
+      <Results data={data.results} key={key} type={type}  />
     </div>
   );
 };

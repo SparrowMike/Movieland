@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import MoviesDisplayed from "../output/MoviesDisplayed";
+import Results from "../output/Results";
 
 const FetchSearch = () => {
   let key = process.env.REACT_APP_API_KEY;
+let type = "movie"  
+const params = useParams();
 
-  const params = useParams();
   console.log("Fetch Search Params", params);
 
   const [data, setData] = useState(null);
@@ -34,7 +35,7 @@ const FetchSearch = () => {
     <h1>LOADING</h1>
   ) : (
     <div>
-      <MoviesDisplayed data={data.results} key={key} />
+      <Results data={data.results} key={key} type={type}/>
     </div>
   );
 };

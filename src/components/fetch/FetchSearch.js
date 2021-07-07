@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import Search from "./../output/Search";
+import Results from "./../output/Results";
 
 const FetchSearch = () => {
   let key = process.env.REACT_APP_API_KEY;
@@ -33,7 +33,7 @@ const FetchSearch = () => {
     <h1>LOADING</h1>
   ) : (
     <div>
-      <Search data={data.results} key={key} />
+      <Results data={data.results} key={key} type="movie" />
     </div>
   );
 };
