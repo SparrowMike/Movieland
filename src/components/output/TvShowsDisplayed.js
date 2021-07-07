@@ -13,9 +13,7 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { GridListTile } from "@material-ui/core";
-import Modal from "@material-ui/core/Modal";
-import Backdrop from "@material-ui/core/Backdrop";
-import Fade from "@material-ui/core/Fade";
+
 import ReactPlayer from "react-player";
 
 const useStyles = makeStyles((theme) => ({
@@ -121,41 +119,13 @@ export default function Trending(props) {
                 </Typography>
               }
             />
+
             <CardMedia
               className={classes.media}
               image={`https://image.tmdb.org/t/p/w500${film.backdrop_path}`}
               title={film.title ? film.title : film.name}
               onClick={handleOpen}
             />
-
-            <Modal
-              aria-labelledby="transition-modal-title"
-              aria-describedby="transition-modal-description"
-              className={classes.modal}
-              open={open}
-              onClose={handleClose}
-              closeAfterTransition
-              BackdropComponent={Backdrop}
-              BackdropProps={{
-                timeout: 500,
-              }}
-            >
-              <Fade in={open}>
-                <div className={classes.paper}>
-                  <ReactPlayer
-                    url="https://www.youtube.com/watch?v=XqZsoesa55w"
-                    playing
-                  />
-                  {/* <iframe
-                    src="https://www.youtube.com/embed/hu0O-q7Kf2k"
-                    frameBorder="0"
-                    allow="autoplay; encrypted-media"
-                    allowFullScreen
-                    title="video"
-                  /> */}
-                </div>
-              </Fade>
-            </Modal>
             <CardActions disableSpacing>
               <IconButton color="primary" aria-label="add to favorites">
                 <FavoriteIcon />

@@ -128,35 +128,6 @@ export default function Search(props) {
               onClick={handleOpen}
             />
 
-            <Modal
-              aria-labelledby="transition-modal-title"
-              aria-describedby="transition-modal-description"
-              className={classes.modal}
-              open={open}
-              onClose={handleClose}
-              closeAfterTransition
-              BackdropComponent={Backdrop}
-              BackdropProps={{
-                timeout: 500,
-              }}
-            >
-              <Fade in={open}>
-                <div className={classes.paper}>
-                  <ReactPlayer
-                    url="https://www.youtube.com/watch?v=XqZsoesa55w"
-                    playing
-                  />
-                  {/* <iframe
-                    src="https://www.youtube.com/embed/hu0O-q7Kf2k"
-                    frameBorder="0"
-                    allow="autoplay; encrypted-media"
-                    allowFullScreen
-                    title="video"
-                  /> */}
-                </div>
-              </Fade>
-            </Modal>
-
             <CardActions disableSpacing>
               <IconButton color="primary" aria-label="add to favorites">
                 <FavoriteIcon />

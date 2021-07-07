@@ -9,7 +9,6 @@
 - Fix the tv-show search
 - Expand on search options
 - Improve description to show on "i" click
-- Styling for pop up trailer
 - Navbar buttons stay selected
 - Improve on loading window screen
 - Add about with some link to linkdin, github etc
@@ -20,7 +19,7 @@
 
 <!--? Whenever ?-->
 
-- Clear up the data
+- Clear up the data movies and tvshows
 - Leave a note if no search hits
 - inside movie/tvshow info option for PG etc
 - Add TMDB logo at the footer
