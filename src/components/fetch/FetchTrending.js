@@ -9,13 +9,9 @@ const FetchTrending = () => {
 
   const [data, setData] = useState(null);
 
+  const URL = `https://api.themoviedb.org/3/trending/${params.type}/${params.date}?api_key=${key}`;
   useEffect(() => {
-    // https://api.themoviedb.org/3/movie/739542/videos?api_key=28f61172b752209fb2807f08057c9e1f&language=en-US
-    // https://www.youtube.com/watch?v=
-
-    fetch(
-      `https://api.themoviedb.org/3/trending/${params.type}/${params.date}?api_key=${key}`
-    )
+    fetch(URL)
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -29,7 +25,7 @@ const FetchTrending = () => {
       .catch((error) => {
         // console.log(error);
       });
-  }, [key, params.type, params.date]);
+  }, [URL]);
 
   return data === null ? (
     <h1>LOADING</h1>

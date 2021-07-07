@@ -77,7 +77,7 @@ export default function Trending(props) {
   const [expanded, setExpanded] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   const [data, setData] = React.useState();
-  const [trailer, setTrailer] = React.useState();
+  const [trailer, setTrailer] = React.useState(null);
 
   console.log("movie id", trailer);
 
