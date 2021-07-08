@@ -94,6 +94,7 @@ export default function Movies() {
 
   return (
     <div className="tvshows">
+
       <Container maxWidth="sm" className={classes.textShadow}>
         <Typography variant="h2" color="primary">
           Discover new movies today!

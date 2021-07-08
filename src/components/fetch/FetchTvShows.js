@@ -5,7 +5,7 @@ import Results from "../output/Results";
 const FetchSearch = () => {
   let key = process.env.REACT_APP_API_KEY;
 
-let type = "tv"
+  let type = "tv";
 
   const params = useParams();
   console.log("Fetch Search Params", params);
@@ -36,7 +36,7 @@ let type = "tv"
     <h1>LOADING</h1>
   ) : (
     <div>
-      <Results data={data.results} key={key} type={type}  />
+      <Results data={data.results} key={key} type={type} />
     </div>
   );
 };

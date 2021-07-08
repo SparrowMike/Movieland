@@ -15,6 +15,8 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { GridListTile } from "@material-ui/core";
 import ReactPlayer from "react-player";
 import Dialog from "@material-ui/core/Dialog";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogContent from "@material-ui/core/DialogContent";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -55,6 +57,7 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.shortest,
     }),
   },
+
   expandOpen: {
     transform: "rotate(180deg)",
   },
@@ -64,13 +67,15 @@ export default function Trending(props) {
   let key = process.env.REACT_APP_API_KEY;
 
   const classes = useStyles();
-  const [expanded, setExpanded] = useState(false);
-  const [open, setOpen] = useState(false);
-  const [data, setData] = useState();
-  const [trailer, setTrailer] = useState(null);
   const [type, setType] = useState(null);
-  
-  const URL = `https://api.themoviedb.org/3/${type}/${trailer}/videos?api_key=${key}&language=en-US`;
+  const [open, setOpen] = useState(false);
+  const [expanded, setExpanded] = useState(-1);
+  const [trailerId, setTrailerId] = useState(null);
+  const [trailerLink, setTrailerLink] = useState();
+
+  let trailer;
+
+  const URL = `https://api.themoviedb.org/3/${type}/${trailerId}/videos?api_key=${key}&language=en-US`;
   useEffect(() => {
     fetch(URL)
       .then((response) => {
@@ -80,11 +85,10 @@ export default function Trending(props) {
         throw new Error("Bad Response from Server");
       })
       .then((data) => {
-        setData(data.results[0].key);
-        console.log(data.results[0].key);
+        setTrailerLink(data.results[0].key);
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
   }, [URL]);
 
@@ -96,20 +100,20 @@ export default function Trending(props) {
     }
   };
 
-  const handleExpandClick = (e) => {
-    setExpanded(!expanded);
-    console.log(e);
+  const handleExpandClick = (index) => {
+    setExpanded(expanded === index ? -1 : index);
+    console.log(index);
   };
 
   const handleOpen = (e) => {
     setOpen(true);
-    setTrailer(e.id);
+    setTrailerId(e.id);
+    // setTrailerLink(trailer);
     setType(e.media_type ? e.media_type : props.type);
- 
   };
-
   const handleClose = () => {
     setOpen(false);
+    setTrailerLink(null);
   };
 
   return (
@@ -150,19 +154,22 @@ export default function Trending(props) {
               <IconButton color="primary" aria-label="share">
                 <ShareIcon />
               </IconButton>
+
               <IconButton
+                id={film.id}
                 className={clsx(classes.expand, {
                   [classes.expandOpen]: expanded,
                 })}
                 color="primary"
-                onClick={() => handleExpandClick(film.id)}
-                aria-expanded={expanded}
+                onClick={() => handleExpandClick(index)}
+                aria-expanded={expanded === index}
                 aria-label="show more"
               >
                 <ExpandMoreIcon />
               </IconButton>
             </CardActions>
-            <Collapse in={expanded} id={film.id} timeout="auto" unmountOnExit>
+
+            <Collapse in={expanded === index} timeout="auto" unmountOnExit>
               <CardContent>
                 <Typography variant="h6">Overview: </Typography>
                 <Typography color="primary" paragraph>
@@ -177,8 +184,18 @@ export default function Trending(props) {
           </GridListTile>
         </Grid>
       ))}
+
       <Dialog open={open} maxWidth="lg" onClose={handleClose}>
-        <ReactPlayer url={`/www.youtube.com/watch?v=${data}`} playing />
+        {trailerLink ? (
+          <ReactPlayer
+            url={`/www.youtube.com/watch?v=${trailerLink}`}
+            playing
+          />
+        ) : (
+          <DialogContent>
+            <DialogContentText>No trailer available</DialogContentText>
+          </DialogContent>
+        )}
       </Dialog>
     </Grid>
   );

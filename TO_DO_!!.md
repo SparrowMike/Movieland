@@ -2,6 +2,7 @@
 
 - on click show overview of selected movie!
 - improve movies and tv
+- fix the loading screen
 
 - Reset setTrailer = when video missing set value to null!
 - STOP rendering when information not available
@@ -9,6 +10,7 @@
 
 <!--? Should ?-->
 
+- Add loading screen
 - improve movies and TV-shows form
 - Fix the tv-show search
 - Expand on search options

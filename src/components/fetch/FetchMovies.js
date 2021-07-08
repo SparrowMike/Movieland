@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import Results from "../output/Results";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const FetchSearch = () => {
   let key = process.env.REACT_APP_API_KEY;
-let type = "movie"  
-const params = useParams();
+  let type = "movie";
+  const params = useParams();
 
   console.log("Fetch Search Params", params);
 
@@ -32,10 +33,10 @@ const params = useParams();
   }, [URL]);
 
   return data === null ? (
-    <h1>LOADING</h1>
+    <CircularProgress disableShrink />
   ) : (
     <div>
-      <Results data={data.results} key={key} type={type}/>
+      <Results data={data.results} key={key} type={type} />
     </div>
   );
 };

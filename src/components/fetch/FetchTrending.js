@@ -7,6 +7,8 @@ const FetchTrending = () => {
 
   const params = useParams();
 
+  
+
   const [data, setData] = useState(null);
 
   const URL = `https://api.themoviedb.org/3/trending/${params.type}/${params.date}?api_key=${key}`;
@@ -20,7 +22,7 @@ const FetchTrending = () => {
       })
       .then((data) => {
         setData(data);
-        // console.log(data);
+        console.log(data);
       })
       .catch((error) => {
         // console.log(error);
