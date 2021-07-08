@@ -4,9 +4,7 @@ import Results from "./../output/Results";
 
 const FetchSearch = () => {
   let key = process.env.REACT_APP_API_KEY;
-
   const params = useParams();
-  console.log("FetchSearch Params", params);
 
   const [data, setData] = useState(null);
 
@@ -22,7 +20,6 @@ const FetchSearch = () => {
       })
       .then((data) => {
         setData(data);
-        console.log("fetch search", data.results);
       })
       .catch((error) => {
         console.log(error);

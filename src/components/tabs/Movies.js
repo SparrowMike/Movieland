@@ -94,7 +94,6 @@ export default function Movies() {
 
   return (
     <div className="tvshows">
-
       <Container maxWidth="sm" className={classes.textShadow}>
         <Typography variant="h2" color="primary">
           Discover new movies today!
@@ -223,8 +222,8 @@ export default function Movies() {
         </FormControl>
       </Container>
       <Link
-        // to={`/movies/${genre}/${cert}/${sort}/${yearGte}/${yearLte}/${country}/${lang}`}
-        to={`/movies/${genre}/${cert}/${sort}/${yearGte}/${yearLte}/${country}`}
+      // to={`/movies/${genre}/${cert}/${sort}/${yearGte}/${yearLte}/${country}/${lang}`}
+      to={`/movies/${genre}/${cert}/${sort}/${yearGte}/${yearLte}/${country}`}
       >
         <Button
           variant="contained"

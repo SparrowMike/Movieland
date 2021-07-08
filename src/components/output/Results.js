@@ -17,6 +17,7 @@ import ReactPlayer from "react-player";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogContent from "@material-ui/core/DialogContent";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,6 +30,8 @@ const useStyles = makeStyles((theme) => ({
     // padding: "10px",
     listStyle: "none",
     background: "#000",
+
+    alignItems: "flex-start",
   },
   card: {
     background: "#000000",
@@ -45,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     // boxShadow: "0 0 5px 5px black inset",
     "&:hover": {
       // boxShadow: "0 0 1px 1px #9d0208 inset",
-      boxShadow: "0 0.5em 0.5em -0.4em salmon",
+      boxShadow: "0 0.6em 0.5em -0.4em #f8edeb",
       transform: "translateY(-0.15em)",
       cursor: "pointer",
     },
@@ -56,10 +59,24 @@ const useStyles = makeStyles((theme) => ({
     transition: theme.transitions.create("transform", {
       duration: theme.transitions.duration.shortest,
     }),
+    "&:hover": {
+      color: "black",
+      backgroundColor: "white",
+      boxShadow: "0 0 2px 2px #9d0208 inset",
+    },
   },
 
   expandOpen: {
     transform: "rotate(180deg)",
+  },
+
+  loading: {
+    background: "salmon",
+    display: "flex",
+    // height: "250px",
+    // width: "450px",
+    justifyContent: "center",
+    alignItems: "center",
   },
 }));
 
@@ -73,24 +90,25 @@ export default function Trending(props) {
   const [trailerId, setTrailerId] = useState(null);
   const [trailerLink, setTrailerLink] = useState();
 
-  let trailer;
-
   const URL = `https://api.themoviedb.org/3/${type}/${trailerId}/videos?api_key=${key}&language=en-US`;
+
   useEffect(() => {
-    fetch(URL)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error("Bad Response from Server");
-      })
-      .then((data) => {
-        setTrailerLink(data.results[0].key);
-      })
-      .catch((error) => {
-        // console.log(error);
-      });
-  }, [URL]);
+    if (trailerId !== null) {
+      fetch(URL)
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          }
+          throw new Error("Bad Response from Server");
+        })
+        .then((data) => {
+          setTrailerLink(data.results[0].key);
+        })
+        .catch((error) => {
+          // console.log(error);
+        });
+    }
+  }, [URL, trailerId]);
 
   const getYear = (releaseDate) => {
     if (releaseDate) {
@@ -108,12 +126,14 @@ export default function Trending(props) {
   const handleOpen = (e) => {
     setOpen(true);
     setTrailerId(e.id);
-    // setTrailerLink(trailer);
     setType(e.media_type ? e.media_type : props.type);
   };
+
   const handleClose = () => {
-    setOpen(false);
+    setTrailerId(null);
     setTrailerLink(null);
+    // setTrailerLink(setTrailerId(null));
+    setOpen(false);
   };
 
   return (
@@ -123,11 +143,11 @@ export default function Trending(props) {
       direction="row"
       alignItems="center"
       justify="center"
-      style={{ minHeight: "100vh" }}
+      // style={{ minHeight: "100vh" }}
       className={classes.root}
     >
       {props.data.map((film, index) => (
-        <Grid item xs={4} key={index}>
+        <Grid item xs={12} sm={6} md={4} lg={4} xl={2} key={index}>
           <GridListTile className={classes.card}>
             <CardHeader
               title={film.title ? film.title : film.name}
@@ -158,7 +178,7 @@ export default function Trending(props) {
               <IconButton
                 id={film.id}
                 className={clsx(classes.expand, {
-                  [classes.expandOpen]: expanded,
+                  [classes.expandOpen]: expanded === index,
                 })}
                 color="primary"
                 onClick={() => handleExpandClick(index)}
@@ -185,15 +205,23 @@ export default function Trending(props) {
         </Grid>
       ))}
 
-      <Dialog open={open} maxWidth="lg" onClose={handleClose}>
+      <Dialog maxWidth="lg" maxheigth="lg" open={open} onClose={handleClose}>
         {trailerLink ? (
           <ReactPlayer
+            className={classes.player}
             url={`/www.youtube.com/watch?v=${trailerLink}`}
             playing
           />
         ) : (
-          <DialogContent>
-            <DialogContentText>No trailer available</DialogContentText>
+          <DialogContent className={classes.loading}>
+            <DialogContentText
+              component={"span"}
+              color="secondary"
+              variant="h2"
+            >
+              Loading...
+              <CircularProgress color="secondary" />
+            </DialogContentText>
           </DialogContent>
         )}
       </Dialog>

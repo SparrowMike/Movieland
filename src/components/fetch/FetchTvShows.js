@@ -4,11 +4,8 @@ import Results from "../output/Results";
 
 const FetchSearch = () => {
   let key = process.env.REACT_APP_API_KEY;
-
   let type = "tv";
-
   const params = useParams();
-  console.log("Fetch Search Params", params);
 
   const [data, setData] = useState(null);
 
@@ -25,7 +22,6 @@ const FetchSearch = () => {
       })
       .then((data) => {
         setData(data);
-        console.log("fetch search", data);
       })
       .catch((error) => {
         console.log(error);

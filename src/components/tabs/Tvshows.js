@@ -59,7 +59,6 @@ export default function Movies() {
 
   const handleSort = (event) => {
     setSort(event.target.value);
-    console.log(event.target.value);
   };
 
   // const handleLanguage = (event) => {
