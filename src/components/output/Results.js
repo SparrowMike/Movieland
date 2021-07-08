@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     // padding: "10px",
     listStyle: "none",
     background: "#000",
-    minHeight: "800px",
+    minHeight: "1200px",
 
     alignItems: "flex-start",
   },
