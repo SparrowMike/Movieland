@@ -25,3 +25,6 @@
 - add favorite option
 - ability to share facebook etc
 - material UI slider - Minimum distance
+
+
+- https://github.com/CookPete/react-player/issues/145
