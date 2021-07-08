@@ -12,13 +12,14 @@ import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import background from "../../Photos/foto_tlo_film_blur_04.jpeg";
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+      <Link color="inherit" href="https://movieland-ochre.vercel.app/">
+        Movieland
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -31,10 +32,10 @@ const useStyles = makeStyles((theme) => ({
     height: "100vh",
   },
   image: {
-    backgroundImage: "url(/../../Photos/foto_tlo_film_blur_04.jpeg)",
+    backgroundImage: `url(${background})`,
     backgroundRepeat: "no-repeat",
     backgroundColor:
-      theme.palette.type === "light"
+      theme.palette.type === "lightgrey"
         ? theme.palette.grey[50]
         : theme.palette.grey[900],
     backgroundSize: "cover",
@@ -51,6 +52,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.secondary,
   },
+  
   form: {
     width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(1),
@@ -99,26 +101,26 @@ export default function SignInSide() {
               autoComplete="current-password"
             />
             <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
+              control={<Checkbox value="remember" color="secondary" />}
               label="Remember me"
             />
             <Button
               type="submit"
               fullWidth
               variant="contained"
-              color="primary"
+              color="secondary"
               className={classes.submit}
             >
               Sign In
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link color="secondary" href="#" variant="body2">
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link color="secondary" href="#" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
