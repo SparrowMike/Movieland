@@ -32,8 +32,7 @@ Example:
 
 User at launch of the page will be welcomed with quick welcome and brief introduction
 ```
-```
-Example:
+gExample:
 
 User must be able to:
 
