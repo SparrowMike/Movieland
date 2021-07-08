@@ -32,7 +32,7 @@ Example:
 
 User at launch of the page will be welcomed with quick welcome and brief introduction
 ```
-gExample:
+Example:
 
 User must be able to:
 
@@ -53,7 +53,7 @@ tbc
 
 ### Unsolved problems
 
-Inside movies and tv shows tabs add more advanced capabilities.
+tbc
 
 ## APIs Used
 
