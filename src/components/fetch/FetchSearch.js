@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import Results from "./../output/Results";
+import LoadingWindow from "../output/LoadingWindow";
 
 const FetchSearch = () => {
   let key = process.env.REACT_APP_API_KEY;
@@ -27,7 +28,7 @@ const FetchSearch = () => {
   }, [key, params.title]);
 
   return data === null ? (
-    <h1>LOADING</h1>
+    <LoadingWindow />
   ) : (
     <div>
       <Results data={data.results} key={key} type="movie" />

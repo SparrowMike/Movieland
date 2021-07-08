@@ -23,7 +23,7 @@
 - Login window tab
 - Get suitable favicon
 
-<!--? Whenever ?-->
+<!--? At some point... ?-->
 
 - Clear up the data movies and tvshows
 - Leave a note if no search hits

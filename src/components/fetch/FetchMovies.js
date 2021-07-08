@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import Results from "../output/Results";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import LoadingWindow from "../output/LoadingWindow";
 
 const FetchSearch = () => {
   let key = process.env.REACT_APP_API_KEY;
@@ -31,9 +31,7 @@ const FetchSearch = () => {
 
   return data === null ? (
     <div>
-      <h1>LOADING</h1>
-
-      <CircularProgress color="secondary" disableshrink="true" />
+      <LoadingWindow />
     </div>
   ) : (
     <div>

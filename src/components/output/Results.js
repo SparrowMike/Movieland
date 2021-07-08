@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   loading: {
-    background: "salmon",
+    background: "black",
     display: "flex",
     // height: "250px",
     // width: "450px",
@@ -214,13 +214,9 @@ export default function Trending(props) {
           />
         ) : (
           <DialogContent className={classes.loading}>
-            <DialogContentText
-              component={"span"}
-              color="secondary"
-              variant="h2"
-            >
+            <DialogContentText component={"span"} color="primary" variant="h2">
               Loading...
-              <CircularProgress color="secondary" />
+              <CircularProgress color="primary" />
             </DialogContentText>
           </DialogContent>
         )}
