@@ -3,6 +3,7 @@
 - improve movies and tv search
 - fix the bug on not available trailer
 - STOP rendering when information not available
+- fix white window when information not available 
 
 <!--? Should ?-->
 

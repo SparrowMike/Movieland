@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
     // padding: "10px",
     listStyle: "none",
     background: "#000",
+    // height: "100vh",
 
     alignItems: "flex-start",
   },
@@ -147,7 +148,7 @@ export default function Trending(props) {
       className={classes.root}
     >
       {props.data.map((film, index) => (
-        <Grid item xs={12} sm={6} md={4} lg={4} xl={2} key={index}>
+        <Grid item xs={12} sm={6} md={4} lg={4} xl={3} key={index}>
           <GridListTile className={classes.card}>
             <CardHeader
               title={film.title ? film.title : film.name}

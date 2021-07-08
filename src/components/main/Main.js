@@ -10,7 +10,7 @@ import FetchTvShows from "../fetch/FetchTvShows";
 
 const Main = () => {
   return (
-    <main>
+    <main className="main">
       <Switch>
         <Route
           // path="/movies/:genre/:cert/:sort/:yearGte/:yearLte/:country/:language"

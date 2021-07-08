@@ -16,13 +16,11 @@ const theme = createMuiTheme({
 
 function App() {
   return (
-    <>
       <ThemeProvider theme={theme}>
         <Navbar />
         <Main />
         <Footer />
       </ThemeProvider>
-    </>
   );
 }
 
