@@ -74,8 +74,8 @@ const useStyles = makeStyles((theme) => ({
   loading: {
     background: "black",
     display: "flex",
-    // height: "250px",
-    // width: "450px",
+    height: "360px",
+    width: "640px",
     justifyContent: "center",
     alignItems: "center",
   },
@@ -211,7 +211,7 @@ export default function Trending(props) {
         ))}
 
       <Dialog maxWidth="lg" maxheigth="lg" open={open} onClose={handleClose}>
-        {trailerLink ? (
+        {trailerId ? (
           <ReactPlayer
             className={classes.player}
             url={`/www.youtube.com/watch?v=${trailerLink}`}
