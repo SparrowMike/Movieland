@@ -15,6 +15,7 @@
 - Add a search by month inside the movie/tv tab?
 - Login window tab
 - Get suitable favicon
+- Improve search, add movies and tvshows instead of multi!!
 
 <!--? At some point... ?-->
 
