@@ -27,9 +27,9 @@ Example:
 
 ### Wireframes
 
-![image one]("1.png")
-![image two]("2.png")
-![image three]("3.png")
+![image one](./1.png)
+![image two](./2.png)
+![image three](./3.png)
 
 ### User Stories
 
