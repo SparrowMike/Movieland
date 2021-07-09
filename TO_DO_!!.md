@@ -3,10 +3,11 @@
 - improve movies and tv search
 - fix the bug on not available trailer
 - STOP rendering when information not available
-- fix white window when information not available 
+- fix white window when information not available
 
 <!--? Should ?-->
 
+- Add genres into movie/tv info
 - improve movies and TV-shows form
 - Improve description to show on "i" click
 - Navbar buttons stay selected
@@ -26,6 +27,5 @@
 - add favorite option
 - ability to share facebook etc
 - material UI slider - Minimum distance
-
 
 - https://github.com/CookPete/react-player/issues/145

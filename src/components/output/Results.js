@@ -147,64 +147,68 @@ export default function Trending(props) {
       // style={{ minHeight: "100vh" }}
       className={classes.root}
     >
-      {props.data.map((film, index) => (
-        <Grid item xs={12} sm={6} md={4} lg={4} xl={3} key={index}>
-          <GridListTile className={classes.card}>
-            <CardHeader
-              title={film.title ? film.title : film.name}
-              subheader={
-                <Typography color="primary" paragraph>
-                  Release:{" "}
-                  {getYear(
-                    film.release_date ? film.release_date : film.first_air_date
-                  )}
-                </Typography>
-              }
-            />
-            <CardMedia
-              className={classes.media}
-              image={`https://image.tmdb.org/t/p/w500${film.backdrop_path}`}
-              title={film.title ? film.title : film.name}
-              onClick={() => handleOpen(film)}
-            />
+      {props.data
+        .filter((film) => film.backdrop_path)
+        .map((film, index) => (
+          <Grid item xs={12} sm={6} md={4} lg={4} xl={3} key={index}>
+            <GridListTile className={classes.card}>
+              <CardHeader
+                title={film.title ? film.title : film.name}
+                subheader={
+                  <Typography color="primary" paragraph>
+                    Release:{" "}
+                    {getYear(
+                      film.release_date
+                        ? film.release_date
+                        : film.first_air_date
+                    )}
+                  </Typography>
+                }
+              />
+              <CardMedia
+                className={classes.media}
+                image={`https://image.tmdb.org/t/p/w500${film.backdrop_path}`}
+                title={film.title ? film.title : film.name}
+                onClick={() => handleOpen(film)}
+              />
 
-            <CardActions disableSpacing>
-              <IconButton color="primary" aria-label="add to favorites">
-                <FavoriteIcon />
-              </IconButton>
-              <IconButton color="primary" aria-label="share">
-                <ShareIcon />
-              </IconButton>
+              <CardActions disableSpacing>
+                <IconButton color="primary" aria-label="add to favorites">
+                  <FavoriteIcon />
+                </IconButton>
+                <IconButton color="primary" aria-label="share">
+                  <ShareIcon />
+                </IconButton>
 
-              <IconButton
-                id={film.id}
-                className={clsx(classes.expand, {
-                  [classes.expandOpen]: expanded === index,
-                })}
-                color="primary"
-                onClick={() => handleExpandClick(index)}
-                aria-expanded={expanded === index}
-                aria-label="show more"
-              >
-                <ExpandMoreIcon />
-              </IconButton>
-            </CardActions>
+                <IconButton
+                  id={film.id}
+                  className={clsx(classes.expand, {
+                    [classes.expandOpen]: expanded === index,
+                  })}
+                  color="primary"
+                  onClick={() => handleExpandClick(index)}
+                  aria-expanded={expanded === index}
+                  aria-label="show more"
+                >
+                  <ExpandMoreIcon />
+                </IconButton>
+              </CardActions>
 
-            <Collapse in={expanded === index} timeout="auto" unmountOnExit>
-              <CardContent>
-                <Typography variant="h6">Overview: </Typography>
-                <Typography color="primary" paragraph>
-                  {film.overview}
-                </Typography>
-                <Typography variant="h6">Rating: </Typography>
-                <Typography color="primary" paragraph>
-                  {film.vote_average} out of {film.vote_count} votes.
-                </Typography>
-              </CardContent>
-            </Collapse>
-          </GridListTile>
-        </Grid>
-      ))}
+              <Collapse in={expanded === index} timeout="auto" unmountOnExit>
+                <CardContent>
+                  <Typography variant="h6">Overview: </Typography>
+                  <Typography color="primary" paragraph>
+                    {film.overview}
+                  </Typography>
+                  <Typography variant="h6">Rating: </Typography>
+                  <Typography color="primary" paragraph>
+                    {film.vote_average} out of {film.vote_count} votes.
+                  </Typography>
+                </CardContent>
+              </Collapse>
+            </GridListTile>
+          </Grid>
+        ))}
 
       <Dialog maxWidth="lg" maxheigth="lg" open={open} onClose={handleClose}>
         {trailerLink ? (
