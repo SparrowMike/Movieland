@@ -9,10 +9,10 @@ const FetchSearch = () => {
 
   const [data, setData] = useState(null);
 
+  const URL = `https://api.themoviedb.org/3/search/multi?api_key=${key}&language=en-US&query=${params.title}&page=1&include_adult=false`;
+
   useEffect(() => {
-    fetch(
-      `https://api.themoviedb.org/3/search/multi?api_key=${key}&language=en-US&query=${params.title}&page=1&include_adult=false`
-    )
+    fetch(URL)
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -25,7 +25,7 @@ const FetchSearch = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, [key, params.title]);
+  }, [URL]);
 
   return data === null ? (
     <LoadingWindow />
