@@ -5,19 +5,14 @@ body {
   height: 100%;
 }
 
-/* .trending {
-  border: 5px solid black;
-  margin: 5px;
-  padding: 5px;
-} */
-
 footer {
-  margin-top: calc(5% + 60px);
   bottom: 0;
+  margin-top: calc(5% + 60px);
   position: sticky;
   width: 100%;
-  margin-top: 56px;
-  padding: 16px;
+  /* margin-top: 56px; */
+  padding: 10px;
+  margin: 0;
 }
 
 .home,
@@ -31,11 +26,20 @@ footer {
   text-align: center;
   padding-top: 100px;
   height: 100vh;
-  /* filter: blur(1px); */
 }
 
 .navBar {
-  margin-bottom: 56px;
-  /* position: sticky; */
-  /* top: 0; */
+  margin-bottom: 82px;
+}
+
+@media only screen and (max-width: 960px) {
+  .navBar {
+    margin-bottom: 60px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .navBar {
+    margin-bottom: 55px;
+  }
 }

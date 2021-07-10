@@ -20,13 +20,8 @@ import { useHistory } from "react-router";
 
 import Link from "@material-ui/core/Link";
 import { Link as RouterLink } from "react-router-dom";
-// import { getByPlaceholderText } from "@testing-library/react";
 
 import MenuIcon from "@material-ui/icons/Menu";
-// import HomeIcon from "@material-ui/icons/Home";
-// import SchoolIcon from "@material-ui/icons/School";
-// import PersonIcon from "@material-ui/icons/Person";
-// import BookmarksIcon from "@material-ui/icons/Bookmarks";
 
 const useStyles = makeStyles((theme) => ({
   search: {
@@ -57,12 +52,10 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1, 2.5),
   },
 
-  root: {
-    flexGrow: 1,
-  },
-
   navBar: {
     backgroundColor: "black",
+    paddingTop: "10px",
+    paddingbottom: "10px",
   },
 
   menuButton: {
@@ -177,7 +170,7 @@ const Header = (props) => {
                   </form>
                 </>
               ) : (
-                <div>
+                <>
                   <CssBaseline />
 
                   <IconButton
@@ -240,7 +233,7 @@ const Header = (props) => {
                       />
                     </form>
                   </Menu>
-                </div>
+                </>
               )}
             </Toolbar>
           </AppBar>
