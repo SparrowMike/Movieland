@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
     // boxShadow: "0 0 5px 5px black inset",
     "&:hover": {
       // boxShadow: "0 0 1px 1px #9d0208 inset",
-      boxShadow: "0 0.6em 0.5em -0.4em #f8edeb",
+      boxShadow: "0 0.6em 0.5em -0.4em salmon",
       transform: "translateY(-0.15em)",
       cursor: "pointer",
     },
@@ -89,7 +89,7 @@ export default function Trending(props) {
   const [open, setOpen] = useState(false);
   const [expanded, setExpanded] = useState(-1);
   const [trailerId, setTrailerId] = useState(null);
-  const [trailerLink, setTrailerLink] = useState();
+  const [trailerLink, setTrailerLink] = useState(null);
 
   const URL = `https://api.themoviedb.org/3/${type}/${trailerId}/videos?api_key=${key}&language=en-US`;
 
@@ -104,6 +104,7 @@ export default function Trending(props) {
         })
         .then((data) => {
           setTrailerLink(data.results[0].key);
+          // console.log(data.results[0].key);
         })
         .catch((error) => {
           // console.log(error);
@@ -121,7 +122,6 @@ export default function Trending(props) {
 
   const handleExpandClick = (index) => {
     setExpanded(expanded === index ? -1 : index);
-    console.log(index);
   };
 
   const handleOpen = (e) => {
@@ -133,6 +133,7 @@ export default function Trending(props) {
   const handleClose = () => {
     setTrailerId(null);
     setTrailerLink(null);
+    // console.log(trailerLink);
     // setTrailerLink(setTrailerId(null));
     setOpen(false);
   };
@@ -210,9 +211,10 @@ export default function Trending(props) {
           </Grid>
         ))}
 
-      <Dialog maxWidth="lg" maxheigth="lg" open={open} onClose={handleClose}>
-        {trailerId ? (
+      <Dialog maxWidth="lg" maxheight="lg" open={open} onClose={handleClose}>
+        {trailerLink !== null ? (
           <ReactPlayer
+            maxheight="lg"
             className={classes.player}
             url={`/www.youtube.com/watch?v=${trailerLink}`}
             playing

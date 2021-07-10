@@ -32,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
   toolbarTitle: {
     flexGrow: 1,
   },
+
   link: {
     margin: theme.spacing(1, 2.5),
   },
