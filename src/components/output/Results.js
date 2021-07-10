@@ -70,9 +70,11 @@ const useStyles = makeStyles((theme) => ({
   },
 
   modal: {
+    // position: "relative",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    // paddingTop: "56.25%",
   },
 
   player: {
@@ -225,7 +227,7 @@ export default function Trending(props) {
         ))}
 
       <Modal
-        // className="wrapper"
+        className="wrapper"
         className={classes.modal}
         open={open}
         onClose={handleClose}
@@ -237,8 +239,9 @@ export default function Trending(props) {
       >
         {trailerLink !== null ? (
           <ReactPlayer
-            width="50%"
-            height="50%"
+            width="auto"
+            height="auto"
+            // className="player"
             className={classes.player}
             url={`/www.youtube.com/watch?v=${trailerLink}`}
             playing
