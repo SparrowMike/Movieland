@@ -29,3 +29,5 @@
 - material UI slider - Minimum distance
 
 - https://github.com/CookPete/react-player/issues/145
+
+- MAKE REACT PLAYER MOBILE FRIENDLY!

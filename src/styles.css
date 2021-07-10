@@ -5,18 +5,19 @@ body {
   height: 100%;
 }
 
-.trending {
+/* .trending {
   border: 5px solid black;
   margin: 5px;
   padding: 5px;
-}
+} */
 
 footer {
   margin-top: calc(5% + 60px);
   bottom: 0;
   position: sticky;
   width: 100%;
-  margin: 0;
+  margin-top: 56px;
+  padding: 16px;
 }
 
 .home,
@@ -31,4 +32,10 @@ footer {
   padding-top: 100px;
   height: 100vh;
   /* filter: blur(1px); */
+}
+
+.navBar {
+  margin-bottom: 56px;
+  /* position: sticky; */
+  /* top: 0; */
 }
