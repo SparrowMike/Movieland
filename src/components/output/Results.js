@@ -17,7 +17,7 @@ import ReactPlayer from "react-player";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogContent from "@material-ui/core/DialogContent";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import Backdrop from "@material-ui/core/Backdrop";
+// import Backdrop from "@material-ui/core/Backdrop";
 
 import Modal from "@material-ui/core/Modal";
 
@@ -70,19 +70,20 @@ const useStyles = makeStyles((theme) => ({
   },
 
   modal: {
-    // position: "relative",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    // paddingTop: "56.25%",
+
+    // paddingBottom: "0%",
   },
 
   player: {
     outline: 0,
     background: "black",
     display: "flex",
-    height: "250px",
-    width: "250px",
+    position: "absolute",
+    width: "100vw",
+    height: "30vw",
     justifyContent: "center",
     alignItems: "center",
   },
@@ -227,27 +228,25 @@ export default function Trending(props) {
         ))}
 
       <Modal
-        className="wrapper"
         className={classes.modal}
         open={open}
         onClose={handleClose}
         closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
+        // BackdropComponent={Backdrop}
+        // BackdropProps={{
+        //   timeout: 500,
+        // }}
       >
         {trailerLink !== null ? (
           <ReactPlayer
-            width="auto"
-            height="auto"
-            // className="player"
+            width="50%"
+            height="50%"
             className={classes.player}
             url={`/www.youtube.com/watch?v=${trailerLink}`}
             playing
           />
         ) : (
-          <DialogContent className={classes.loading}>
+          <DialogContent width="50%" height="50%" className={classes.loading}>
             <DialogContentText component={"span"} color="primary" variant="h2">
               Not available...
               <CircularProgress color="primary" />

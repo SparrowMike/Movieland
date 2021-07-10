@@ -42,16 +42,3 @@ footer {
     margin-bottom: 55px;
   }
 }
-
-.wrapper {
-  position: relative;
-  padding-top: 56.25%;
-}
-
-.player {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
