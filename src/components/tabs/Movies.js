@@ -222,8 +222,8 @@ export default function Movies() {
         </FormControl>
       </Container>
       <Link
-      // to={`/movies/${genre}/${cert}/${sort}/${yearGte}/${yearLte}/${country}/${lang}`}
-      to={`/movies/${genre}/${cert}/${sort}/${yearGte}/${yearLte}/${country}`}
+        // to={`/movies/${genre}/${cert}/${sort}/${yearGte}/${yearLte}/${country}/${lang}`}
+        to={`/movies/${genre}/${cert}/${sort}/${yearGte}/${yearLte}/${country}`}
       >
         <Button
           variant="contained"

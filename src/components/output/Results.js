@@ -14,10 +14,12 @@ import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { GridListTile } from "@material-ui/core";
 import ReactPlayer from "react-player";
-import Dialog from "@material-ui/core/Dialog";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogContent from "@material-ui/core/DialogContent";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import Backdrop from "@material-ui/core/Backdrop";
+
+import Modal from "@material-ui/core/Modal";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,9 +27,6 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "space-around",
-    // overflow: "hidden",
-    // backgroundColor: theme.palette.background.default,
-    // padding: "10px",
     listStyle: "none",
     background: "#000",
     minHeight: "1200px",
@@ -46,7 +45,6 @@ const useStyles = makeStyles((theme) => ({
     height: 0,
     margin: 5,
     paddingTop: "56.25%", // 16:9
-    // boxShadow: "0 0 5px 5px black inset",
     "&:hover": {
       // boxShadow: "0 0 1px 1px #9d0208 inset",
       boxShadow: "0 0.6em 0.5em -0.4em salmon",
@@ -71,11 +69,27 @@ const useStyles = makeStyles((theme) => ({
     transform: "rotate(180deg)",
   },
 
+  modal: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  player: {
+    outline: 0,
+    background: "black",
+    display: "flex",
+    height: "250px",
+    width: "250px",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
   loading: {
     background: "black",
     display: "flex",
-    height: "360px",
-    width: "640px",
+    height: "250px",
+    width: "250px",
     justifyContent: "center",
     alignItems: "center",
   },
@@ -133,7 +147,6 @@ export default function Trending(props) {
   const handleClose = () => {
     setTrailerId(null);
     setTrailerLink(null);
-    // console.log(trailerLink);
     // setTrailerLink(setTrailerId(null));
     setOpen(false);
   };
@@ -211,10 +224,21 @@ export default function Trending(props) {
           </Grid>
         ))}
 
-      <Dialog maxWidth="lg" open={open} onClose={handleClose}>
+      <Modal
+        className="wrapper"
+        className={classes.modal}
+        open={open}
+        onClose={handleClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
         {trailerLink !== null ? (
           <ReactPlayer
-            maxheight="lg"
+            width="50%"
+            height="50%"
             className={classes.player}
             url={`/www.youtube.com/watch?v=${trailerLink}`}
             playing
@@ -222,12 +246,12 @@ export default function Trending(props) {
         ) : (
           <DialogContent className={classes.loading}>
             <DialogContentText component={"span"} color="primary" variant="h2">
-              Loading...
+              Not available...
               <CircularProgress color="primary" />
             </DialogContentText>
           </DialogContent>
         )}
-      </Dialog>
+      </Modal>
     </Grid>
   );
 }
