@@ -2,7 +2,7 @@
 import Main from "./components/main/Main";
 import Footer from "./components/main/Footer";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import Header from "./components/main/HEADER";
+import Header from "./components/main/Navbar";
 
 const theme = createMuiTheme({
   palette: {

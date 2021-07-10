@@ -211,7 +211,7 @@ export default function Trending(props) {
           </Grid>
         ))}
 
-      <Dialog maxWidth="lg" maxheight="lg" open={open} onClose={handleClose}>
+      <Dialog maxWidth="lg" open={open} onClose={handleClose}>
         {trailerLink !== null ? (
           <ReactPlayer
             maxheight="lg"
