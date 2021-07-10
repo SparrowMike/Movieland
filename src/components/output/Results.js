@@ -225,7 +225,7 @@ export default function Trending(props) {
         ))}
 
       <Modal
-        className="wrapper"
+        // className="wrapper"
         className={classes.modal}
         open={open}
         onClose={handleClose}
