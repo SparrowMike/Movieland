@@ -84,8 +84,8 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    height: "250px",
-    width: "auto",
+    // height: "250px",
+    // width: "auto",
     outline: "none",
   },
 }));

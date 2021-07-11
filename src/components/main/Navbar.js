@@ -127,6 +127,15 @@ export default function SimpleMenu(props) {
                       variant="button"
                       color="primary"
                       component={RouterLink}
+                      to="/"
+                      className={classes.link}
+                    >
+                      Home
+                    </Link>
+                    <Link
+                      variant="button"
+                      color="primary"
+                      component={RouterLink}
                       to="/movies"
                       className={classes.link}
                     >
