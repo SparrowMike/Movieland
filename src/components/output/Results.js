@@ -78,7 +78,6 @@ const useStyles = makeStyles((theme) => ({
 
   player: {
     outline: "none",
-    aspectRatio: "16/9",
   },
 
   loading: {
@@ -231,8 +230,8 @@ export default function Trending(props) {
       >
         {trailerLink !== null ? (
           <ReactPlayer
-            width="50%"
-            height="50%"
+            width="60%"
+            height="60%"
             className={classes.player}
             url={`/www.youtube.com/watch?v=${trailerLink}`}
             playing
