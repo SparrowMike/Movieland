@@ -90,12 +90,12 @@ const useStyles = makeStyles((theme) => ({
   // },
 
   loading: {
-    background: "black",
     display: "flex",
-    height: "250px",
-    width: "250px",
     justifyContent: "center",
     alignItems: "center",
+    // background: "black",
+    // height: "70%",
+    // width: "70%",
   },
 }));
 
@@ -247,9 +247,9 @@ export default function Trending(props) {
             playing
           />
         ) : (
-          <DialogContent width="50%" height="50%" className={classes.loading}>
+          <DialogContent className={classes.loading}>
             <DialogContentText component={"span"} color="primary" variant="h2">
-              Not available...
+              Loading...
               <CircularProgress color="primary" />
             </DialogContentText>
           </DialogContent>
