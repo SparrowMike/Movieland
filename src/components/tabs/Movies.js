@@ -220,21 +220,21 @@ export default function Movies() {
             })}
           </Select>
         </FormControl>
-      </Container>
-      <Link
-        // to={`/movies/${genre}/${cert}/${sort}/${yearGte}/${yearLte}/${country}/${lang}`}
-        to={`/movies/${genre}/${cert}/${sort}/${yearGte}/${yearLte}/${country}`}
-      >
-        <Button
-          variant="contained"
-          className={classes.button}
-          color="primary"
-          disableElevation
-          size="large"
+        <Link
+          // to={`/movies/${genre}/${cert}/${sort}/${yearGte}/${yearLte}/${country}/${lang}`}
+          to={`/movies/${genre}/${cert}/${sort}/${yearGte}/${yearLte}/${country}`}
         >
-          Search!
-        </Button>
-      </Link>
+          <Button
+            variant="contained"
+            className={classes.button}
+            color="primary"
+            disableElevation
+            size="large"
+          >
+            Search!
+          </Button>
+        </Link>
+      </Container>
     </div>
   );
 }

@@ -2,7 +2,7 @@ html,
 body {
   padding: 0px;
   margin: 0px;
-  height: 100%;
+
   background-color: black !important;
 }
 
@@ -23,19 +23,11 @@ footer {
   background-repeat: no-repeat;
   background-size: cover;
   text-align: center;
-  padding-top: 100px;
-  height: 100vh;
-}
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-.demoWrapper {
-  padding: 10px;
-  background: white;
-  box-sizing: border-box;
-  resize: horizontal;
-  border: 1px dashed;
-  overflow: auto;
-  max-width: 100%;
-  height: calc(100vh - 16px);
+  height: 81vh;
 }
 
 .navBar {
