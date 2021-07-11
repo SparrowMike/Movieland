@@ -203,22 +203,22 @@ export default function SimpleMenu(props) {
                     <MenuItem component={RouterLink} to="/login">
                       <Typography variant="h6"> Login </Typography>
                     </MenuItem>{" "}
+                    <form
+                      className={classes.form}
+                      noValidate
+                      autoComplete="off"
+                      onSubmit={handleSubmit}
+                    >
+                      <TextField
+                        error
+                        onChange={(e) => setTitle(e.target.value)}
+                        id="outlined-search"
+                        variant="outlined"
+                        label="Search field"
+                        type="search"
+                      />
+                    </form>
                   </Menu>
-                  <form
-                    className={classes.form}
-                    noValidate
-                    autoComplete="off"
-                    onSubmit={handleSubmit}
-                  >
-                    <TextField
-                      error
-                      onChange={(e) => setTitle(e.target.value)}
-                      id="outlined-search"
-                      variant="outlined"
-                      label="Search field"
-                      type="search"
-                    />
-                  </form>
                 </>
               )}
             </Toolbar>
