@@ -15,8 +15,14 @@ const useStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(3),
   },
+
   typographyHeader: {
-    fontSize: 75,
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "3rem",
+    },
+    [theme.breakpoints.up("md")]: {
+      fontSize: "5rem",
+    },
   },
 }));
 

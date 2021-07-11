@@ -34,6 +34,14 @@ const useStyles = makeStyles((theme) => ({
       borderColor: "white",
     },
   },
+  typographyHeader: {
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "3rem",
+    },
+    [theme.breakpoints.up("md")]: {
+      fontSize: "5rem",
+    },
+  },
 }));
 
 export default function Movies() {
@@ -95,7 +103,11 @@ export default function Movies() {
   return (
     <div className="tvshows">
       <Container maxWidth="sm" className={classes.textShadow}>
-        <Typography variant="h2" color="primary">
+        <Typography
+          variant="h2"
+          color="primary"
+          className={classes.typographyHeader}
+        >
           Discover new movies today!
         </Typography>
         <FormControl variant="outlined" className={classes.formControl}>
