@@ -15,9 +15,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { GridListTile } from "@material-ui/core";
 import ReactPlayer from "react-player";
 import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogContent from "@material-ui/core/DialogContent";
 import CircularProgress from "@material-ui/core/CircularProgress";
-// import Backdrop from "@material-ui/core/Backdrop";
 
 import Modal from "@material-ui/core/Modal";
 
@@ -78,21 +76,17 @@ const useStyles = makeStyles((theme) => ({
     aspectRatio: "16/9",
   },
 
-  // player: {
-  //   outline: 0,
-  //   background: "black",
-  //   display: "flex",
-  //   position: "absolute",
-  //   width: "100vw",
-  //   height: "30vw",
-  //   justifyContent: "center",
-  //   alignItems: "center",
-  // },
+  player: {
+    outline: "none",
+  },
 
   loading: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    height: "250px",
+    width: "auto",
+    outline: "none",
   },
 }));
 
@@ -119,7 +113,6 @@ export default function Trending(props) {
         })
         .then((data) => {
           setTrailerLink(data.results[0].key);
-          // console.log(data.results[0].key);
         })
         .catch((error) => {
           // console.log(error);
@@ -239,17 +232,17 @@ export default function Trending(props) {
           <ReactPlayer
             width="50%"
             height="50%"
-            // className={classes.player}
+            className={classes.player}
             url={`/www.youtube.com/watch?v=${trailerLink}`}
             playing
           />
         ) : (
-          <DialogContent className={classes.loading}>
+          <div className={classes.loading}>
             <DialogContentText component={"span"} color="primary" variant="h2">
               Loading...
               <CircularProgress color="primary" />
             </DialogContentText>
-          </DialogContent>
+          </div>
         )}
       </Modal>
     </Grid>

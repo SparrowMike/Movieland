@@ -1,8 +1,7 @@
-// import Navbar from "./components/main/Navbar";
 import Main from "./components/main/Main";
 import Footer from "./components/main/Footer";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import NewNavBar from "./components/main/NewNavBar";
+import Navbar from "./components/main/Navbar";
 
 const theme = createMuiTheme({
   palette: {
@@ -19,8 +18,7 @@ function App() {
   return (
     <div className="main">
       <ThemeProvider theme={theme}>
-        <NewNavBar />
-        {/* <Navbar /> */}
+        <Navbar />
         <Main />
         <Footer />
       </ThemeProvider>

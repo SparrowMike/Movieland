@@ -9,6 +9,7 @@ import {
   Slide,
   Menu,
   MenuItem,
+  // ListItemIcon,
 } from "@material-ui/core";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
@@ -75,20 +76,25 @@ function HideOnScroll(props) {
   );
 }
 
-export default function SimpleMenu(props) {
+
+
+
+
+
+const Navbar = (props) => {
   const classes = useStyles();
   const theme = useTheme();
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
+  const [anchor, setAnchor] = useState(null);
+  const open = Boolean(anchor);
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+  const handleMenu = (event) => {
+    setAnchor(event.currentTarget);
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+
+
+
 
   const [title, setTitle] = useState(" ");
   let history = useHistory();
@@ -98,6 +104,10 @@ export default function SimpleMenu(props) {
     history.push(`/search/${title}`);
     e.target.reset();
   };
+
+
+
+
 
   return (
     <div className="navBar">
@@ -175,34 +185,51 @@ export default function SimpleMenu(props) {
               ) : (
                 <>
                   <CssBaseline />
+
                   <IconButton
                     color="primary"
                     className={classes.menuButton}
                     edge="start"
                     aria-label="menu"
-                    onClick={handleClick}
+                    onClick={handleMenu}
                   >
                     <MenuIcon />
                   </IconButton>
                   <Menu
-                    id="simple-menu"
-                    anchorEl={anchorEl}
-                    keepMounted
-                    open={Boolean(anchorEl)}
-                    onClose={handleClose}
+                    id="menu-appbar"
+                    anchorEl={anchor}
+                    anchorOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}
+                    // KeepMounted
+                    transformOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}
+                    open={open}
                   >
-                    <MenuItem component={RouterLink} to="/">
-                      <Typography variant="h6"> - Home </Typography>
+                    <MenuItem
+                      onClick={() => setAnchor(null)}
+                      component={RouterLink}
+                      to="/movies"
+                    >
+                      <Typography variant="h6"> Movies </Typography>
                     </MenuItem>
-                    <MenuItem component={RouterLink} to="/movies">
-                      <Typography variant="h6"> - Movies </Typography>
+                    <MenuItem
+                      onClick={() => setAnchor(null)}
+                      component={RouterLink}
+                      to="/tvshows"
+                    >
+                      <Typography variant="h6"> TV-Shows</Typography>
                     </MenuItem>
-                    <MenuItem component={RouterLink} to="/tvshows">
-                      <Typography variant="h6"> - TV-Shows</Typography>
-                    </MenuItem>{" "}
-                    <MenuItem component={RouterLink} to="/login">
-                      <Typography variant="h6"> - Login </Typography>
-                    </MenuItem>{" "}
+                    <MenuItem
+                      onClick={() => setAnchor(null)}
+                      component={RouterLink}
+                      to="/login"
+                    >
+                      <Typography variant="h6"> Login </Typography>
+                    </MenuItem>
                     <form
                       className={classes.form}
                       noValidate
@@ -227,4 +254,6 @@ export default function SimpleMenu(props) {
       </React.Fragment>
     </div>
   );
-}
+};
+
+export default Navbar;
