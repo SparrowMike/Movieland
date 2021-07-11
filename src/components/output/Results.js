@@ -78,6 +78,7 @@ const useStyles = makeStyles((theme) => ({
 
   player: {
     outline: "none",
+    aspectRatio: "16/9",
   },
 
   loading: {
