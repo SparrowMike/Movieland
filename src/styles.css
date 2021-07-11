@@ -27,6 +27,17 @@ footer {
   height: 100vh;
 }
 
+.demoWrapper {
+  padding: 10px;
+  background: white;
+  box-sizing: border-box;
+  resize: horizontal;
+  border: 1px dashed;
+  overflow: auto;
+  max-width: 100%;
+  height: calc(100vh - 16px);
+}
+
 .navBar {
   margin-bottom: 82px;
 }

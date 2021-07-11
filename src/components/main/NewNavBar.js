@@ -192,16 +192,16 @@ export default function SimpleMenu(props) {
                     onClose={handleClose}
                   >
                     <MenuItem component={RouterLink} to="/">
-                      <Typography variant="h6"> Home </Typography>
+                      <Typography variant="h6"> - Home </Typography>
                     </MenuItem>
                     <MenuItem component={RouterLink} to="/movies">
-                      <Typography variant="h6"> Movies </Typography>
+                      <Typography variant="h6"> - Movies </Typography>
                     </MenuItem>
                     <MenuItem component={RouterLink} to="/tvshows">
-                      <Typography variant="h6"> TV-Shows</Typography>
+                      <Typography variant="h6"> - TV-Shows</Typography>
                     </MenuItem>{" "}
                     <MenuItem component={RouterLink} to="/login">
-                      <Typography variant="h6"> Login </Typography>
+                      <Typography variant="h6"> - Login </Typography>
                     </MenuItem>{" "}
                     <form
                       className={classes.form}

@@ -41,7 +41,7 @@ export default function Home() {
   return (
     <React.Fragment>
       <div className="home">
-        <Container maxWidth="lg" className={classes.textShadow}>
+        <Container maxWidth="sm" className={classes.textShadow}>
           <Typography
             className={classes.typographyHeader}
             component="h1"

@@ -74,19 +74,20 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "center",
 
-    // paddingBottom: "0%",
+    width: "100%",
+    aspectRatio: "16/9",
   },
 
-  player: {
-    outline: 0,
-    background: "black",
-    display: "flex",
-    position: "absolute",
-    width: "100vw",
-    height: "30vw",
-    justifyContent: "center",
-    alignItems: "center",
-  },
+  // player: {
+  //   outline: 0,
+  //   background: "black",
+  //   display: "flex",
+  //   position: "absolute",
+  //   width: "100vw",
+  //   height: "30vw",
+  //   justifyContent: "center",
+  //   alignItems: "center",
+  // },
 
   loading: {
     background: "black",
@@ -239,8 +240,8 @@ export default function Trending(props) {
       >
         {trailerLink !== null ? (
           <ReactPlayer
-            width="50%"
-            height="50%"
+            width="70%"
+            height="70%"
             className={classes.player}
             url={`/www.youtube.com/watch?v=${trailerLink}`}
             playing
