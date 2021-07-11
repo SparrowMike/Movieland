@@ -21,16 +21,17 @@ import Modal from "@material-ui/core/Modal";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: "auto -10",
     display: "flex",
-    flexWrap: "wrap",
     justifyContent: "space-around",
-    listStyle: "none",
-    background: "#000",
-    minHeight: "1200px",
-
+    marginTop: "80px",
     alignItems: "flex-start",
+    listStyle: "none",
+    // maxWidth: "auto -10",
+    // flexWrap: "wrap",
+    // background: "#000",
+    // minHeight: "1200px",
   },
+
   card: {
     background: "#000000",
     contain: "content",

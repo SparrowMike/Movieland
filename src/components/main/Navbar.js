@@ -36,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   appBar: {
+    position: "relative",
     borderBottom: `1px solid ${theme.palette.divider}`,
   },
 
