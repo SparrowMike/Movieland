@@ -91,11 +91,8 @@ const useStyles = makeStyles((theme) => ({
 
   loading: {
     display: "flex",
-    justifyContent: "center",
     alignItems: "center",
-    // background: "black",
-    // height: "70%",
-    // width: "70%",
+    justifyContent: "center",
   },
 }));
 
@@ -240,9 +237,9 @@ export default function Trending(props) {
       >
         {trailerLink !== null ? (
           <ReactPlayer
-            width="70%"
-            height="70%"
-            className={classes.player}
+            width="50%"
+            height="50%"
+            // className={classes.player}
             url={`/www.youtube.com/watch?v=${trailerLink}`}
             playing
           />
