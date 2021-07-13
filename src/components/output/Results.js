@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-around",
     marginTop: "80px",
+    marginBottom: "80px",
     alignItems: "flex-start",
     listStyle: "none",
     // maxWidth: "auto -10",
