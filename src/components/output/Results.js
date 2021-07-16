@@ -154,7 +154,6 @@ export default function Trending(props) {
       direction="row"
       alignItems="center"
       justify="center"
-      // style={{ minHeight: "100vh" }}
       className={classes.root}
     >
       {props.data
@@ -225,10 +224,6 @@ export default function Trending(props) {
         open={open}
         onClose={handleClose}
         closeAfterTransition
-        // BackdropComponent={Backdrop}
-        // BackdropProps={{
-        //   timeout: 500,
-        // }}
       >
         {trailerLink !== null ? (
           <ReactPlayer

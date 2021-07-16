@@ -27,7 +27,6 @@ export default function LoadingWindow() {
         justify="center"
         alignItems="center"
       >
-        {/* <CircularProgress /> */}
         <Typography variant="h3" color="primary">
           Loading...
         </Typography>
