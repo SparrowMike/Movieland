@@ -1,6 +1,6 @@
 # MovieLand
 
-Ability to easily discover and explore movies and tv shows quickly and effortlessly.
+Discover and explore movies and tv shows quickly and effortlessly.
 
 
 ## Description
