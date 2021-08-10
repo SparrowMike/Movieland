@@ -156,6 +156,15 @@ export default function Trending(props) {
       justify="center"
       className={classes.root}
     >
+      {/* ========================================================================== */}
+      {/* <button onClick={() => props.setPage((page) => page + 1)}>
+        Next page
+      </button>
+      <button onClick={() => props.setPage((page) => page - 1)}>
+        Go back page
+      </button> */}
+      {/* ========================================================================== */}
+
       {props.data
         .filter((film) => film.backdrop_path)
         .map((film, index) => (
