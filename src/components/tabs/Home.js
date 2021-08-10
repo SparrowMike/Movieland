@@ -90,7 +90,10 @@ export default function Home() {
             <Tab label="Daily" value={"day"} />
             <Tab label="Weekly" value={"week"} />
           </Tabs>
-          <Link to={`/trending/${type}/${date}`}>
+          <Link
+            style={{ textDecoration: "none" }}
+            to={`/trending/${type}/${date}`}
+          >
             <Button
               variant="contained"
               className={classes.button}

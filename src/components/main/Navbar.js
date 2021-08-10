@@ -150,7 +150,7 @@ export default function SimpleMenu(props) {
                     >
                       TV-Shows
                     </Link>
-                    <Link
+                    {/* <Link
                       variant="button"
                       color="primary"
                       component={RouterLink}
@@ -158,7 +158,7 @@ export default function SimpleMenu(props) {
                       className={classes.link}
                     >
                       Login{" "}
-                    </Link>
+                    </Link> */}
                   </nav>
                   <form
                     className={classes.form}
@@ -207,9 +207,9 @@ export default function SimpleMenu(props) {
                     <MenuItem component={RouterLink} to="/tvshows">
                       <Typography variant="h6"> - TV-Shows</Typography>
                     </MenuItem>{" "}
-                    <MenuItem component={RouterLink} to="/login">
+                    {/* <MenuItem component={RouterLink} to="/login">
                       <Typography variant="h6"> - Login </Typography>
-                    </MenuItem>{" "}
+                    </MenuItem>{" "} */}
                     <form
                       className={classes.form}
                       noValidate

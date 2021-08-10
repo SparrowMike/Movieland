@@ -234,6 +234,7 @@ export default function Movies() {
         <Link
           // to={`/movies/${genre}/${cert}/${sort}/${yearGte}/${yearLte}/${country}/${lang}`}
           to={`/tvshows/${genre}/${cert}/${sort}/${yearGte}/${yearLte}/${country}`}
+          style={{ textDecoration: "none" }}
         >
           <Button
             variant="contained"
