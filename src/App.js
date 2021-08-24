@@ -2,6 +2,8 @@ import Main from "./components/main/Main";
 import Footer from "./components/main/Footer";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Navbar from "./components/main/Navbar";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 const theme = createMuiTheme({
   palette: {
@@ -15,12 +17,17 @@ const theme = createMuiTheme({
 });
 
 function App() {
+  const queryClient = new QueryClient();
+
   return (
     <div className="main">
       <ThemeProvider theme={theme}>
-        <Navbar />
-        <Main />
-        <Footer />
+        <QueryClientProvider client={queryClient}>
+          <Navbar />
+          <Main />
+          <Footer />
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
       </ThemeProvider>
     </div>
   );
