@@ -60,44 +60,14 @@ export default function Movies() {
 
   for (let i = currentYear; i >= 1930; i--) allYears.push(i);
 
-  const handleGenre = (event) => {
-    setGenre(event.target.value);
-    console.log(event.target.value);
-  };
-
-  const handleSort = (event) => {
-    setSort(event.target.value);
-  };
-
   // const handleLanguage = (event) => {
   //   setLanguage(event.target.value);
   //   console.log(event.target.value);
   // };
 
-  const handleAge = (event) => {
-    setCert(event.target.value);
-    console.log(event.target.value);
-  };
-
-  const handleYearGte = (event) => {
-    setYearGte(event.target.value);
-    console.log(event.target.value);
-  };
-
-  const handleYearLte = (event) => {
-    setYearLte(event.target.value);
-    console.log(event.target.value);
-  };
-
   if (yearGte >= yearLte) {
     setYearLte(parseInt(yearGte) + 1);
-    console.log("too big ya");
   }
-
-  const handleCountry = (event) => {
-    setCountry(event.target.value);
-    console.log(event.target.value);
-  };
 
   return (
     <div className="tvshows">
@@ -116,7 +86,7 @@ export default function Movies() {
             labelId="demo-simple-select-outlined-label"
             id="demo-simple-select-outlined"
             value={genre}
-            onChange={handleGenre}
+            onChange={(e) => setGenre(e.target.value)}
             label="Genre"
             className={classes.select}
           >
@@ -136,7 +106,7 @@ export default function Movies() {
             labelId="demo-simple-select-outlined-label"
             id="demo-simple-select-outlined"
             value={cert}
-            onChange={handleAge}
+            onChange={(e) => setCert(e.target.value)}
             label="Certification"
             className={classes.select}
           >
@@ -156,7 +126,7 @@ export default function Movies() {
             labelId="demo-simple-select-outlined-label"
             id="demo-simple-select-outlined"
             value={sort}
-            onChange={handleSort}
+            onChange={(e) => setSort(e.target.value)}
             label="Sort By"
             className={classes.select}
           >
@@ -176,7 +146,7 @@ export default function Movies() {
             labelId="demo-simple-select-outlined-label"
             id="demo-simple-select-outlined"
             value={yearGte}
-            onChange={handleYearGte}
+            onChange={(e) => setYearGte(e.target.value)}
             label="Release Year"
             className={classes.select}
           >
@@ -198,7 +168,7 @@ export default function Movies() {
             labelId="demo-simple-select-outlined-label"
             id="demo-simple-select-outlined"
             value={yearLte}
-            onChange={handleYearLte}
+            onChange={(e) => setYearLte(e.target.value)}
             label="Release Year"
             className={classes.select}
           >
@@ -218,7 +188,7 @@ export default function Movies() {
             labelId="demo-simple-select-outlined-label"
             id="demo-simple-select-outlined"
             value={country}
-            onChange={handleCountry}
+            onChange={(e) => setCountry(e.target.value)}
             label="Release Year"
             className={classes.select}
           >
