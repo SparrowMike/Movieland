@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+
 import clsx from "clsx";
+import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -9,15 +10,16 @@ import CardActions from "@material-ui/core/CardActions";
 import Collapse from "@material-ui/core/Collapse";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
+import { GridListTile } from "@material-ui/core";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import Modal from "@material-ui/core/Modal";
+
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { GridListTile } from "@material-ui/core";
 import ReactPlayer from "react-player";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import CircularProgress from "@material-ui/core/CircularProgress";
-
-import Modal from "@material-ui/core/Modal";
+import Rating from "@material-ui/lab/Rating";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,12 +29,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "80px",
     alignItems: "flex-start",
     listStyle: "none",
-    // maxWidth: "auto -10",
-    // flexWrap: "wrap",
-    // background: "#000",
-    // minHeight: "1200px",
   },
-
   card: {
     background: "#000000",
     contain: "content",
@@ -46,7 +43,6 @@ const useStyles = makeStyles((theme) => ({
     margin: 5,
     paddingTop: "56.25%", // 16:9
     "&:hover": {
-      // boxShadow: "0 0 1px 1px #9d0208 inset",
       boxShadow: "0 0.6em 0.5em -0.4em salmon",
       transform: "translateY(-0.15em)",
       cursor: "pointer",
@@ -64,37 +60,29 @@ const useStyles = makeStyles((theme) => ({
       boxShadow: "0 0 2px 2px #9d0208 inset",
     },
   },
-
   expandOpen: {
     transform: "rotate(180deg)",
   },
-
   modal: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-
     width: "100%",
     aspectRatio: "16/9",
   },
-
   player: {
     outline: "none",
   },
-
   loading: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    // height: "250px",
-    // width: "auto",
     outline: "none",
   },
 }));
 
-export default function Trending(props) {
+export default function Trending({ data, genre }) {
   let key = process.env.REACT_APP_API_KEY;
-
   const classes = useStyles();
   const [type, setType] = useState(null);
   const [open, setOpen] = useState(false);
@@ -117,7 +105,7 @@ export default function Trending(props) {
           setTrailerLink(data.results[0].key);
         })
         .catch((error) => {
-          // console.log(error);
+          console.log(error);
         });
     }
   }, [URL, trailerId]);
@@ -137,13 +125,12 @@ export default function Trending(props) {
   const handleOpen = (e) => {
     setOpen(true);
     setTrailerId(e.id);
-    setType(e.media_type ? e.media_type : props.type);
+    setType(e.media_type ? e.media_type : genre);
   };
 
   const handleClose = () => {
     setTrailerId(null);
     setTrailerLink(null);
-    // setTrailerLink(setTrailerId(null));
     setOpen(false);
   };
 
@@ -156,19 +143,10 @@ export default function Trending(props) {
       justify="center"
       className={classes.root}
     >
-      {/* ========================================================================== */}
-      {/* <button onClick={() => props.setPage((page) => page + 1)}>
-        Next page
-      </button>
-      <button onClick={() => props.setPage((page) => page - 1)}>
-        Go back page
-      </button> */}
-      {/* ========================================================================== */}
-
-      {props.data
+      {data
         .filter((film) => film.backdrop_path)
         .map((film, index) => (
-          <Grid item xs={12} sm={6} md={4} lg={4} xl={3} key={index}>
+          <Grid item xs={12} sm={6} md={6} lg={3} xl={2} key={film.id}>
             <GridListTile className={classes.card}>
               <CardHeader
                 title={film.title ? film.title : film.name}
@@ -189,7 +167,6 @@ export default function Trending(props) {
                 title={film.title ? film.title : film.name}
                 onClick={() => handleOpen(film)}
               />
-
               <CardActions disableSpacing>
                 <IconButton color="primary" aria-label="add to favorites">
                   <FavoriteIcon />
@@ -197,7 +174,6 @@ export default function Trending(props) {
                 <IconButton color="primary" aria-label="share">
                   <ShareIcon />
                 </IconButton>
-
                 <IconButton
                   id={film.id}
                   className={clsx(classes.expand, {
@@ -211,7 +187,6 @@ export default function Trending(props) {
                   <ExpandMoreIcon />
                 </IconButton>
               </CardActions>
-
               <Collapse in={expanded === index} timeout="auto" unmountOnExit>
                 <CardContent>
                   <Typography variant="h6">Overview: </Typography>
@@ -219,9 +194,13 @@ export default function Trending(props) {
                     {film.overview}
                   </Typography>
                   <Typography variant="h6">Rating: </Typography>
-                  <Typography color="primary" paragraph>
-                    {film.vote_average} out of {film.vote_count} votes.
-                  </Typography>
+                  <Rating
+                    name="customized-10"
+                    defaultValue={film.vote_average}
+                    max={10}
+                    precision={0.1}
+                    readOnly
+                  />
                 </CardContent>
               </Collapse>
             </GridListTile>
@@ -234,7 +213,14 @@ export default function Trending(props) {
         onClose={handleClose}
         closeAfterTransition
       >
-        {trailerLink !== null ? (
+        {trailerLink === null ? (
+          <div className={classes.loading}>
+            <DialogContentText component={"span"} color="primary" variant="h2">
+              Loading...
+              <CircularProgress color="primary" />
+            </DialogContentText>
+          </div>
+        ) : (
           <ReactPlayer
             width="60%"
             height="60%"
@@ -242,13 +228,6 @@ export default function Trending(props) {
             url={`/www.youtube.com/watch?v=${trailerLink}`}
             playing
           />
-        ) : (
-          <div className={classes.loading}>
-            <DialogContentText component={"span"} color="primary" variant="h2">
-              Loading...
-              <CircularProgress color="primary" />
-            </DialogContentText>
-          </div>
         )}
       </Modal>
     </Grid>
