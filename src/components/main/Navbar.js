@@ -26,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
   search: {
     color: "white",
   },
-
   form: {
     color: "white",
     "& .MuiTextField-root": {
@@ -34,30 +33,24 @@ const useStyles = makeStyles((theme) => ({
       width: "25ch",
     },
   },
-
   appBar: {
     position: "relative",
     borderBottom: `1px solid ${theme.palette.divider}`,
   },
-
   toolbar: {
     flexWrap: "wrap",
   },
-
   toolbarTitle: {
     flexGrow: 1,
   },
-
   link: {
     margin: theme.spacing(1, 2.5),
   },
-
   navBar: {
     backgroundColor: "black",
     paddingTop: "10px",
     paddingbottom: "10px",
   },
-
   menuButton: {
     marginRight: theme.spacing(1),
   },

@@ -1,11 +1,11 @@
 import { Route, Switch, Redirect } from "react-router-dom";
 import FetchTrending from "../fetch/FetchTrending";
 import FetchSearch from "./../fetch/FetchSearch";
-import Home from "../tabs/Home";
-import Movies from "../tabs/Movies";
-import Tvshows from "../tabs/Tvshows";
-// import LogIn from "./../tabs/LogIn";
-import FetchMovies from "./../fetch/FetchMovies";
+import Home from "../pages/Home";
+import Movies from "../pages/Movies";
+import Tvshows from "../pages/Tvshows";
+// import LogIn from "./../pages/LogIn";
+import { FetchMovies } from "./../fetch/FetchMovies";
 import FetchTvShows from "../fetch/FetchTvShows";
 
 const Main = () => {

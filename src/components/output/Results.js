@@ -20,6 +20,7 @@ import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ReactPlayer from "react-player";
 import Rating from "@material-ui/lab/Rating";
+import NotAvailable from "../output/NotAvailable";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -134,7 +135,11 @@ export default function Trending({ data, genre }) {
     setOpen(false);
   };
 
-  return (
+  console.log(data);
+
+  return data.length === 0 || undefined ? (
+    <NotAvailable />
+  ) : (
     <Grid
       container
       spacing={0}
@@ -146,7 +151,7 @@ export default function Trending({ data, genre }) {
       {data
         .filter((film) => film.backdrop_path)
         .map((film, index) => (
-          <Grid item xs={12} sm={6} md={6} lg={3} xl={2} key={film.id}>
+          <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={film.id}>
             <GridListTile className={classes.card}>
               <CardHeader
                 title={film.title ? film.title : film.name}

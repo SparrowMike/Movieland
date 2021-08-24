@@ -9,7 +9,6 @@
 - improve movies and TV-shows form
 - Navbar buttons stay selected
 - Add about with some link to linkdin, github etc
-- add ability to show more results by adding more pages
 - Add a search by month inside the movie/tv tab?
 - Get suitable favicon
 
