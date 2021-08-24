@@ -4,11 +4,13 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { useParams } from "react-router";
 import Results from "../output/Results";
 import { CircularProgress, Typography, Grid } from "@material-ui/core";
+import LoadingWindow from "../output/NotAvailable";
 
 export function FetchMovies() {
+  let key = process.env.REACT_APP_API_KEY;
   const params = useParams();
   let genre = "movie";
-  let key = process.env.REACT_APP_API_KEY;
+
   function assertIsCharacterResponse(response) {
     if (!("results" in response && "page" in response)) {
       throw new Error("No results");
@@ -47,7 +49,6 @@ export function FetchMovies() {
     }
   );
 
-  console.log(data);
   if (data === undefined) {
     return null;
   }
@@ -55,7 +56,9 @@ export function FetchMovies() {
     return counter + page.results.length;
   }, 0);
 
-  return (
+  return data.length === 0 ? (
+    <LoadingWindow />
+  ) : (
     <InfiniteScroll
       dataLength={dataLength}
       next={fetchNextPage}

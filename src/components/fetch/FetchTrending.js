@@ -5,12 +5,10 @@ import LoadingWindow from "../output/LoadingWindow";
 
 const FetchTrending = () => {
   let key = process.env.REACT_APP_API_KEY;
-
-  const params = useParams();
-
+  const { type, date } = useParams();
   const [data, setData] = useState(null);
 
-  const URL = `https://api.themoviedb.org/3/trending/${params.type}/${params.date}?api_key=${key}`;
+  const URL = `https://api.themoviedb.org/3/trending/${type}/${date}?api_key=${key}`;
   useEffect(() => {
     fetch(URL)
       .then((response) => {
@@ -23,16 +21,16 @@ const FetchTrending = () => {
         setData(data);
       })
       .catch((error) => {
-        // console.log(error);
+        console.log(error);
       });
   }, [URL]);
 
   return data === null ? (
     <LoadingWindow />
   ) : (
-    <div>
+    <>
       <Results data={data.results} key={key} />
-    </div>
+    </>
   );
 };
 
