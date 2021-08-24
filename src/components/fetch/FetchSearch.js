@@ -1,50 +1,8 @@
-// import React, { useState, useEffect } from "react";
-// import { useParams } from "react-router";
-// import Results from "./../output/Results";
-// import LoadingWindow from "../output/LoadingWindow";
-
-// const FetchSearch = () => {
-//   let key = process.env.REACT_APP_API_KEY;
-//   const params = useParams();
-
-//   const [data, setData] = useState(null);
-
-//   const URL = `https://api.themoviedb.org/3/search/multi?api_key=${key}&language=en-US&query=${params.title}&page=1&include_adult=false`;
-
-//   useEffect(() => {
-//     fetch(URL)
-//       .then((response) => {
-//         if (response.ok) {
-//           return response.json();
-//         }
-//         throw new Error("Bad Response from Server");
-//       })
-//       .then((data) => {
-//         setData(data);
-//       })
-//       .catch((error) => {
-//         console.log(error);
-//       });
-//   }, [URL]);
-
-//   return data === null ? (
-//     <LoadingWindow />
-//   ) : (
-//     <div>
-//       <Results data={data.results} key={key} type="movie" />
-//     </div>
-//   );
-// };
-
-// export default FetchSearch;
-
 import React from "react";
 import { useParams } from "react-router";
 import Results from "./../output/Results";
 import LoadingWindow from "../output/LoadingWindow";
 import { useInfiniteQuery } from "react-query";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { CircularProgress, Typography, Grid } from "@material-ui/core";
 
 const FetchSearch = () => {
   let key = process.env.REACT_APP_API_KEY;
@@ -56,8 +14,8 @@ const FetchSearch = () => {
     }
     if (response.results.length > 0) {
       const firstResult = response.results[0];
-      if (!("title" in firstResult)) {
-        throw new Error("No titles");
+      if (!("id" in firstResult)) {
+        throw new Error("No id");
       }
     }
   }
@@ -100,37 +58,13 @@ const FetchSearch = () => {
   return data.length === 0 ? (
     <LoadingWindow />
   ) : (
-    <InfiniteScroll
+    <Results
+      data={data}
+      type="movie"
       dataLength={dataLength}
-      next={fetchNextPage}
-      hasMore={!!hasNextPage}
-      loader={
-        <Grid
-          container
-          direction="row"
-          justify="center"
-          alignItems="center"
-          style={{ padding: "75px" }}
-        >
-          {data.pages[0].total_results !== dataLength ? (
-            <>
-              <Typography variant="h3" color="primary">
-                Loading...
-              </Typography>
-              <CircularProgress color="primary" />
-            </>
-          ) : (
-            <Typography variant="h3" color="primary">
-              All up to date!
-            </Typography>
-          )}
-        </Grid>
-      }
-    >
-      {data.pages.map((data, index) => (
-        <Results data={data.results} key={key} type="movie" />
-      ))}
-    </InfiniteScroll>
+      fetchNextPage={fetchNextPage}
+      hasNextPage={hasNextPage}
+    />
   );
 };
 
