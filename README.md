@@ -2,7 +2,6 @@
 
 Discover and explore movies and tv shows quickly and effortlessly.
 
-
 ## Description
 
 ```
@@ -27,19 +26,20 @@ Example:
 
 ### Wireframes
 
-![image one](./readmePic/one.PNG)
-![image two](./readmePic/two.PNG)
-![image three](./readmePic/three.PNG)
+![image one](https://i.ibb.co/523mJFY/one.png)
+![image two](https://i.ibb.co/kJ04Dhm/two.png)
+![image three](https://i.ibb.co/ZNkh8Fm/three.png)
 
 ### User Stories
 
 User at launch of the page will be welcomed with quick welcome and brief introduction
+
 ```
 Example:
 
 User must be able to:
 
-- Navingate on the page effortlessly 
+- Navingate on the page effortlessly
 
 
 ```
@@ -75,19 +75,19 @@ All the APIs can be found here https://www.themoviedb.org/
 ## Acknowledgments
 
 ```
-- Support and help from classnames and GA staff guidance 
+- Support and help from classnames and GA staff guidance
 - Google
-- Material UI documentation 
+- Material UI documentation
 ```
 
 ---
 
- ## References
+## References
 
- ```
- - https://www.google.com/
- - https://github.com/
- - https://material-ui.com/
- - https://stackoverflow.com/
- - https://www.themoviedb.org/
- ```
+```
+- https://www.google.com/
+- https://github.com/
+- https://material-ui.com/
+- https://stackoverflow.com/
+- https://www.themoviedb.org/
+```
