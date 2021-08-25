@@ -48,7 +48,7 @@ const Footer = (props) => {
             align="center"
             color="primary"
             component="p"
-            style={{ fontSize: "12px" }}
+            style={{ fontSize: "8px" }}
           >
             This product uses the TMDb API but is not endorsed or certified by
             TMDb.{" "}
