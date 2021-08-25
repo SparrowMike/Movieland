@@ -1,112 +1,81 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { useState } from "react";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
-import { Button } from "@material-ui/core";
+// import { makeStyles } from "@material-ui/core/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 
-const useStyles = makeStyles((theme) => ({
-  textShadow: {
-    textShadow: "1px 1px 1px rgba(255, 255, 255, 0.4)",
-  },
-  button: {
-    margin: theme.spacing(3),
-  },
+import MoviePage from "./../output/MoviePage";
+import TvPage from "./../output/TvPage";
 
-  typographyHeader: {
-    [theme.breakpoints.down("xs")]: {
-      fontSize: "3rem",
-    },
-    [theme.breakpoints.up("md")]: {
-      fontSize: "5rem",
-    },
-  },
-}));
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
+import "./slick.css";
 
-export default function Home() {
-  const classes = useStyles();
+// const useStyles = makeStyles((theme) => ({
+//   mainFeaturedPost: {
+//     position: "relative",
+//     backgroundColor: theme.palette.grey[800],
+//     color: theme.palette.common.white,
+//     marginBottom: theme.spacing(4),
+// backgroundImage: "url(https://source.unsplash.com/random)",
+//     backgroundSize: "cover",
+//     height: "350px",
+//     backgroundRepeat: "no-repeat",
+//     backgroundPosition: "center",
+//   },
+//   overlay: {
+//     position: "absolute",
+//     top: 0,
+//     bottom: 0,
+//     right: 0,
+//     left: 0,
+//     backgroundColor: "rgba(0,0,0,.3)",
+//   },
+//   mainFeaturedPostContent: {
+//     position: "relative",
+//     padding: theme.spacing(3),
+//     [theme.breakpoints.up("md")]: {
+//       padding: theme.spacing(6),
+//       paddingRight: 0,
+//     },
+//   },
+// }));
+
+const Home = () => {
+  // const classes = useStyles();
   const [type, setType] = useState("movie");
-  const [date, setDate] = useState("day");
 
-  const handleType = (e, newValue) => {
+  const handleChange = (e, newValue) => {
     setType(newValue);
+    console.log(newValue);
   };
 
-  const handleDate = (e, newValue) => {
-    setDate(newValue);
-  };
-
-  const handleSubmit = () => {
-    setType(type);
-    setDate(date);
-  };
+  // console.log(data.results[0]);
 
   return (
-    <React.Fragment>
-      <div className="home">
-        <Container maxWidth="sm" className={classes.textShadow}>
-          <Typography
-            className={classes.typographyHeader}
-            component="h1"
-            variant="h2"
-            align="center"
-            color="primary"
-            gutterBottom
-          >
-            Welcome to MovieLand!
-          </Typography>
-          <Typography variant="h5" align="center" color="primary">
-            You are three clicks away to find trending Movies and TV Series!
-          </Typography>
-          <Tabs
-            value={type}
-            TabIndicatorProps={{
-              style: {
-                backgroundColor: "lightgrey",
-              },
-            }}
-            textColor="primary"
-            onChange={handleType}
-            centered
-          >
-            <Tab label="Movies" value={"movie"} />
-            <Tab label="or" disabled />
-            <Tab label="TV Series" value={"tv"} />
-          </Tabs>
-          <Tabs
-            TabIndicatorProps={{
-              style: {
-                backgroundColor: "lightgrey",
-              },
-            }}
-            value={date}
-            textColor="primary"
-            onChange={handleDate}
-            centered
-          >
-            <Tab label="Daily" value={"day"} />
-            <Tab label="Weekly" value={"week"} />
-          </Tabs>
-          <Link
-            style={{ textDecoration: "none" }}
-            to={`/trending/${type}/${date}`}
-          >
-            <Button
-              variant="contained"
-              className={classes.button}
-              color="primary"
-              disableElevation
-              size="large"
-              onClick={() => handleSubmit()}
-            >
-              Show Trending!
-            </Button>
-          </Link>
-        </Container>
+    <div style={{ padding: "75px" }}>
+      <div className="tabs">
+        <h3 style={{ textAlign: "center", color: "#f6f6f6" }}>
+          Pick between Movies or Tv-shows to see what's trending!
+        </h3>
+        <Tabs
+          value={type}
+          style={{ color: "white" }}
+          TabIndicatorProps={{
+            style: {
+              backgroundColor: "white",
+            },
+          }}
+          onChange={(e, newValue) => handleChange(e, newValue)}
+          centered
+        >
+          <Tab label="Movies" value={"movie"} />
+          <Tab label="TV Series" value={"tv"} />
+        </Tabs>
       </div>
-    </React.Fragment>
+      {type === "movie" ? <MoviePage /> : <TvPage />}
+    </div>
   );
-}
+};
+
+export default Home;
