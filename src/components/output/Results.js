@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -14,13 +13,13 @@ import { GridListTile } from "@material-ui/core";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Modal from "@material-ui/core/Modal";
-
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ReactPlayer from "react-player";
 import Rating from "@material-ui/lab/Rating";
 import NotAvailable from "../output/NotAvailable";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -82,7 +81,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Trending({ data, genre }) {
+export default function Trending({
+  data,
+  genre,
+  dataLength,
+  fetchNextPage,
+  hasNextPage,
+}) {
   let key = process.env.REACT_APP_API_KEY;
   const classes = useStyles();
   const [type, setType] = useState(null);
@@ -135,106 +140,143 @@ export default function Trending({ data, genre }) {
     setOpen(false);
   };
 
-  console.log(data);
+  console.log(dataLength);
 
-  return data.length === 0 || undefined ? (
+  return dataLength === 0 ? (
     <NotAvailable />
   ) : (
-    <Grid
-      container
-      spacing={0}
-      direction="row"
-      alignItems="center"
-      justify="center"
-      className={classes.root}
-    >
-      {data
-        .filter((film) => film.backdrop_path)
-        .map((film, index) => (
-          <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={film.id}>
-            <GridListTile className={classes.card}>
-              <CardHeader
-                title={film.title ? film.title : film.name}
-                subheader={
-                  <Typography color="primary" paragraph>
-                    Release:{" "}
-                    {getYear(
-                      film.release_date
-                        ? film.release_date
-                        : film.first_air_date
-                    )}
-                  </Typography>
-                }
-              />
-              <CardMedia
-                className={classes.media}
-                image={`https://image.tmdb.org/t/p/w500${film.backdrop_path}`}
-                title={film.title ? film.title : film.name}
-                onClick={() => handleOpen(film)}
-              />
-              <CardActions disableSpacing>
-                <IconButton color="primary" aria-label="add to favorites">
-                  <FavoriteIcon />
-                </IconButton>
-                <IconButton color="primary" aria-label="share">
-                  <ShareIcon />
-                </IconButton>
-                <IconButton
-                  id={film.id}
-                  className={clsx(classes.expand, {
-                    [classes.expandOpen]: expanded === index,
-                  })}
-                  color="primary"
-                  onClick={() => handleExpandClick(index)}
-                  aria-expanded={expanded === index}
-                  aria-label="show more"
-                >
-                  <ExpandMoreIcon />
-                </IconButton>
-              </CardActions>
-              <Collapse in={expanded === index} timeout="auto" unmountOnExit>
-                <CardContent>
-                  <Typography variant="h6">Overview: </Typography>
-                  <Typography color="primary" paragraph>
-                    {film.overview}
-                  </Typography>
-                  <Typography variant="h6">Rating: </Typography>
-                  <Rating
-                    name="customized-10"
-                    defaultValue={film.vote_average}
-                    max={10}
-                    precision={0.1}
-                    readOnly
-                  />
-                </CardContent>
-              </Collapse>
-            </GridListTile>
-          </Grid>
-        ))}
-
-      <Modal
-        className={classes.modal}
-        open={open}
-        onClose={handleClose}
-        closeAfterTransition
-      >
-        {trailerLink === null ? (
-          <div className={classes.loading}>
-            <DialogContentText component={"span"} color="primary" variant="h2">
-              Loading...
+    <InfiniteScroll
+      dataLength={dataLength}
+      next={fetchNextPage}
+      hasMore={!!hasNextPage}
+      loader={
+        <Grid
+          container
+          direction="row"
+          justify="center"
+          alignItems="center"
+          style={{ padding: "75px" }}
+        >
+          {data.pages[0].total_results !== dataLength ? (
+            <>
+              <Typography variant="h3" color="primary">
+                Loading...
+              </Typography>
               <CircularProgress color="primary" />
-            </DialogContentText>
-          </div>
-        ) : (
-          <ReactPlayer
-            width="60%"
-            height="60%"
-            className={classes.player}
-            url={`/www.youtube.com/watch?v=${trailerLink}`}
-            playing
-          />
+            </>
+          ) : (
+            <Typography variant="h3" color="primary">
+              All up to date!
+            </Typography>
+          )}
+        </Grid>
+      }
+    >
+      <Grid
+        container
+        spacing={0}
+        direction="row"
+        alignItems="center"
+        justify="center"
+        className={classes.root}
+      >
+        {data.pages.map((data, index) =>
+          data.results
+            .filter((film) => film.backdrop_path)
+            .map((film, index) => (
+              <Grid item xs={12} sm={6} md={4} lg={4} xl={3} key={film.id}>
+                <GridListTile className={classes.card}>
+                  <CardHeader
+                    title={film.title ? film.title : film.name}
+                    subheader={
+                      <Typography color="primary" paragraph>
+                        Release:{" "}
+                        {getYear(
+                          film.release_date
+                            ? film.release_date
+                            : film.first_air_date
+                        )}
+                      </Typography>
+                    }
+                  />
+                  <CardMedia
+                    className={classes.media}
+                    image={`https://image.tmdb.org/t/p/w500${film.backdrop_path}`}
+                    title={film.title ? film.title : film.name}
+                    onClick={() => handleOpen(film)}
+                  />
+                  <CardActions disableSpacing>
+                    <IconButton color="primary" aria-label="add to favorites">
+                      <FavoriteIcon />
+                    </IconButton>
+                    <IconButton color="primary" aria-label="share">
+                      <ShareIcon />
+                    </IconButton>
+                    <IconButton
+                      id={film.id}
+                      className={clsx(classes.expand, {
+                        [classes.expandOpen]: expanded === index,
+                      })}
+                      color="primary"
+                      onClick={() => handleExpandClick(index)}
+                      aria-expanded={expanded === index}
+                      aria-label="show more"
+                    >
+                      <ExpandMoreIcon />
+                    </IconButton>
+                  </CardActions>
+                  <Collapse
+                    in={expanded === index}
+                    timeout="auto"
+                    unmountOnExit
+                  >
+                    <CardContent>
+                      <Typography variant="h6">Overview: </Typography>
+                      <Typography color="primary" paragraph>
+                        {film.overview}
+                      </Typography>
+                      <Typography variant="h6">Rating: </Typography>
+                      <Rating
+                        defaultValue={film.vote_average}
+                        max={10}
+                        precision={0.1}
+                        readOnly
+                      />
+                    </CardContent>
+                  </Collapse>
+                </GridListTile>
+              </Grid>
+            ))
         )}
-      </Modal>
-    </Grid>
+
+        <Modal
+          className={classes.modal}
+          open={open}
+          onClose={handleClose}
+          closeAfterTransition
+        >
+          {trailerLink === null ? (
+            <div className={classes.loading}>
+              <DialogContentText
+                component={"span"}
+                color="primary"
+                variant="h2"
+              >
+                Loading...
+                <CircularProgress color="primary" />
+              </DialogContentText>
+            </div>
+          ) : (
+            <ReactPlayer
+              width="60%"
+              height="60%"
+              className={classes.player}
+              url={`/www.youtube.com/watch?v=${trailerLink}`}
+              playing
+            />
+          )}
+        </Modal>
+      </Grid>
+    </InfiniteScroll>
   );
 }

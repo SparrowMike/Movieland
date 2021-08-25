@@ -88,6 +88,7 @@ export default function SimpleMenu(props) {
     e.preventDefault();
     history.push(`/search/${title}`);
     e.target.reset();
+    history.go();
   };
 
   return (
