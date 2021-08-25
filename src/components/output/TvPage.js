@@ -3,8 +3,9 @@ import { useQuery } from "react-query";
 import Rating from "@material-ui/lab/Rating";
 import React from "react";
 import LoadingWindow from "./LoadingWindow";
+import { Button } from "@material-ui/core";
 
-const MoviePage = () => {
+const TvPage = ({ handleOpen }) => {
   var settings = {
     dots: true,
     infinite: false,
@@ -72,9 +73,16 @@ const MoviePage = () => {
               className="image"
             />
             <div className="card-desc">
-              <h4 style={{ color: "white" }}>
+              <h4 style={{ color: "white", margin: 5 }}>
                 {movie.title ? movie.title : movie.name}
               </h4>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => handleOpen(movie)}
+              >
+                TRAILER
+              </Button>
               <p>{movie.overview}</p>
               <h4>Rating:</h4>
               <Rating
@@ -91,4 +99,4 @@ const MoviePage = () => {
   );
 };
 
-export default MoviePage;
+export default TvPage;

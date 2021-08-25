@@ -5,7 +5,12 @@ import { Typography, useScrollTrigger, Slide } from "@material-ui/core";
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="primary" align="center">
+    <Typography
+      variant="body2"
+      color="primary"
+      align="center"
+      style={{ fontSize: "10px" }}
+    >
       {"Copyright © "}
       <Link color="inherit" href="https://developers.themoviedb.org/3">
         TMDb
@@ -43,6 +48,7 @@ const Footer = (props) => {
             align="center"
             color="primary"
             component="p"
+            style={{ fontSize: "12px" }}
           >
             This product uses the TMDb API but is not endorsed or certified by
             TMDb.{" "}

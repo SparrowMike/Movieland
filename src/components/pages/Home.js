@@ -1,6 +1,6 @@
 import React from "react";
-import { useState } from "react";
-// import { makeStyles } from "@material-ui/core/styles";
+import { useState, useEffect } from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 
@@ -11,49 +11,84 @@ import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import "./slick.css";
 
-// const useStyles = makeStyles((theme) => ({
-//   mainFeaturedPost: {
-//     position: "relative",
-//     backgroundColor: theme.palette.grey[800],
-//     color: theme.palette.common.white,
-//     marginBottom: theme.spacing(4),
-// backgroundImage: "url(https://source.unsplash.com/random)",
-//     backgroundSize: "cover",
-//     height: "350px",
-//     backgroundRepeat: "no-repeat",
-//     backgroundPosition: "center",
-//   },
-//   overlay: {
-//     position: "absolute",
-//     top: 0,
-//     bottom: 0,
-//     right: 0,
-//     left: 0,
-//     backgroundColor: "rgba(0,0,0,.3)",
-//   },
-//   mainFeaturedPostContent: {
-//     position: "relative",
-//     padding: theme.spacing(3),
-//     [theme.breakpoints.up("md")]: {
-//       padding: theme.spacing(6),
-//       paddingRight: 0,
-//     },
-//   },
-// }));
+import ReactPlayer from "react-player";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import Modal from "@material-ui/core/Modal";
+
+const useStyles = makeStyles((theme) => ({
+  container: {
+    padding: "50px",
+    fontSize: "12px",
+    [theme.breakpoints.up("md")]: {
+      padding: "80px",
+      fontSize: "22px",
+    },
+  },
+  modal: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
+    aspectRatio: "16/9",
+  },
+  player: {
+    outline: "none",
+  },
+  loading: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    outline: "none",
+  },
+}));
 
 const Home = () => {
-  // const classes = useStyles();
+  const classes = useStyles();
+  let key = process.env.REACT_APP_API_KEY;
   const [type, setType] = useState("movie");
+  const [open, setOpen] = useState(false);
+  const [trailerId, setTrailerId] = useState(null);
+  const [trailerLink, setTrailerLink] = useState(null);
+
+  const URL = `https://api.themoviedb.org/3/${type}/${trailerId}/videos?api_key=${key}&language=en-US`;
+
+  useEffect(() => {
+    if (trailerId !== null) {
+      fetch(URL)
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          }
+          throw new Error("Bad Response from Server");
+        })
+        .then((data) => {
+          setTrailerLink(data.results[0].key);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [URL, trailerId]);
+
+  const handleOpen = (e) => {
+    setOpen(true);
+    setTrailerId(e.id);
+    setType(e.media_type ? e.media_type : type);
+  };
+
+  const handleClose = () => {
+    setTrailerId(null);
+    setTrailerLink(null);
+    setOpen(false);
+  };
 
   const handleChange = (e, newValue) => {
     setType(newValue);
-    console.log(newValue);
   };
 
-  // console.log(data.results[0]);
-
   return (
-    <div style={{ padding: "75px" }}>
+    <div className={classes.container}>
       <div className="tabs">
         <h3 style={{ textAlign: "center", color: "#f6f6f6" }}>
           Pick between Movies or Tv-shows to see what's trending!
@@ -73,7 +108,35 @@ const Home = () => {
           <Tab label="TV Series" value={"tv"} />
         </Tabs>
       </div>
-      {type === "movie" ? <MoviePage /> : <TvPage />}
+      {type === "movie" ? (
+        <MoviePage handleOpen={handleOpen} />
+      ) : (
+        <TvPage handleOpen={handleOpen} />
+      )}
+
+      <Modal
+        className={classes.modal}
+        open={open}
+        onClose={handleClose}
+        closeAfterTransition
+      >
+        {trailerLink === null ? (
+          <div className={classes.loading}>
+            <DialogContentText component={"span"} color="primary" variant="h2">
+              Loading...
+              <CircularProgress color="primary" />
+            </DialogContentText>
+          </div>
+        ) : (
+          <ReactPlayer
+            width="60%"
+            height="60%"
+            className={classes.player}
+            url={`/www.youtube.com/watch?v=${trailerLink}`}
+            playing
+          />
+        )}
+      </Modal>
     </div>
   );
 };
