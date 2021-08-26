@@ -25,13 +25,12 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-
   height: 100vh;
 }
 
 /* 
 .navBar {
-  margin-bottom: 82px;
+  margin-top: 82px;
 }
 
 @media only screen and (max-width: 960px) {

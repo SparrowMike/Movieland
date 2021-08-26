@@ -69,7 +69,7 @@ function HideOnScroll(props) {
 export default function SimpleMenu(props) {
   const classes = useStyles();
   const theme = useTheme();
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -151,7 +151,7 @@ export default function SimpleMenu(props) {
                       to="/login"
                       className={classes.link}
                     >
-                      Login{" "}
+                      Login
                     </Link> */}
                   </nav>
                   <form
@@ -192,18 +192,28 @@ export default function SimpleMenu(props) {
                     open={Boolean(anchorEl)}
                     onClose={handleClose}
                   >
-                    <MenuItem component={RouterLink} to="/">
-                      <Typography variant="h6"> - Home </Typography>
+                    <MenuItem
+                      component={RouterLink}
+                      to="/"
+                      onClick={handleClose}
+                    >
+                      <Typography variant="h6" onClick={handleClose}>
+                        - Home
+                      </Typography>
                     </MenuItem>
                     <MenuItem component={RouterLink} to="/movies">
-                      <Typography variant="h6"> - Movies </Typography>
+                      <Typography variant="h6" onClick={handleClose}>
+                        - Movies
+                      </Typography>
                     </MenuItem>
                     <MenuItem component={RouterLink} to="/tvshows">
-                      <Typography variant="h6"> - TV-Shows</Typography>
-                    </MenuItem>{" "}
+                      <Typography variant="h6" onClick={handleClose}>
+                        - TV-Shows
+                      </Typography>
+                    </MenuItem>
                     {/* <MenuItem component={RouterLink} to="/login">
                       <Typography variant="h6"> - Login </Typography>
-                    </MenuItem>{" "} */}
+                    </MenuItem> */}
                     <form
                       className={classes.form}
                       noValidate

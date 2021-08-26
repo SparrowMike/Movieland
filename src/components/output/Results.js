@@ -22,9 +22,9 @@ import InfiniteScroll from "react-infinite-scroll-component";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
+    marginTop: "82px",
+    marginBottom: "38px",
     justifyContent: "space-around",
-    marginTop: "80px",
-    marginBottom: "80px",
     alignItems: "flex-start",
     listStyle: "none",
   },

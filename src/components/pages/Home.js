@@ -18,10 +18,10 @@ import Modal from "@material-ui/core/Modal";
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    padding: "50px",
+    paddingLeft: "70px",
+    paddingRight: "70px",
     fontSize: "12px",
     [theme.breakpoints.up("md")]: {
-      padding: "80px",
       fontSize: "22px",
     },
   },

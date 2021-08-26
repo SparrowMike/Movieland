@@ -51,7 +51,7 @@ const MoviePage = ({ handleOpen }) => {
 
   let key = process.env.REACT_APP_API_KEY;
 
-  const { status, data } = useQuery("repoData", () =>
+  const { status, data } = useQuery("Movies", () =>
     fetch(
       `https://api.themoviedb.org/3/trending/movie/week?api_key=${key}`
     ).then((res) => res.json())

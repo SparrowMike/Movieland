@@ -36,10 +36,10 @@ const useStyles = makeStyles((theme) => ({
   },
   typographyHeader: {
     [theme.breakpoints.down("xs")]: {
-      fontSize: "3rem",
+      fontSize: "1.5rem",
     },
     [theme.breakpoints.up("md")]: {
-      fontSize: "5rem",
+      fontSize: "3rem",
     },
   },
 }));

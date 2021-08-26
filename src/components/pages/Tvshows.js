@@ -11,11 +11,12 @@ import genres from "../data/genresTvshows";
 import sortBy from "../data/sortByTvshows";
 import isoCountries from "../data/isoCountries";
 import certification from "../data/certification";
+import { Grid } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 120,
+    width: "100%",
   },
 
   button: {
@@ -36,10 +37,10 @@ const useStyles = makeStyles((theme) => ({
   },
   typographyHeader: {
     [theme.breakpoints.down("xs")]: {
-      fontSize: "3rem",
+      fontSize: "1.5rem",
     },
     [theme.breakpoints.up("md")]: {
-      fontSize: "5rem",
+      fontSize: "3rem",
     },
   },
 }));
@@ -79,143 +80,147 @@ export default function Movies() {
         >
           Discover new TV Shows today!
         </Typography>
-        <FormControl variant="outlined" className={classes.formControl}>
-          <InputLabel id="genre">Genre</InputLabel>
-          <Select
-            error
-            labelId="demo-simple-select-outlined-label"
-            id="demo-simple-select-outlined"
-            value={genre}
-            onChange={(e) => setGenre(e.target.value)}
-            label="Genre"
-            className={classes.select}
-          >
-            {genres.map((type, index) => {
-              return (
-                <MenuItem value={type.id} key={index}>
-                  {type.name}
-                </MenuItem>
-              );
-            })}
-          </Select>
-        </FormControl>
-        <FormControl variant="outlined" className={classes.formControl}>
-          <InputLabel id="certification">Certification</InputLabel>
-          <Select
-            error
-            labelId="demo-simple-select-outlined-label"
-            id="demo-simple-select-outlined"
-            value={cert}
-            onChange={(e) => setCert(e.target.value)}
-            label="Certification"
-            className={classes.select}
-          >
-            {certification.map((type, index) => {
-              return (
-                <MenuItem value={type.certification} key={index}>
-                  {type.certification}
-                </MenuItem>
-              );
-            })}
-          </Select>
-        </FormControl>
-        <FormControl variant="outlined" className={classes.formControl}>
-          <InputLabel id="certification">Sort By</InputLabel>
-          <Select
-            error
-            labelId="demo-simple-select-outlined-label"
-            id="demo-simple-select-outlined"
-            value={sort}
-            onChange={(e) => setSort(e.target.value)}
-            label="Sort By"
-            className={classes.select}
-          >
-            {sortBy.map((type, index) => {
-              return (
-                <MenuItem value={type.sort} key={index}>
-                  {type.name}
-                </MenuItem>
-              );
-            })}
-          </Select>
-        </FormControl>
-        <FormControl variant="outlined" className={classes.formControl}>
-          <InputLabel id="releaseYear">From</InputLabel>
-          <Select
-            error
-            labelId="demo-simple-select-outlined-label"
-            id="demo-simple-select-outlined"
-            value={yearGte}
-            onChange={(e) => setYearGte(e.target.value)}
-            label="Release Year"
-            className={classes.select}
-          >
-            {allYears.map((year, index) => {
-              return (
-                <MenuItem value={year} key={index}>
-                  {year}
-                </MenuItem>
-              );
-            })}
-          </Select>
-        </FormControl>
-        <FormControl variant="outlined" className={classes.formControl}>
-          <InputLabel color="primary" id="releaseYear">
-            To
-          </InputLabel>
-          <Select
-            error
-            labelId="demo-simple-select-outlined-label"
-            id="demo-simple-select-outlined"
-            value={yearLte}
-            onChange={(e) => setYearLte(e.target.value)}
-            label="Release Year"
-            className={classes.select}
-          >
-            {allYears.map((year, index) => {
-              return (
-                <MenuItem value={year} key={index}>
-                  {year}
-                </MenuItem>
-              );
-            })}
-          </Select>
-        </FormControl>
-        <FormControl variant="outlined" className={classes.formControl}>
-          <InputLabel id="releaseYear">Region</InputLabel>
-          <Select
-            error
-            labelId="demo-simple-select-outlined-label"
-            id="demo-simple-select-outlined"
-            value={country}
-            onChange={(e) => setCountry(e.target.value)}
-            label="Release Year"
-            className={classes.select}
-          >
-            {isoCountries.map((region, index) => {
-              return (
-                <MenuItem value={region.ccode} key={index}>
-                  {region.cname}
-                </MenuItem>
-              );
-            })}
-          </Select>
-        </FormControl>
-        <Link
-          // to={`/movies/${genre}/${cert}/${sort}/${yearGte}/${yearLte}/${country}/${lang}`}
-          to={`/tvshows/${genre}/${cert}/${sort}/${yearGte}/${yearLte}/${country}`}
-          style={{ textDecoration: "none" }}
-        >
-          <Button
-            variant="contained"
-            className={classes.button}
-            color="primary"
-            disableElevation
-            size="large"
-          >
-            Search!
-          </Button>
-        </Link>
+        <Grid container spacing={3}>
+          <Grid item xs={6} md={3}>
+            <FormControl variant="outlined" className={classes.formControl}>
+              <InputLabel id="genre">Genre</InputLabel>
+              <Select
+                error
+                value={genre}
+                onChange={(e) => setGenre(e.target.value)}
+                label="Genre"
+                className={classes.select}
+              >
+                {genres.map((type, index) => {
+                  return (
+                    <MenuItem value={type.id} key={index}>
+                      {type.name}
+                    </MenuItem>
+                  );
+                })}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={6} md={3}>
+            <FormControl variant="outlined" className={classes.formControl}>
+              <InputLabel id="certification">Certification</InputLabel>
+              <Select
+                error
+                value={cert}
+                onChange={(e) => setCert(e.target.value)}
+                label="Certification"
+                className={classes.select}
+              >
+                {certification.map((type, index) => {
+                  return (
+                    <MenuItem value={type.certification} key={index}>
+                      {type.certification}
+                    </MenuItem>
+                  );
+                })}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={6} md={3}>
+            <FormControl variant="outlined" className={classes.formControl}>
+              <InputLabel id="certification">Sort By</InputLabel>
+              <Select
+                error
+                value={sort}
+                onChange={(e) => setSort(e.target.value)}
+                label="Sort By"
+                className={classes.select}
+              >
+                {sortBy.map((type, index) => {
+                  return (
+                    <MenuItem value={type.sort} key={index}>
+                      {type.name}
+                    </MenuItem>
+                  );
+                })}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={6} md={3}>
+            <FormControl variant="outlined" className={classes.formControl}>
+              <InputLabel id="releaseYear">From</InputLabel>
+              <Select
+                error
+                value={yearGte}
+                onChange={(e) => setYearGte(e.target.value)}
+                label="Release Year"
+                className={classes.select}
+              >
+                {allYears.map((year, index) => {
+                  return (
+                    <MenuItem value={year} key={index}>
+                      {year}
+                    </MenuItem>
+                  );
+                })}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={6} md={3}>
+            <FormControl variant="outlined" className={classes.formControl}>
+              <InputLabel color="primary" id="releaseYear">
+                To
+              </InputLabel>
+              <Select
+                error
+                value={yearLte}
+                onChange={(e) => setYearLte(e.target.value)}
+                label="Release Year"
+                className={classes.select}
+              >
+                {allYears.map((year, index) => {
+                  return (
+                    <MenuItem value={year} key={index}>
+                      {year}
+                    </MenuItem>
+                  );
+                })}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={6} md={3}>
+            <FormControl variant="outlined" className={classes.formControl}>
+              <InputLabel id="releaseYear">Region</InputLabel>
+              <Select
+                error
+                value={country}
+                onChange={(e) => setCountry(e.target.value)}
+                label="Release Year"
+                className={classes.select}
+              >
+                {isoCountries.map((region, index) => {
+                  return (
+                    <MenuItem value={region.ccode} key={index}>
+                      {region.cname}
+                    </MenuItem>
+                  );
+                })}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={6} md={3}>
+            <Link
+              // to={`/movies/${genre}/${cert}/${sort}/${yearGte}/${yearLte}/${country}/${lang}`}
+              to={`/tvshows/${genre}/${cert}/${sort}/${yearGte}/${yearLte}/${country}`}
+              style={{ textDecoration: "none" }}
+            >
+              <Button
+                variant="contained"
+                className={classes.button}
+                color="primary"
+                disableElevation
+                size="large"
+              >
+                Search!
+              </Button>
+            </Link>
+          </Grid>
+        </Grid>
       </Container>
     </div>
   );
