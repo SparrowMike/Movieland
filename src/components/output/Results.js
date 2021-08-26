@@ -13,8 +13,6 @@ import { GridListTile } from "@material-ui/core";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Modal from "@material-ui/core/Modal";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ReactPlayer from "react-player";
 import Rating from "@material-ui/lab/Rating";
@@ -31,20 +29,21 @@ const useStyles = makeStyles((theme) => ({
     listStyle: "none",
   },
   card: {
+    padding: "5px",
     background: "#000000",
     contain: "content",
     color: "white",
     "&:hover": {
-      background: "#9d0208",
+      background: "#780000",
     },
   },
   media: {
     height: 0,
     margin: 5,
     paddingTop: "56.25%", // 16:9
+    transition: ".3s ease-in-out",
     "&:hover": {
-      boxShadow: "0 0.6em 0.5em -0.4em salmon",
-      transform: "translateY(-0.15em)",
+      transform: "scale(1.05)",
       cursor: "pointer",
     },
   },
@@ -186,32 +185,27 @@ export default function Trending({
             .map((film, index) => (
               <Grid item xs={12} sm={6} md={4} lg={4} xl={3} key={film.id}>
                 <GridListTile className={classes.card}>
-                  <CardHeader
-                    title={film.title ? film.title : film.name}
-                    subheader={
-                      <Typography color="primary" paragraph>
-                        Release:{" "}
-                        {getYear(
-                          film.release_date
-                            ? film.release_date
-                            : film.first_air_date
-                        )}
-                      </Typography>
-                    }
-                  />
                   <CardMedia
                     className={classes.media}
                     image={`https://image.tmdb.org/t/p/w500${film.backdrop_path}`}
                     title={film.title ? film.title : film.name}
                     onClick={() => handleOpen(film)}
                   />
-                  <CardActions disableSpacing>
-                    <IconButton color="primary" aria-label="add to favorites">
-                      <FavoriteIcon />
-                    </IconButton>
-                    <IconButton color="primary" aria-label="share">
-                      <ShareIcon />
-                    </IconButton>
+                  <CardActions disableSpacing style={{ paddingBottom: 0 }}>
+                    <CardHeader
+                      style={{ padding: 0, paddingLeft: 9 }}
+                      title={film.title ? film.title : film.name}
+                      subheader={
+                        <Typography color="primary" paragraph>
+                          Release:{" "}
+                          {getYear(
+                            film.release_date
+                              ? film.release_date
+                              : film.first_air_date
+                          )}
+                        </Typography>
+                      }
+                    />
                     <IconButton
                       id={film.id}
                       className={clsx(classes.expand, {
@@ -230,7 +224,7 @@ export default function Trending({
                     timeout="auto"
                     unmountOnExit
                   >
-                    <CardContent>
+                    <CardContent style={{ paddingTop: 0 }}>
                       <Typography variant="h6">Overview: </Typography>
                       <Typography color="primary" paragraph>
                         {film.overview}
@@ -248,7 +242,6 @@ export default function Trending({
               </Grid>
             ))
         )}
-
         <Modal
           className={classes.modal}
           open={open}
