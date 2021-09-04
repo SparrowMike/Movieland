@@ -59,7 +59,13 @@ const Home = () => {
           throw new Error("Bad Response from Server");
         })
         .then((data) => {
-          setTrailerLink(data.results[0].key);
+          console.log(data.results);
+          const trailer = data.results.filter(
+            (data) =>
+              data.type !== "Behind the Scenes" && data.type === "Trailer"
+          );
+          console.log(trailer);
+          setTrailerLink(trailer[0].key);
         })
         .catch((error) => {
           console.log(error);
@@ -86,16 +92,10 @@ const Home = () => {
           See the latest trending Tv-shows and Movies!
         </h3>
       </div>
-      {type === "movie" ? (
-        <>
-          <h3 style={{ color: "#f6f6f6" }}>Movies</h3>
-          <Carousel handleOpen={handleOpen} type={"movie"} />
-          <h3 style={{ color: "#f6f6f6" }}>TV Shows</h3>
-          <Carousel handleOpen={handleOpen} type={"tv"} />
-        </>
-      ) : (
-        <Carousel handleOpen={handleOpen} type={"tv"} />
-      )}
+      <h3 style={{ color: "#f6f6f6" }}>Movies</h3>
+      <Carousel handleOpen={handleOpen} type={"movie"} />
+      <h3 style={{ color: "#f6f6f6" }}>TV Shows</h3>
+      <Carousel handleOpen={handleOpen} type={"tv"} />
       <Modal
         className={classes.modal}
         open={open}

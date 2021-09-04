@@ -107,7 +107,15 @@ export default function Trending({
           throw new Error("Bad Response from Server");
         })
         .then((data) => {
-          setTrailerLink(data.results[0].key);
+          //!===========================Come back and check for different type of trailers===========================
+          const trailer = data.results.filter(
+            (data) =>
+              data.type === "Trailer" ||
+              data.type === "Teaser" ||
+              data.type === "Clip" ||
+              data.type === "Featurette"
+          );
+          setTrailerLink(trailer[0].key);
         })
         .catch((error) => {
           console.log(error);
@@ -138,8 +146,6 @@ export default function Trending({
     setTrailerLink(null);
     setOpen(false);
   };
-
-  console.log(dataLength);
 
   return dataLength === 0 ? (
     <NotAvailable />
@@ -179,7 +185,7 @@ export default function Trending({
         justify="center"
         className={classes.root}
       >
-        {data.pages.map((data, index) =>
+        {data.pages.map((data) =>
           data.results
             .filter((film) => film.backdrop_path)
             .map((film, index) => (
@@ -260,6 +266,7 @@ export default function Trending({
               </DialogContentText>
             </div>
           ) : (
+            //!===========================It probably should go inside a DIV?!===========================
             <ReactPlayer
               width="60%"
               height="60%"

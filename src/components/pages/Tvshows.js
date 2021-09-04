@@ -77,7 +77,7 @@ export default function Movies() {
 
   return (
     <div className="tvshows">
-      <Container maxWidth="sm" center>
+      <Container maxWidth="sm">
         <Typography
           variant="h2"
           color="primary"
@@ -91,7 +91,7 @@ export default function Movies() {
               <InputLabel id="genre">Genre</InputLabel>
               <Select
                 error
-                // value={genre}
+                value={genre}
                 onChange={(e) => setGenre(e.target.value)}
                 label="Genre"
                 className={classes.select}
@@ -112,7 +112,7 @@ export default function Movies() {
               <InputLabel id="certification">Certification</InputLabel>
               <Select
                 error
-                // value={cert}
+                value={cert}
                 onChange={(e) => setCert(e.target.value)}
                 label="Certification"
                 className={classes.select}
@@ -132,7 +132,7 @@ export default function Movies() {
               <InputLabel id="certification">Sort By</InputLabel>
               <Select
                 error
-                // value={sort}
+                value={sort}
                 onChange={(e) => setSort(e.target.value)}
                 label="Sort By"
                 className={classes.select}
@@ -152,7 +152,7 @@ export default function Movies() {
               <InputLabel id="releaseYear">From</InputLabel>
               <Select
                 error
-                // value={yearGte}
+                value={yearGte}
                 onChange={(e) => setYearGte(e.target.value)}
                 label="Release Year"
                 className={classes.select}
@@ -174,7 +174,7 @@ export default function Movies() {
               </InputLabel>
               <Select
                 error
-                // value={yearLte}
+                value={yearLte}
                 onChange={(e) => setYearLte(e.target.value)}
                 label="Release Year"
                 className={classes.select}
@@ -194,7 +194,7 @@ export default function Movies() {
               <InputLabel id="releaseYear">Region</InputLabel>
               <Select
                 error
-                // value={country}
+                value={country}
                 onChange={(e) => setCountry(e.target.value)}
                 label="Release Year"
                 className={classes.select}
