@@ -17,7 +17,7 @@ footer {
 .home,
 .movies,
 .tvshows {
-  background-image: url("./Photos/foto_tlo_film_blur_04.jpeg");
+  /* background-image: url("./Photos/foto_tlo_film_blur_04.jpeg"); */
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
