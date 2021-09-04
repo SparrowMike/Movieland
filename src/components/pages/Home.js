@@ -1,11 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
 
-import MoviePage from "./../output/MoviePage";
-import TvPage from "./../output/TvPage";
+import Carousel from "../output/Carousel";
 
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
@@ -82,37 +79,23 @@ const Home = () => {
     setOpen(false);
   };
 
-  const handleChange = (e, newValue) => {
-    setType(newValue);
-  };
-
   return (
     <div className={classes.container}>
       <div className="tabs">
         <h3 style={{ textAlign: "center", color: "#f6f6f6" }}>
-          Pick between Movies or Tv-shows to see what's trending!
+          See the latest trending Tv-shows and Movies!
         </h3>
-        <Tabs
-          value={type}
-          style={{ color: "white" }}
-          TabIndicatorProps={{
-            style: {
-              backgroundColor: "white",
-            },
-          }}
-          onChange={(e, newValue) => handleChange(e, newValue)}
-          centered
-        >
-          <Tab label="Movies" value={"movie"} />
-          <Tab label="TV Series" value={"tv"} />
-        </Tabs>
       </div>
       {type === "movie" ? (
-        <MoviePage handleOpen={handleOpen} />
+        <>
+          <h3 style={{ color: "#f6f6f6" }}>Movies</h3>
+          <Carousel handleOpen={handleOpen} type={"movie"} />
+          <h3 style={{ color: "#f6f6f6" }}>TV Shows</h3>
+          <Carousel handleOpen={handleOpen} type={"tv"} />
+        </>
       ) : (
-        <TvPage handleOpen={handleOpen} />
+        <Carousel handleOpen={handleOpen} type={"tv"} />
       )}
-
       <Modal
         className={classes.modal}
         open={open}
