@@ -57,12 +57,12 @@ const MoviePage = ({ handleOpen, type }) => {
     ).then((res) => res.json())
   );
 
-  return (
-    <Slider {...settings}>
-      {status === "loading" ? (
-        <LoadingWindow />
-      ) : (
-        data.results.map((movie, index) => (
+  return status === "loading" ? (
+    <LoadingWindow />
+  ) : (
+    <>
+      <Slider {...settings}>
+        {data.results.map((movie, index) => (
           <div key={index} className="card">
             <img
               src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
@@ -91,9 +91,9 @@ const MoviePage = ({ handleOpen, type }) => {
               />
             </div>
           </div>
-        ))
-      )}
-    </Slider>
+        ))}
+      </Slider>
+    </>
   );
 };
 

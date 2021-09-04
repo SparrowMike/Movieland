@@ -267,13 +267,15 @@ export default function Trending({
             </div>
           ) : (
             //!===========================It probably should go inside a DIV?!===========================
-            <ReactPlayer
-              width="60%"
-              height="60%"
-              className={classes.player}
-              url={`/www.youtube.com/watch?v=${trailerLink}`}
-              playing
-            />
+            <div style={{ height: "70%", width: "70%" }}>
+              <ReactPlayer
+                width="100%"
+                height="100%"
+                className={classes.player}
+                url={`/www.youtube.com/watch?v=${trailerLink}`}
+                playing
+              />
+            </div>
           )}
         </Modal>
       </Grid>

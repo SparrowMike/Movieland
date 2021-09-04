@@ -50,6 +50,7 @@ export function FetchMovies() {
   if (data === undefined) {
     return null;
   }
+  console.log(data.pages);
   const dataLength = data.pages.reduce((counter, page) => {
     return counter + page.results.length;
   }, 0);
