@@ -8,7 +8,7 @@ import FetchSearch from "./components/fetch/FetchSearch";
 import Home from "./components/pages/Home";
 import Movies from "./components/pages/Movies";
 import Tvshows from "./components/pages/Tvshows";
-import { FetchMovies } from "./components/fetch/FetchMovies";
+import FetchMovies from "./components/fetch/FetchMovies";
 import FetchTvShows from "./components/fetch/FetchTvShows";
 
 const theme = createMuiTheme({
@@ -32,15 +32,14 @@ function App() {
           <Navbar />
           <Switch>
             <Route
-              // path="/movies/:genre/:cert/:sort/:yearGte/:yearLte/:country/:language" //! TBC
               path="/movies/:genre/:cert/:sort/:yearGte/:yearLte/:country"
               component={FetchMovies}
             />
+            <Route path="/search/:title" component={FetchSearch} />
             <Route
               path="/tvshows/:genre/:cert/:sort/:yearGte/:yearLte/:country"
               component={FetchTvShows}
             />
-            <Route path="/search/:title" component={FetchSearch} />
             <Route path="/movies" component={Movies} />
             <Route path="/tvshows" component={Tvshows} />
             <Route exact path="/" component={Home} />

@@ -4,6 +4,9 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import Carousel from "../output/Carousel";
 
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import "./slick.css";
@@ -42,12 +45,12 @@ const useStyles = makeStyles((theme) => ({
 const Home = () => {
   const classes = useStyles();
   let key = process.env.REACT_APP_API_KEY;
-  const [type, setType] = useState("movie");
+  const [genreType, setGenreType] = useState("movie");
   const [open, setOpen] = useState(false);
   const [trailerId, setTrailerId] = useState(null);
   const [trailerLink, setTrailerLink] = useState(null);
 
-  const URL = `https://api.themoviedb.org/3/${type}/${trailerId}/videos?api_key=${key}&language=en-US`;
+  const URL = `https://api.themoviedb.org/3/${genreType}/${trailerId}/videos?api_key=${key}&language=en-US`;
 
   useEffect(() => {
     if (trailerId !== null) {
@@ -59,12 +62,10 @@ const Home = () => {
           throw new Error("Bad Response from Server");
         })
         .then((data) => {
-          console.log(data.results);
           const trailer = data.results.filter(
             (data) =>
               data.type !== "Behind the Scenes" && data.type === "Trailer"
           );
-          console.log(trailer);
           setTrailerLink(trailer[0].key);
         })
         .catch((error) => {
@@ -76,7 +77,7 @@ const Home = () => {
   const handleOpen = (e) => {
     setOpen(true);
     setTrailerId(e.id);
-    setType(e.media_type ? e.media_type : type);
+    setGenreType(e.media_type ? e.media_type : genreType);
   };
 
   const handleClose = () => {
@@ -85,17 +86,34 @@ const Home = () => {
     setOpen(false);
   };
 
+  const handleChange = (e, newValue) => {
+    setGenreType(newValue);
+  };
+
   return (
     <div className={classes.container}>
       <div className="tabs">
         <h3 style={{ textAlign: "center", color: "#f6f6f6" }}>
-          See the latest trending Tv-shows and Movies!
+          Pick between Movies or Tv-shows to see what's trending!
         </h3>
+        <Tabs
+          value={genreType}
+          style={{ color: "white" }}
+          TabIndicatorProps={{
+            style: {
+              backgroundColor: "white",
+            },
+          }}
+          onChange={(e, newValue) => handleChange(e, newValue)}
+          centered
+        >
+          <Tab label="Movies" value="movie" />
+          <Tab label="TV Series" value="tv" />
+        </Tabs>
       </div>
-      <h3 style={{ color: "#f6f6f6" }}>Movies</h3>
-      <Carousel handleOpen={handleOpen} type={"movie"} />
-      <h3 style={{ color: "#f6f6f6" }}>TV Shows</h3>
-      <Carousel handleOpen={handleOpen} type={"tv"} />
+
+      <Carousel handleOpen={handleOpen} genreType={genreType} />
+
       <Modal
         className={classes.modal}
         open={open}

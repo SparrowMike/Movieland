@@ -55,6 +55,7 @@ const FetchSearch = () => {
   const dataLength = data.pages.reduce((counter, page) => {
     return counter + page.results.length;
   }, 0);
+  
   return data.length === 0 ? (
     <LoadingWindow />
   ) : (

@@ -5,7 +5,7 @@ import React from "react";
 import LoadingWindow from "./LoadingWindow";
 import { Button } from "@material-ui/core";
 
-const MoviePage = ({ handleOpen, type }) => {
+const MoviePage = ({ handleOpen, genreType }) => {
   var settings = {
     dots: true,
     infinite: false,
@@ -51,9 +51,9 @@ const MoviePage = ({ handleOpen, type }) => {
 
   let key = process.env.REACT_APP_API_KEY;
 
-  const { status, data } = useQuery(type, () =>
+  const { status, data } = useQuery(genreType, () =>
     fetch(
-      `https://api.themoviedb.org/3/trending/${type}/week?api_key=${key}`
+      `https://api.themoviedb.org/3/trending/${genreType}/week?api_key=${key}`
     ).then((res) => res.json())
   );
 
@@ -62,36 +62,37 @@ const MoviePage = ({ handleOpen, type }) => {
   ) : (
     <>
       <Slider {...settings}>
-        {data.results.map((movie, index) => (
-          <div key={index} className="card">
-            <img
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-              alt="movier"
-              key={index}
-              className="image"
-            />
-            <div className="card-desc">
-              <h4 style={{ color: "white", margin: 5 }}>
-                {movie.title ? movie.title : movie.name}
-              </h4>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={() => handleOpen(movie)}
-              >
-                TRAILER
-              </Button>
-              <p>{movie.overview}</p>
-              <h4 style={{ margin: 0 }}>Rating:</h4>
-              <Rating
-                defaultValue={movie.vote_average}
-                max={10}
-                precision={0.1}
-                readOnly
+        {data.results !== undefined &&
+          data.results.map((movie, index) => (
+            <div key={index} className="card">
+              <img
+                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                alt="movier"
+                key={index}
+                className="image"
               />
+              <div className="card-desc">
+                <h4 style={{ color: "white", margin: 5 }}>
+                  {movie.title ? movie.title : movie.name}
+                </h4>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={() => handleOpen(movie)}
+                >
+                  TRAILER
+                </Button>
+                <p>{movie.overview}</p>
+                <h4 style={{ margin: 0 }}>Rating:</h4>
+                <Rating
+                  defaultValue={movie.vote_average}
+                  max={10}
+                  precision={0.1}
+                  readOnly
+                />
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
       </Slider>
     </>
   );

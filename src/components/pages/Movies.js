@@ -65,21 +65,19 @@ export default function Movies() {
   }
 
   return (
-    <div className="tvshows">
-      <Container maxWidth="sm" className={classes.textShadow}>
+    <div className="movies">
+      <Container maxWidth="sm">
         <Typography
           variant="h2"
           color="primary"
           className={classes.typographyHeader}
         >
-          Discover new movies today!
+          Discover new Movies today!
         </Typography>
         <FormControl variant="outlined" className={classes.formControl}>
           <InputLabel id="genre">Genre</InputLabel>
           <Select
             error
-            labelId="demo-simple-select-outlined-label"
-            id="demo-simple-select-outlined"
             value={genre}
             onChange={(e) => setGenre(e.target.value)}
             label="Genre"
@@ -98,8 +96,6 @@ export default function Movies() {
           <InputLabel id="certification">Certification</InputLabel>
           <Select
             error
-            labelId="demo-simple-select-outlined-label"
-            id="demo-simple-select-outlined"
             value={cert}
             onChange={(e) => setCert(e.target.value)}
             label="Certification"
@@ -118,8 +114,6 @@ export default function Movies() {
           <InputLabel id="certification">Sort By</InputLabel>
           <Select
             error
-            labelId="demo-simple-select-outlined-label"
-            id="demo-simple-select-outlined"
             value={sort}
             onChange={(e) => setSort(e.target.value)}
             label="Sort By"
@@ -138,8 +132,6 @@ export default function Movies() {
           <InputLabel id="releaseYear">From</InputLabel>
           <Select
             error
-            labelId="demo-simple-select-outlined-label"
-            id="demo-simple-select-outlined"
             value={yearGte}
             onChange={(e) => setYearGte(e.target.value)}
             label="Release Year"
@@ -160,8 +152,6 @@ export default function Movies() {
           </InputLabel>
           <Select
             error
-            labelId="demo-simple-select-outlined-label"
-            id="demo-simple-select-outlined"
             value={yearLte}
             onChange={(e) => setYearLte(e.target.value)}
             label="Release Year"
@@ -180,8 +170,6 @@ export default function Movies() {
           <InputLabel id="releaseYear">Region</InputLabel>
           <Select
             error
-            labelId="demo-simple-select-outlined-label"
-            id="demo-simple-select-outlined"
             value={country}
             onChange={(e) => setCountry(e.target.value)}
             label="Release Year"
@@ -197,7 +185,6 @@ export default function Movies() {
           </Select>
         </FormControl>
         <Link
-          // to={`/movies/${genre}/${cert}/${sort}/${yearGte}/${yearLte}/${country}/${lang}`}
           to={`/movies/${genre}/${cert}/${sort}/${yearGte}/${yearLte}/${country}`}
           style={{ textDecoration: "none" }}
         >

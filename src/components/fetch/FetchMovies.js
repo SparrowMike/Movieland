@@ -4,7 +4,7 @@ import { useParams } from "react-router";
 import Results from "../output/Results";
 import LoadingWindow from "../output/NotAvailable";
 
-export function FetchMovies() {
+const FetchMovies = () => {
   let key = process.env.REACT_APP_API_KEY;
   const params = useParams();
   let genre = "movie";
@@ -50,10 +50,12 @@ export function FetchMovies() {
   if (data === undefined) {
     return null;
   }
-  console.log(data.pages);
+
   const dataLength = data.pages.reduce((counter, page) => {
     return counter + page.results.length;
   }, 0);
+
+  console.log("Movies", dataLength);
 
   return data.length === 0 ? (
     <LoadingWindow />
@@ -68,4 +70,5 @@ export function FetchMovies() {
       />
     </>
   );
-}
+};
+export default FetchMovies;

@@ -4,7 +4,7 @@ import Results from "../output/Results";
 import { useInfiniteQuery } from "react-query";
 import LoadingWindow from "../output/LoadingWindow";
 
-const FetchSearch = () => {
+const FetchTvShows = () => {
   let key = process.env.REACT_APP_API_KEY;
   const params = useParams();
   let genre = "tv";
@@ -29,7 +29,6 @@ const FetchSearch = () => {
       throw new Error("Problem fetching data");
     }
     const dataFromServer = await response.json();
-    console.log(dataFromServer);
     assertIsCharacterResponse(dataFromServer);
     const data = {
       total_results: dataFromServer.total_results,
@@ -52,6 +51,8 @@ const FetchSearch = () => {
     return counter + page.results.length;
   }, 0);
 
+  console.log("TVSHOW", dataLength);
+
   return data.length === 0 ? (
     <LoadingWindow />
   ) : (
@@ -67,4 +68,4 @@ const FetchSearch = () => {
   );
 };
 
-export default FetchSearch;
+export default FetchTvShows;
