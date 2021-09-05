@@ -2,8 +2,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
-import Carousel from "../output/Carousel";
-
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 
@@ -15,6 +13,9 @@ import ReactPlayer from "react-player";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import Modal from "@material-ui/core/Modal";
+
+import MoviePage from "../output/MoviePage";
+import TvPage from "./../output/TvPage";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -45,12 +46,12 @@ const useStyles = makeStyles((theme) => ({
 const Home = () => {
   const classes = useStyles();
   let key = process.env.REACT_APP_API_KEY;
-  const [genreType, setGenreType] = useState("movie");
+  const [type, setType] = useState("movie");
   const [open, setOpen] = useState(false);
   const [trailerId, setTrailerId] = useState(null);
   const [trailerLink, setTrailerLink] = useState(null);
 
-  const URL = `https://api.themoviedb.org/3/${genreType}/${trailerId}/videos?api_key=${key}&language=en-US`;
+  const URL = `https://api.themoviedb.org/3/${type}/${trailerId}/videos?api_key=${key}&language=en-US`;
 
   useEffect(() => {
     if (trailerId !== null) {
@@ -77,7 +78,7 @@ const Home = () => {
   const handleOpen = (e) => {
     setOpen(true);
     setTrailerId(e.id);
-    setGenreType(e.media_type ? e.media_type : genreType);
+    setType(e.media_type ? e.media_type : type);
   };
 
   const handleClose = () => {
@@ -87,7 +88,7 @@ const Home = () => {
   };
 
   const handleChange = (e, newValue) => {
-    setGenreType(newValue);
+    setType(newValue);
   };
 
   return (
@@ -97,7 +98,7 @@ const Home = () => {
           Pick between Movies or Tv-shows to see what's trending!
         </h3>
         <Tabs
-          value={genreType}
+          value={type}
           style={{ color: "white" }}
           TabIndicatorProps={{
             style: {
@@ -112,8 +113,11 @@ const Home = () => {
         </Tabs>
       </div>
 
-      <Carousel handleOpen={handleOpen} genreType={genreType} />
-
+      {type === "movie" ? (
+        <MoviePage handleOpen={handleOpen} />
+      ) : (
+        <TvPage handleOpen={handleOpen} />
+      )}
       <Modal
         className={classes.modal}
         open={open}
